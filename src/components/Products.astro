@@ -8,82 +8,88 @@ const products = [
 ---
 
 <section id="products" class="w-full relative bg-brandBg overflow-hidden pb-12 md:pb-8">
-  
-  {/* Centered Heading */}
-  <div class="w-full text-center pt-32 md:pt-48 pb-8 relative z-10 reveal-text">
+
+  {/* Heading */}
+  <div class="w-full text-center pt-16 md:pt-32 pb-6 relative z-10 reveal-text">
     <h2 class="text-4xl md:text-5xl font-satoshi font-medium mb-4">Our Products</h2>
     <p class="font-serif text-2xl md:text-3xl text-gray-800">Engineered Aggregates for Every Need</p>
   </div>
 
-  {/* Sticky Container for the horizontal pinned animation */}
-  <div class="pin-container w-full h-screen flex items-center relative overflow-hidden">
-    
-    {/* Left Logo (Fades out when scrolling) - Absolute positioned to stay on far left seamlessly */}
-    <div class="product-left w-[30%] md:w-[350px] pl-6 md:pl-16 flex flex-col justify-center h-full absolute left-0 z-20 transition-opacity duration-300">
-        <img src="/images/logo.png" alt="Payyavoor Crushers" class="w-full hidden md:block" id="big-side-logo" />
+  {/* Container */}
+  <div class="pin-container w-full min-h-[80vh] md:h-screen flex items-center relative overflow-x-auto md:overflow-hidden scroll-smooth md:snap-none snap-x snap-mandatory">
+
+    {/* Left Logo (hidden on mobile anyway) */}
+    <div class="product-left w-[30%] md:w-[350px] pl-6 md:pl-16 flex flex-col justify-center h-full absolute left-0 z-20 transition-opacity duration-300 hidden md:flex">
+      <img src="/images/logo.png" alt="Payyavoor Crushers" class="w-full" id="big-side-logo" />
     </div>
 
-    {/* Right Carousel Track securely shifting initial image beyond the logo using padded margins */}
+    {/* Scroll Area */}
     <div class="product-right w-full h-full flex items-center justify-start relative z-10 w-max" id="horizontal-track-container">
-      <div class="flex gap-6 md:gap-12 items-center h-full pl-[40%] md:pl-[420px] pr-12 md:pr-32" id="horizontal-track">
-        
+
+      <div id="horizontal-track" class="flex gap-4 md:gap-12 items-center h-full w-max pl-4 md:pl-[420px] pr-6 md:pr-32">
+
         {products.map((product) => (
-          <div class="product-card flex-shrink-0 w-[85vw] md:w-[600px] h-[55vh] md:h-[600px] relative rounded-[10px] overflow-hidden group shadow-lg drop-shadow-sm transition-transform bg-white">
+          <div class="product-card snap-center flex-shrink-0 w-[85vw] md:w-[600px] h-[50vh] md:h-[600px] relative rounded-[10px] overflow-hidden group shadow-lg bg-white">
+            
             <img src={product.img} alt={product.name} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-            <div class="absolute bottom-8 left-8 text-white z-10">
-              <span class="text-xl md:text-2xl font-satoshi mb-2 block font-medium opacity-80">( {product.num} )</span>
-              <h3 class="text-3xl md:text-4xl font-satoshi font-semibold mb-3">{product.name}</h3>
+
+            <div class="absolute bottom-6 left-6 text-white z-10">
+              <span class="text-lg md:text-2xl font-satoshi mb-2 block font-medium opacity-80">( {product.num} )</span>
+              <h3 class="text-2xl md:text-4xl font-satoshi font-semibold mb-2">{product.name}</h3>
               <p class="text-sm md:text-base font-satoshi w-5/6 text-gray-200">{product.desc}</p>
             </div>
+
           </div>
         ))}
 
       </div>
+
     </div>
-    
+
   </div>
 </section>
 
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-  
-  gsap.registerPlugin(ScrollTrigger);
 
-  window.addEventListener("DOMContentLoaded", () => {
-    const track = document.getElementById('horizontal-track');
-    const leftContent = document.querySelector('.product-left');
-    
-    const cards = document.querySelectorAll('.product-card');
-    const scrollAmount = track.scrollWidth - window.innerWidth;
+  if (typeof window !== "undefined" && window.innerWidth > 768) {
+    gsap.registerPlugin(ScrollTrigger);
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".pin-container",
-        start: "top top", // Triggers perfectly when the h-screen container mounts the window bounds
-        end: `+=${scrollAmount * 1.2}`,
-        pin: true,
-        scrub: 1, 
-        snap: {
+    window.addEventListener("DOMContentLoaded", () => {
+      const track = document.getElementById('horizontal-track');
+      const leftContent = document.querySelector('.product-left');
+      const cards = document.querySelectorAll('.product-card');
+
+      const scrollAmount = track.scrollWidth - window.innerWidth;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".pin-container",
+          start: "top top",
+          end: `+=${scrollAmount * 1.2}`,
+          pin: true,
+          scrub: 1,
+          snap: {
             snapTo: 1 / (cards.length - 1),
             duration: 0.5,
-            delay: 0,
             ease: "power1.inOut"
+          }
         }
-      }
+      });
+
+      tl.to(leftContent, {
+        opacity: 0,
+        duration: 0.2
+      }, 0);
+
+      tl.to(track, {
+        x: -scrollAmount,
+        ease: "none",
+        duration: scrollAmount * 1.2
+      }, 0);
     });
-
-    // Fade out logo instantly upon scrolling initialization
-    tl.to(leftContent, { 
-      opacity: 0, 
-      duration: (scrollAmount * 1.2) * 0.02 
-    }, 0);
-
-    tl.to(track, {
-      x: -scrollAmount,
-      ease: "none",
-      duration: scrollAmount * 1.2
-    }, 0);
-  });
+  }
 </script>
