@@ -1,0 +1,176 @@
+---
+const awards = [
+  { year: "2026", title: "Govt Award", image: "https://agcofca-media.s3.us-west-1.amazonaws.com/wp-content/uploads/2026/02/27100108/2-1.jpg", text: "Recognized for outstanding contribution to regional infrastructure development." },
+  { year: "2025", title: "Best Constructor Award", image: "https://www.scottishconstructionnow.com/storage/f7aafa749cd2f1668993043bc5272418b901d171.jpg", text: "Awarded for consistency and rapid supply lines." },
+  { year: "2023", title: "People's Excellency Award", image: "https://constructor.university/sites/default/files/2025-12/DAAD%202025%20-%20Web.JPG", text: "Voted best regional aggregate supplier by independent contractors." },
+  { year: "2020", title: "Samoohika Suraksha Award", image: "https://edinburghbioquarter.com/wp-content/uploads/2024/05/MCLH_CCS-Awards-2-feature400jpg.jpg", text: "Appreciated for our commitment to safety and community welfare." },
+];
+---
+
+<section id="awards-legacy" class="py-12 md:py-24 w-full flex flex-col items-start px-6 md:px-12 relative cursor-default overflow-hidden">
+  
+  <div class="text-center font-serif text-4xl md:text-[4rem] leading-[1.1] mb-12 md:mb-24 w-full reveal-text">
+    Built on experience.<br />
+    Delivered with<br />
+    consistency.
+  </div>
+
+  <div class="w-full mb-16 md:mb-32 relative">
+    <h3 class="text-3xl md:text-5xl font-satoshi font-medium mb-12 reveal-text">Awards</h3>
+    
+    <div id="awards-list" class="border-t border-gray-300 w-full flex flex-col">
+      {awards.map((award, index) => (
+        <div 
+          class="award-row group border-b border-gray-300 relative w-full h-[100px] md:h-[130px] flex items-center transition-colors duration-500 hover:bg-black hover:text-white"
+          data-index={index}
+        >
+          <div class="w-full px-4 md:px-8 flex justify-between items-center z-20 relative font-serif">
+            <span class="text-2xl md:text-3xl w-1/4">{award.year}</span>
+            <span class="text-2xl md:text-3xl w-1/2">{award.title}</span>
+            <div class="flex items-center justify-end font-satoshi font-bold text-2xl leading-none">
+              <span class="transition-all duration-500 transform group-hover:opacity-0 group-hover:translate-x-2 group-hover:scale-50">•</span>
+              <span class="mx-[2px]">•</span>
+              <span class="transition-all duration-500 transform group-hover:opacity-0 group-hover:-translate-x-2 group-hover:scale-50">•</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Floating Cursor-Follow Preview Card -->
+    <div id="awards-preview-container" class="fixed top-0 left-0 w-[450px] h-[320px] pointer-events-none z-[9999] opacity-0 scale-75 transition-all duration-300 ease-out hidden md:block">
+      <div class="w-full h-full bg-[#111111] rounded-2xl overflow-hidden shadow-[0_40px_120px_rgba(0,0,0,0.5)] border border-white/20 flex flex-col">
+        <!-- Image Area -->
+        <div class="h-[60%] w-full p-4 pb-0">
+          <div class="w-full h-full rounded-xl overflow-hidden relative">
+            {awards.map((award, index) => (
+              <img 
+                src={award.image} 
+                alt="Award" 
+                class={`award-preview-img absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${index === 0 ? 'opacity-100' : 'opacity-0'}`} 
+                data-index={index}
+              />
+            ))}
+          </div>
+        </div>
+        <!-- Text Area -->
+        <div class="h-[40%] w-full relative">
+          {awards.map((award, index) => (
+            <div class={`award-preview-text absolute inset-0 p-5 pt-4 flex items-center ${index === 0 ? 'flex' : 'hidden'}`} data-index={index}>
+              <p class="text-white/90 font-satoshi text-lg leading-relaxed">
+                {award.text.split(' ').map((word, wIdx) => (
+                  <span class="inline-block overflow-hidden mr-1.5 py-0.5">
+                    <span class="word-span-follow inline-block translate-y-full opacity-0 transition-all duration-500 ease-out" style={`transition-delay: ${wIdx * 0.025}s`}>
+                      {word}
+                    </span>
+                  </span>
+                ))}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* Legacy Section */}
+  <div class="w-full flex flex-col md:flex-row justify-between items-center gap-12 mt-12 bg-brandBg">
+    <div class="md:w-1/3">
+      <h3 class="text-3xl md:text-5xl font-satoshi font-medium mb-4 reveal-text">Our Legacy</h3>
+      <p class="font-serif italic text-2xl text-gray-500 mb-8 reveal-text">Building strength that lasts</p>
+      <img src="https://www.mainlandaggregates.co.uk/media/wysiwyg/quarry8.jpg" alt="Quarry Drone View" class="w-full object-cover h-64 md:h-auto rounded-2xl" />
+    </div>
+    
+    <div class="md:w-1/2 pt-2 md:pt-0 font-satoshi text-gray-800 leading-relaxed font-medium">
+      <p class="mb-8 text-xl reveal-text">
+        Since our beginning in 1995, Payyavoor Crushers has grown with a clear vision — to deliver materials that form the foundation of lasting infrastructure. Every project we support is more than just supply; it's a contribution to roads, bridges, and spaces that people rely on every day.
+      </p>
+      <p class="text-xl reveal-text">
+        For us, this work goes beyond production. It's about consistency, responsibility, and creating a lasting impact through quality materials that stand the test of time.
+      </p>
+    </div>
+  </div>
+
+</section>
+
+<style>
+  /* Word reveal animation when parent is active */
+  .award-preview-text.active .word-span-follow {
+    transform: translateY(0);
+    opacity: 1;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const previewContainer = document.getElementById('awards-preview-container');
+    const awardsList = document.getElementById('awards-list');
+    const rows = document.querySelectorAll('.award-row');
+    const previewImgs = document.querySelectorAll('.award-preview-img');
+    const previewTexts = document.querySelectorAll('.award-preview-text');
+
+    if (!previewContainer || !awardsList) return;
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    // Smooth cursor follow using LERP
+    const followCursor = () => {
+      const lerp = 0.12; // Smoother follow
+      currentX += (mouseX - currentX) * lerp;
+      currentY += (mouseY - currentY) * lerp;
+
+      // Position logic: Offset to follow mouse naturally
+      previewContainer.style.transform = `translate3d(${currentX + 30}px, ${currentY - 160}px, 0) scale(${previewContainer.classList.contains('visible') ? 1 : 0.8})`;
+      
+      requestAnimationFrame(followCursor);
+    };
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    followCursor();
+
+    rows.forEach(row => {
+      row.addEventListener('mouseenter', () => {
+        const index = row.getAttribute('data-index');
+        
+        previewContainer.classList.add('visible');
+        previewContainer.style.opacity = '1';
+        
+        previewImgs.forEach(img => {
+          img.style.opacity = img.getAttribute('data-index') === index ? '1' : '0';
+        });
+        
+        previewTexts.forEach(txt => {
+          if (txt.getAttribute('data-index') === index) {
+            txt.classList.remove('hidden');
+            txt.classList.add('flex');
+            // Small delay to ensure display: flex is applied before transition
+            setTimeout(() => {
+              txt.classList.add('active');
+            }, 50);
+          } else {
+            txt.classList.add('hidden');
+            txt.classList.remove('flex');
+            txt.classList.remove('active');
+          }
+        });
+      });
+
+      row.addEventListener('mouseleave', () => {
+        previewContainer.classList.remove('visible');
+        previewContainer.style.opacity = '0';
+        
+        previewTexts.forEach(txt => {
+          txt.classList.remove('active');
+          txt.classList.add('hidden');
+        });
+      });
+    });
+  });
+</script>

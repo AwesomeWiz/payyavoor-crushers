@@ -1,0 +1,251 @@
+---
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Payyavoor Crushers | Granite mining and aggregate supply</title>
+		<meta name="description" content="Payyavoor Crushers is a trusted name in granite mining and aggregate production since 1995. Supplying high-quality materials for roads, bridges, and infrastructure." />
+	</head>
+	<body class="bg-brandBg text-gray-900 font-satoshi antialiased overflow-x-hidden">
+
+		<!-- ░░ INTRO OVERLAY — full-screen, contains the live text ░░ -->
+		<div id="intro-overlay">
+		  <div class="intro-center">
+			<h2 id="intro-heading" class="intro-h1">
+			  Building the
+			  <span class="fn-container">
+				<span id="overlay-fn-inner" class="fn-inner">
+				  <span class="fn-word font-light">foundation</span>
+				  <span class="fn-word fn-word--italic font-light">foundation</span>
+				</span>
+			  </span><br />
+			  for — tomorrow
+			</h2>
+		  </div>
+		</div>
+
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+
+  /* ── Intro overlay ─────────────────────────────────── */
+  #intro-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background-color: #AAC9C6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    transition: background-color 1s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  #intro-overlay.color-shift {
+    background-color: #fefdf7;
+  }
+
+  /* Hero section sits ABOVE the overlay so carousel/text are visible */
+  #hero {
+    position: relative;
+    z-index: 10000;
+  }
+
+  /* Centered container matches hero container padding */
+  .intro-center {
+    width: 100%;
+    padding: 0 1.5rem;
+    text-align: center;
+  }
+
+  /* The overlay heading — starts zoomed-out & invisible */
+  .intro-h1 {
+    font-family: 'Source Serif Pro', serif;
+    font-size: clamp(3rem, 10vw, 6rem);
+    line-height: 1.1;
+    font-weight: 400;
+    color: #111827;
+    margin: 0;
+    display: inline-block; /* needed for transform-origin */
+    opacity: 0;
+    transform: scale(0.94) translateY(18px);
+    /* entry animation properties */
+    transition: opacity 1.7s cubic-bezier(0.25, 1, 0.5, 1),
+                transform 1.7s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .intro-h1.entered {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  /* ── Foundation word flip ──────────────────────────── */
+  .fn-container {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    height: 1.1em;
+  }
+  .fn-inner {
+    display: block;
+    transition: transform 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+  .fn-word {
+    display: block;
+    line-height: 1.1;
+    font-weight: 300;
+  }
+  .fn-word--italic { font-style: italic; }
+  .fn-inner.flipped { transform: translateY(-50%); }
+
+  /* ── Real hero h1 — hidden until overlay departs ────── */
+  #hero-real-h1 {
+    opacity: 0;
+  }
+
+  /* ── Hero text block — no translateY (overlay does the move) */
+  #hero-text-block {
+    /* intentionally no transform */
+  }
+
+  /* ── Subtitle — hidden during intro ───────────────── */
+  #hero-subtitle {
+    opacity: 0;
+    transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  #hero-subtitle.intro-revealed { opacity: 1; }
+
+  /* ── Carousel — rises from below simultaneously ────── */
+  #hero-carousel {
+    opacity: 0;
+    transform: translateY(44px);
+    transition: opacity 0.85s cubic-bezier(0.25, 1, 0.5, 1),
+                transform 0.85s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  #hero-carousel.intro-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Copyright text — hidden during intro ──────────── */
+  #hero-copyright {
+    opacity: 0;
+    transition: opacity 0.85s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  #hero-copyright.intro-revealed { opacity: 1; }
+
+  /* ── Navbar wrapper fades in above the overlay ────── */
+  #navbar-wrapper {
+    z-index: 10001; /* above overlay z-9000 */
+    opacity: 0;
+    transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  #navbar-wrapper.intro-revealed { opacity: 1; }
+
+  /* ── Scroll-triggered reveals (all other sections) ─── */
+  .reveal-text {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1),
+                transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .reveal-text.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    /* ── Elements ─────────────────────────────────────── */
+    const overlay        = document.getElementById('intro-overlay') as HTMLElement;
+    const introHeading   = document.getElementById('intro-heading') as HTMLElement;
+    const overlayFnInner = document.getElementById('overlay-fn-inner') as HTMLElement;
+    const heroRealH1     = document.getElementById('hero-real-h1') as HTMLElement;
+    const heroSubtitle   = document.getElementById('hero-subtitle') as HTMLElement;
+    const heroCarousel   = document.getElementById('hero-carousel') as HTMLElement;
+    const heroCopyright  = document.getElementById('hero-copyright') as HTMLElement;
+    const navbarWrapper  = document.getElementById('navbar-wrapper') as HTMLElement;
+
+    /* Prevent browser scroll restoration */
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    document.body.style.overflow = 'hidden';
+
+    /* ── Step 0: Zoom-in entry of overlay text ────────── */
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        introHeading?.classList.add('entered');
+      });
+    });
+
+    /* ── Step 1 (700ms): flip "foundation" italic ─────── */
+    setTimeout(() => {
+      overlayFnInner?.classList.add('flipped');
+    }, 700);
+
+    /* ── Step 2 (1400ms): bg shift + text glides to hero position ── */
+    setTimeout(() => {
+
+      /* Calculate exact delta from overlay heading → real h1 */
+      const fromRect = introHeading?.getBoundingClientRect();
+      const toRect   = heroRealH1?.getBoundingClientRect();
+
+      if (introHeading && fromRect && toRect) {
+        const dy = toRect.top  - fromRect.top;
+        const dx = toRect.left - fromRect.left;
+
+        /* Override transition for the position glide */
+        introHeading.style.transition = [
+          'transform 1.3s cubic-bezier(0.25, 1, 0.5, 1)',
+          'opacity   1.3s cubic-bezier(0.25, 1, 0.5, 1)',
+        ].join(', ');
+
+        /* Fly overlay heading to real h1 position */
+        introHeading.style.transform = `translate(${dx}px, ${dy}px) scale(1)`;
+      }
+
+      /* bg color shift fires simultaneously */
+      overlay?.classList.add('color-shift');
+
+      /* Reveal everything else */
+      heroSubtitle?.classList.add('intro-revealed');
+      heroCarousel?.classList.add('intro-revealed');
+      heroCopyright?.classList.add('intro-revealed');
+      navbarWrapper?.classList.add('intro-revealed');
+
+      document.body.style.overflow = '';
+      window.scrollTo(0, 0);
+
+    }, 1400);
+
+    /* ── Step 3 (2400ms): snap real h1, remove overlay ── */
+    setTimeout(() => {
+      /* Make real h1 visible instantly (overlay still on top) */
+      if (heroRealH1) heroRealH1.style.opacity = '1';
+      /* Remove overlay — real h1 is now the visible text */
+      overlay?.remove();
+    }, 2800);
+
+    /* ── Scroll-triggered reveals (non-hero) ──────────── */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        } else {
+          entry.target.classList.remove('revealed');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
+
+    document.querySelectorAll('.reveal-text').forEach((el) => observer.observe(el));
+  });
+</script>
