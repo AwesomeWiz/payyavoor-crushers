@@ -9,7 +9,7 @@ export default {
 			},
 			colors: {
 				brandBlue: '#007eb5',
-				brandGreen: '#1b8b6a',
+				brandGreen: '#005097',
 				brandBg: '#fefdf7', // off-white yellowish background from design
 			}
 		},

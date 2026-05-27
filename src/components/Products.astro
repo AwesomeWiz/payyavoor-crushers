@@ -1,42 +1,42 @@
 ---
 const products = [
-  { num: "01", name: "P Sand", desc: "Fine, smooth texture ideal for plastering applications", img: "https://5.imimg.com/data5/IOS/Default/2023/4/302151310/UX/MS/GC/164138792/product-jpeg-500x500.png" },
-  { num: "02", name: "M Sand", desc: "Superior alternative to river sand for concrete works", img: "https://www.smergers.com/media/businessphoto/28676-42317971055.jpeg" },
-  { num: "03", name: "Aggregates (20mm)", desc: "High-grade coarse aggregates for strong foundations", img: "https://5.imimg.com/data5/SELLER/Default/2024/11/467879402/LG/HP/CB/94115244/untitled-design-1-500x500.jpg" },
-  { num: "04", name: "Aggregates (12mm)", desc: "Perfect mix for robust structural integrity", img: "https://images.jdmagicbox.com/quickquotes/images_main/50-mm-crushed-stone-gravel-802967160-95jugqm7.jpg" }
+  { name: "P Sand", desc: "Fine, smooth texture ideal for plastering applications", img: "https://5.imimg.com/data5/IOS/Default/2023/4/302151310/UX/MS/GC/164138792/product-jpeg-500x500.png" },
+  { name: "M Sand", desc: "Premium manufactured sand for strong concrete", img: "/images/msand.jpg" },
+  {name: "40mm", desc: "Heavy aggregates for foundations and roads", img: "https://5.imimg.com/data5/SELLER/Default/2024/11/467879402/LG/HP/CB/94115244/untitled-design-1-500x500.jpg" },
+  {name: "20mm", desc: "Strong aggregates for concrete structures", img: "/images/12mm.jpg" },
+  { name: "12mm", desc: "Durable aggregates for RCC works", img: "/images/12mm.jpg" },
+  { name: "6mm", desc: "Fine aggregates for precision construction", img: "/images/12mm.jpg" },
+  {name: "Dust", desc: "Fine material for filling and leveling", img: "/images/12mm.jpg" },
+  { name: "WMM", desc: "High-strength mix for road construction", img: "/images/12mm.jpg" },
+  {name: "GSB", desc: "Reliable base material for road works", img: "/images/12mm.jpg" }
+
 ];
 ---
 
-<section id="products" class="w-full relative bg-brandBg overflow-hidden pb-12 md:pb-8">
+<section id="products" class="scroll-mt-16 md:scroll-mt-20 w-full relative bg-brandBg overflow-hidden pb-12 md:pb-8">
 
   {/* Heading */}
-  <div class="w-full text-center pt-16 md:pt-32 pb-6 relative z-10 reveal-text">
-    <h2 class="text-4xl md:text-5xl font-satoshi font-medium mb-4">Our Products</h2>
+  <div class="w-full text-center pt-4 md:pt-6 pb-3 relative z-10 reveal-text">
+    <h2 class="text-4xl md:text-5xl font-satoshi font-medium mb-2">Our Products</h2>
     <p class="font-serif text-2xl md:text-3xl text-gray-800">Engineered Aggregates for Every Need</p>
   </div>
 
   {/* Container */}
-  <div class="pin-container w-full min-h-[80vh] md:h-screen flex items-center relative overflow-x-auto md:overflow-hidden scroll-smooth md:snap-none snap-x snap-mandatory">
-
-    {/* Left Logo (hidden on mobile anyway) */}
-    <div class="product-left w-[30%] md:w-[350px] pl-6 md:pl-16 flex flex-col justify-center h-full absolute left-0 z-20 transition-opacity duration-300 hidden md:flex">
-      <img src="/images/logo.png" alt="Payyavoor Crushers" class="w-full" id="big-side-logo" />
-    </div>
+  <div class="pin-container w-full min-h-[55vh] md:h-[550px] mt-2 md:mt-4 flex items-center relative overflow-hidden scroll-smooth snap-none">
 
     {/* Scroll Area */}
     <div class="product-right w-full h-full flex items-center justify-start relative z-10 w-max" id="horizontal-track-container">
 
-      <div id="horizontal-track" class="flex gap-4 md:gap-12 items-center h-full w-max pl-4 md:pl-[420px] pr-6 md:pr-32">
+      <div id="horizontal-track" class="flex gap-4 md:gap-12 items-center h-full w-max pl-4 md:pl-16 pr-6 md:pr-32">
 
         {products.map((product) => (
-          <div class="product-card snap-center flex-shrink-0 w-[85vw] md:w-[600px] h-[50vh] md:h-[600px] relative rounded-[10px] overflow-hidden group shadow-lg bg-white">
+          <div class="product-card snap-center flex-shrink-0 w-[280px] md:w-[400px] h-[350px] md:h-[450px] relative rounded-[16px] overflow-hidden group shadow-lg bg-white">
             
             <img src={product.img} alt={product.name} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
 
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
             <div class="absolute bottom-6 left-6 text-white z-10">
-              <span class="text-lg md:text-2xl font-satoshi mb-2 block font-medium opacity-80">( {product.num} )</span>
               <h3 class="text-2xl md:text-4xl font-satoshi font-semibold mb-2">{product.name}</h3>
               <p class="text-sm md:text-base font-satoshi w-5/6 text-gray-200">{product.desc}</p>
             </div>
@@ -55,12 +55,12 @@ const products = [
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-  if (typeof window !== "undefined" && window.innerWidth > 768) {
+  if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 
     window.addEventListener("DOMContentLoaded", () => {
       const track = document.getElementById('horizontal-track');
-      const leftContent = document.querySelector('.product-left');
+      if (!track) return;
       const cards = document.querySelectorAll('.product-card');
 
       const scrollAmount = track.scrollWidth - window.innerWidth;
@@ -68,7 +68,7 @@ const products = [
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".pin-container",
-          start: "top top",
+          start: "center center",
           end: `+=${scrollAmount * 1.2}`,
           pin: true,
           scrub: 1,
@@ -79,11 +79,6 @@ const products = [
           }
         }
       });
-
-      tl.to(leftContent, {
-        opacity: 0,
-        duration: 0.2
-      }, 0);
 
       tl.to(track, {
         x: -scrollAmount,

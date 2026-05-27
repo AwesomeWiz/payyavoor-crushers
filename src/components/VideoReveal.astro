@@ -1,0 +1,38 @@
+---
+---
+
+{/* Full width video section */}
+<div id="reveal-container" class="w-full h-[100vh] flex items-center justify-center bg-transparent overflow-hidden relative">
+  <div id="reveal-media" class="w-[100vw] h-[100vh] origin-center flex flex-col justify-center items-center overflow-hidden bg-transparent" style="transform: scale(0.85); opacity: 0; border-radius: 2rem;">
+    <video src="/video/payyavoor.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+  </div>
+</div>
+
+<div class="text-center font-serif text-5xl md:text-7xl leading-tight py-16 md:py-24 reveal-text max-w-7xl mx-auto px-6">
+  Precision in Every<br />
+  Crush. Strength in<br />
+  Every Build.
+</div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  
+  gsap.registerPlugin(ScrollTrigger);
+
+  window.addEventListener("DOMContentLoaded", () => {
+    gsap.to("#reveal-media", {
+      scrollTrigger: {
+        trigger: "#reveal-container",
+        start: "top top",
+        end: "+=1200", 
+        pin: true, 
+        scrub: 1, 
+      },
+      scale: 0.97,
+      opacity: 1,
+      borderRadius: "1.5rem",
+      ease: "power2.out"
+    });
+  });
+</script>
