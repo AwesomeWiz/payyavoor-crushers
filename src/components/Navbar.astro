@@ -10,9 +10,9 @@
       flex flex-col
       px-4 md:px-8 py-2 md:py-3
       rounded-[24px] md:rounded-[40px]
-      bg-gradient-to-br from-[#101828]/5 to-[#1A2240]/20 backdrop-blur-3xl
-      border border-white/10
-      shadow-[0_8px_32px_0_rgba(0,0,0,0.2)]
+      bg-white/30 backdrop-blur-xl
+      border border-white/40
+      shadow-[0_8px_32px_0_rgba(0,0,0,0.06)]
       transition-all duration-500 ease-in-out
       overflow-hidden
     "
@@ -31,7 +31,7 @@
       </div>
 
       <!-- Desktop Nav links -->
-      <div class="hidden md:flex items-center gap-8 font-satoshi font-medium text-[16px] tracking-wide text-black/90">
+      <div class="hidden md:flex items-center gap-8 font-satoshi font-medium text-[16px] tracking-wide text-gray-800">
         <a href="#about"    class="relative py-2 transition-colors duration-300 hover:text-brandBlue after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-brandBlue after:transition-all after:duration-300 hover:after:w-full">Who We Are</a>
         <a href="#products" class="relative py-2 transition-colors duration-300 hover:text-brandBlue after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-brandBlue after:transition-all after:duration-300 hover:after:w-full">Our Products</a>
         <a href="#why-us"   class="relative py-2 transition-colors duration-300 hover:text-brandBlue after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-brandBlue after:transition-all after:duration-300 hover:after:w-full">Why Choose Us</a>
@@ -59,7 +59,7 @@
         </a>
         
         <!-- Mobile menu toggle -->
-        <button id="mobile-toggle" class="md:hidden p-2 text-white/90 focus:outline-none transition-transform active:scale-95" aria-label="Toggle Menu">
+        <button id="mobile-toggle" class="md:hidden p-2 text-gray-800 focus:outline-none transition-transform active:scale-95" aria-label="Toggle Menu">
           <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
           </svg>
@@ -72,11 +72,11 @@
 
     <!-- Mobile Links (Expanded) -->
     <div id="mobile-menu" class="md:hidden max-h-0 opacity-0 transition-all duration-500 ease-in-out flex flex-col items-center gap-8 pt-0">
-      <div class="w-full h-px bg-white/10 mt-2"></div>
-      <a href="#about"    class="text-[22px] font-medium text-white hover:text-white/80 transition-colors">Who We Are</a>
-      <a href="#products" class="text-[22px] font-medium text-white hover:text-white/80 transition-colors">Our Products</a>
-      <a href="#why-us"   class="text-[22px] font-medium text-white hover:text-white/80 transition-colors">Why Choose Us</a>
-      <a href="#awards-legacy" class="text-[22px] font-medium text-white hover:text-white/80 transition-colors">Awards</a>
+      <div class="w-full h-px bg-black/10 mt-2"></div>
+      <a href="#about"    class="text-[22px] font-medium text-gray-800 hover:text-brandBlue transition-colors">Who We Are</a>
+      <a href="#products" class="text-[22px] font-medium text-gray-800 hover:text-brandBlue transition-colors">Our Products</a>
+      <a href="#why-us"   class="text-[22px] font-medium text-gray-800 hover:text-brandBlue transition-colors">Why Choose Us</a>
+      <a href="#awards-legacy" class="text-[22px] font-medium text-gray-800 hover:text-brandBlue transition-colors">Awards</a>
       <a href="#contact"  class="sm:hidden bg-brandBlue text-white px-12 py-4 rounded-full text-[15px] font-bold tracking-widest uppercase mb-8 shadow-xl shadow-brandBlue/20">Get In Touch</a>
     </div>
   </nav>
@@ -98,19 +98,17 @@
       menu?.classList.add('max-h-0', 'opacity-0', 'pt-0');
       hamburger?.classList.remove('hidden');
       close?.classList.add('hidden');
-      // Restore scroll handle background
-      if (window.scrollY > 50) {
-        nav?.classList.add('from-[#101828]/95', 'to-[#1A2240]/95');
-        nav?.classList.remove('from-[#101828]', 'to-[#1A2240]');
-      }
+      // Restore scroll handle background (30% opacity)
+      nav?.classList.add('bg-white/30');
+      nav?.classList.remove('bg-white/90');
     } else {
       menu?.classList.add('max-h-[500px]', 'opacity-100', 'pt-4', 'pb-4');
       menu?.classList.remove('max-h-0', 'opacity-0', 'pt-0');
       hamburger?.classList.add('hidden');
       close?.classList.remove('hidden');
-      // More solid background when open
-      nav?.classList.remove('from-[#101828]/95', 'to-[#1A2240]/95', 'from-[#101828]/90', 'to-[#1A2240]/90');
-      nav?.classList.add('from-[#101828]', 'to-[#1A2240]');
+      // More solid background when open for readability
+      nav?.classList.remove('bg-white/30');
+      nav?.classList.add('bg-white/90');
     }
   });
 
@@ -120,11 +118,11 @@
     if (isMobileMenuOpen) return;
 
     if (window.scrollY > 50) {
-      nav?.classList.add('!py-2', 'max-w-4xl', 'from-[#101828]/95', 'to-[#1A2240]/95', 'shadow-[0_12px_40px_0_rgba(0,0,0,0.3)]');
-      nav?.classList.remove('max-w-5xl', 'from-[#101828]/90', 'to-[#1A2240]/90', 'shadow-[0_8px_32px_0_rgba(0,0,0,0.2)]');
+      nav?.classList.add('!py-2', 'max-w-4xl', 'shadow-[0_12px_40px_0_rgba(0,0,0,0.08)]');
+      nav?.classList.remove('max-w-5xl', 'shadow-[0_8px_32px_0_rgba(0,0,0,0.05)]');
     } else {
-      nav?.classList.remove('!py-2', 'max-w-4xl', 'from-[#101828]/95', 'to-[#1A2240]/95', 'shadow-[0_12px_40px_0_rgba(0,0,0,0.3)]');
-      nav?.classList.add('max-w-5xl', 'from-[#101828]/90', 'to-[#1A2240]/90', 'shadow-[0_8px_32px_0_rgba(0,0,0,0.2)]');
+      nav?.classList.remove('!py-2', 'max-w-4xl', 'shadow-[0_12px_40px_0_rgba(0,0,0,0.08)]');
+      nav?.classList.add('max-w-5xl', 'shadow-[0_8px_32px_0_rgba(0,0,0,0.05)]');
     }
   });
 
@@ -135,10 +133,8 @@
       menu?.classList.add('max-h-0', 'opacity-0', 'pt-0');
       hamburger?.classList.remove('hidden');
       close?.classList.add('hidden');
-      if (window.scrollY > 50) {
-        nav?.classList.add('from-[#101828]/95', 'to-[#1A2240]/95');
-        nav?.classList.remove('from-[#101828]', 'to-[#1A2240]');
-      }
+      nav?.classList.add('bg-white/30');
+      nav?.classList.remove('bg-white/90');
     });
   });
 </script>

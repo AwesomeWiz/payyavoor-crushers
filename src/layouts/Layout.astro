@@ -23,20 +23,8 @@ import '../styles/global.css';
 		  <div class="intro-glow"></div>
 		  <div class="intro-center">
 			<h2 id="intro-heading" class="intro-h1">
-			  Built on
-			  <span class="fn-container">
-				<span id="overlay-fn-inner" class="fn-inner">
-				  <span class="fn-word font-bold text-brandBlue">Strength.</span>
-				  <span class="fn-word fn-word--italic font-bold text-brandBlue">Strength.</span>
-				</span>
-			  </span><br />
-			  Driven by
-			  <span class="fn-container">
-				<span id="overlay-quality-inner" class="fn-inner">
-				  <span class="fn-word font-bold text-[#1A9487]">Quality.</span>
-				  <span class="fn-word fn-word--italic font-bold text-[#1A9487]">Quality.</span>
-				</span>
-			  </span>
+			  Built on <span class="fn-container"><span id="overlay-fn-inner" class="fn-inner"><span class="fn-word font-bold text-brandBlue">Strength.</span><span class="fn-word fn-word--italic font-bold text-brandBlue">Strength.</span></span></span><br />
+			  Driven by <span class="fn-container"><span id="overlay-quality-inner" class="fn-inner"><span class="fn-word font-bold text-[#1A9487]">Quality.</span><span class="fn-word fn-word--italic font-bold text-[#1A9487]">Quality.</span></span></span>
 			</h2>
 		  </div>
 		</div>
@@ -128,6 +116,7 @@ import '../styles/global.css';
     display: inline-block; /* needed for transform-origin */
     opacity: 0;
     transform: scale(0.94);
+    white-space: nowrap;
     /* entry animation properties */
     transition: opacity 1.7s cubic-bezier(0.25, 1, 0.5, 1),
                 transform 1.7s cubic-bezier(0.25, 1, 0.5, 1),
@@ -142,9 +131,10 @@ import '../styles/global.css';
 
   /* ── Foundation word flip ──────────────────────────── */
   .fn-container {
-    display: inline-block;
+    display: inline-flex;
+    flex-direction: column;
     overflow: hidden;
-    vertical-align: bottom;
+    vertical-align: baseline;
     height: 1.1em;
   }
   .fn-inner {
@@ -154,9 +144,16 @@ import '../styles/global.css';
   .fn-word {
     display: block;
     line-height: 1.1;
+    transition: opacity 0.55s cubic-bezier(0.76, 0, 0.24, 1);
   }
   .fn-word--italic { font-style: italic; }
   .fn-inner.flipped { transform: translateY(-50%); }
+
+  /* Fade out inactive word to prevent glyph bleed/overlap */
+  .fn-inner:not(.flipped) .fn-word:first-child { opacity: 1; }
+  .fn-inner:not(.flipped) .fn-word:last-child { opacity: 0; }
+  .fn-inner.flipped .fn-word:first-child { opacity: 0; }
+  .fn-inner.flipped .fn-word:last-child { opacity: 1; }
 
   /* ── Real hero h1 — hidden until overlay departs ────── */
   #hero-real-h1 {
