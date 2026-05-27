@@ -26,11 +26,17 @@ import '../styles/global.css';
 			  Built on
 			  <span class="fn-container">
 				<span id="overlay-fn-inner" class="fn-inner">
-				  <span class="fn-word font-bold">Strength.</span>
-				  <span class="fn-word fn-word--italic font-bold">Strength.</span>
+				  <span class="fn-word font-bold text-[#007eb5]">Strength.</span>
+				  <span class="fn-word fn-word--italic text-[#007eb5]">Strength.</span>
 				</span>
 			  </span><br />
-			  Driven by <span class="font-bold text-[#1A9487]">Quality.</span>
+			  Driven by
+			  <span class="fn-container">
+				<span id="overlay-quality-inner" class="fn-inner">
+				  <span class="fn-word font-bold text-[#1A9487]">Quality.</span>
+				  <span class="fn-word fn-word--italic text-[#1A9487]">Quality.</span>
+				</span>
+			  </span>
 			</h2>
 		  </div>
 		</div>
@@ -98,10 +104,11 @@ import '../styles/global.css';
     z-index: 2;
   }
 
+  /* The overlay heading — starts zoomed-out & invisible */
   .intro-h1 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 2.1rem; /* matches text-[2.1rem] */
-    line-height: 1.35;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    line-height: 1.2;
     font-weight: 400;
     color: #fefdf7;
     margin: 0;
@@ -112,17 +119,8 @@ import '../styles/global.css';
     transition: opacity 1.7s cubic-bezier(0.25, 1, 0.5, 1),
                 transform 1.7s cubic-bezier(0.25, 1, 0.5, 1),
                 color 1.7s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  @media (min-width: 768px) {
-    .intro-h1 {
-      font-size: 3.75rem; /* text-6xl = 60px */
-      line-height: 1.2;
-    }
-  }
-  @media (min-width: 1024px) {
-    .intro-h1 {
-      font-size: 5rem; /* lg:text-[5rem] = 80px */
-    }
+    will-change: transform;
+    backface-visibility: hidden;
   }
   .intro-h1.entered {
     opacity: 1;
