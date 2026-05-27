@@ -1,0 +1,267 @@
+---
+const stats = [
+  { value: "30+", label: "Years of Excellence" },
+  { value: "5M+", label: "Tons Produced" },
+  { value: "1000+", label: "Projects Supported" },
+  { value: "3", label: "Quarry Sites" },
+];
+---
+
+<section id="visionary" class="relative py-24 md:py-36 overflow-hidden">
+  
+  {/* Deep gradient background */}
+  <div class="absolute inset-0 bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460]"></div>
+  
+  {/* Subtle grid overlay */}
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 60px 60px;"></div>
+  
+  {/* Floating ambient orbs */}
+  <div class="visionary-orb visionary-orb-1"></div>
+  <div class="visionary-orb visionary-orb-2"></div>
+  <div class="visionary-orb visionary-orb-3"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-16">
+
+    {/* Section Label */}
+    <div class="mb-6 md:mb-8" id="visionary-label">
+      <span class="inline-flex items-center gap-2 text-xs md:text-sm uppercase tracking-[0.3em] text-white/40 font-satoshi">
+        <span class="w-8 h-[1px] bg-gradient-to-r from-transparent to-white/40"></span>
+        Our Vision
+      </span>
+    </div>
+
+    {/* Main headline */}
+    <div class="mb-16 md:mb-24" id="visionary-headline">
+      <h2 class="text-4xl md:text-6xl lg:text-7xl font-serif text-white leading-[1.1] max-w-4xl">
+        Building the Future,<br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#64ffda] via-[#48c6ef] to-[#6f86d6]">
+          One Stone at a Time
+        </span>
+      </h2>
+    </div>
+
+    {/* Content Grid: Vision + Mission */}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 mb-20 md:mb-28" id="visionary-content">
+      
+      {/* Vision */}
+      <div class="visionary-card relative group" id="visionary-vision-card">
+        <div class="absolute -inset-[1px] bg-gradient-to-br from-[#64ffda]/20 via-transparent to-[#6f86d6]/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+        <div class="relative bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] rounded-2xl p-8 md:p-10 h-full transition-all duration-500 group-hover:bg-white/[0.07] group-hover:border-white/[0.15]">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#64ffda]/20 to-[#48c6ef]/10 flex items-center justify-center border border-[#64ffda]/20">
+              <svg class="w-5 h-5 text-[#64ffda]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.64 0 8.577 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.64 0-8.577-3.007-9.963-7.178z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl md:text-2xl font-satoshi font-semibold text-white">Our Vision</h3>
+          </div>
+          <p class="text-white/60 font-satoshi text-base md:text-lg leading-relaxed">
+            To be the most trusted and technologically advanced provider of construction aggregates in India — setting industry benchmarks in quality, sustainability, and innovation while building the infrastructure that powers progress.
+          </p>
+        </div>
+      </div>
+
+      {/* Mission */}
+      <div class="visionary-card relative group" id="visionary-mission-card">
+        <div class="absolute -inset-[1px] bg-gradient-to-br from-[#6f86d6]/20 via-transparent to-[#64ffda]/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+        <div class="relative bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] rounded-2xl p-8 md:p-10 h-full transition-all duration-500 group-hover:bg-white/[0.07] group-hover:border-white/[0.15]">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#6f86d6]/20 to-[#48c6ef]/10 flex items-center justify-center border border-[#6f86d6]/20">
+              <svg class="w-5 h-5 text-[#6f86d6]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+              </svg>
+            </div>
+            <h3 class="text-xl md:text-2xl font-satoshi font-semibold text-white">Our Mission</h3>
+          </div>
+          <p class="text-white/60 font-satoshi text-base md:text-lg leading-relaxed">
+            To deliver premium construction materials through world-class Finnish technology and rigorous quality control — empowering builders, engineers, and communities with aggregates that are consistent, sustainable, and built to endure.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* Stats Counter Strip */}
+    <div class="relative" id="visionary-stats">
+      <div class="absolute inset-0 bg-gradient-to-r from-white/[0.02] via-white/[0.05] to-white/[0.02] rounded-2xl"></div>
+      <div class="relative border border-white/[0.08] rounded-2xl py-10 md:py-14 px-6 md:px-12">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+          {stats.map((stat, i) => (
+            <div class={`text-center relative ${i < stats.length - 1 ? 'md:border-r md:border-white/[0.08]' : ''}`}>
+              <div class="stat-value text-3xl md:text-5xl font-serif text-white mb-2 tracking-tight" data-value={stat.value}>
+                {stat.value}
+              </div>
+              <p class="text-white/40 font-satoshi text-xs md:text-sm uppercase tracking-[0.15em]">
+                {stat.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    {/* Bottom Tagline */}
+    <div class="mt-16 md:mt-24 text-center" id="visionary-tagline">
+      <p class="text-white/30 font-satoshi text-sm md:text-base tracking-wide max-w-2xl mx-auto leading-relaxed">
+        From the hills of Payyavoor to the foundations of Kerala's finest infrastructure — 
+        <span class="text-white/50">our commitment to quality is set in stone.</span>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* Ambient floating orbs */
+  .visionary-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+  
+  .visionary-orb-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(100, 255, 218, 0.08) 0%, transparent 70%);
+    top: -10%;
+    right: -5%;
+    animation: visionary-float 18s ease-in-out infinite;
+  }
+  
+  .visionary-orb-2 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(111, 134, 214, 0.06) 0%, transparent 70%);
+    bottom: 10%;
+    left: -5%;
+    animation: visionary-float 22s ease-in-out infinite reverse;
+  }
+  
+  .visionary-orb-3 {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(72, 198, 239, 0.05) 0%, transparent 70%);
+    top: 40%;
+    left: 50%;
+    animation: visionary-float 15s ease-in-out infinite 3s;
+  }
+
+  @keyframes visionary-float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(30px, -20px) scale(1.05); }
+    50% { transform: translate(-15px, 25px) scale(0.95); }
+    75% { transform: translate(20px, 10px) scale(1.02); }
+  }
+
+  /* Card parallax hover */
+  .visionary-card {
+    perspective: 600px;
+  }
+
+  /* Stat value shimmer */
+  .stat-value {
+    background: linear-gradient(135deg, #ffffff 0%, #64ffda 50%, #ffffff 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: stat-shimmer 6s ease-in-out infinite;
+  }
+
+  @keyframes stat-shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  
+  gsap.registerPlugin(ScrollTrigger);
+
+  window.addEventListener("DOMContentLoaded", () => {
+
+    // Label entrance
+    gsap.from("#visionary-label", {
+      scrollTrigger: {
+        trigger: "#visionary-label",
+        start: "top 88%",
+        toggleActions: "play none none reverse",
+      },
+      x: -30,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+    });
+
+    // Headline entrance
+    gsap.from("#visionary-headline", {
+      scrollTrigger: {
+        trigger: "#visionary-headline",
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power3.out",
+    });
+
+    // Vision & Mission cards stagger
+    gsap.from(".visionary-card", {
+      scrollTrigger: {
+        trigger: "#visionary-content",
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+      y: 60,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.25,
+      ease: "power3.out",
+    });
+
+    // Stats strip entrance
+    gsap.from("#visionary-stats", {
+      scrollTrigger: {
+        trigger: "#visionary-stats",
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      },
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+    });
+
+    // Individual stat values counting up effect
+    gsap.from(".stat-value", {
+      scrollTrigger: {
+        trigger: "#visionary-stats",
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+      scale: 0.5,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "back.out(1.7)",
+    });
+
+    // Tagline fade in
+    gsap.from("#visionary-tagline", {
+      scrollTrigger: {
+        trigger: "#visionary-tagline",
+        start: "top 90%",
+        toggleActions: "play none none reverse",
+      },
+      y: 20,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+    });
+
+  });
+</script>

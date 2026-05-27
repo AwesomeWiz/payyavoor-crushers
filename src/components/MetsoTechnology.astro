@@ -1,0 +1,427 @@
+---
+---
+
+<section id="technology" class="w-full relative py-20 px-6 md:px-12 bg-[#F6F9FC] overflow-hidden reveal-text border-y border-gray-100">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-20">
+    
+    {/* Text Content */}
+    <div class="order-2 md:order-1 flex-1 flex flex-col justify-center">
+      <div class="inline-flex items-center gap-2 bg-white text-[#003882] font-extrabold tracking-widest px-5 py-2.5 rounded-full text-xs md:text-sm mb-6 w-fit uppercase shadow-sm border border-blue-100">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-5 md:w-5" viewBox="0 0 512 512">
+          <path fill="#003882" d="M0 0h512v512H0z"/>
+          <path fill="#fff" d="M140 0h100v512H140z"/>
+          <path fill="#fff" d="M0 200h512v100H0z"/>
+        </svg>
+        Finnish Excellence
+      </div>
+      <h2 class="text-3xl md:text-5xl font-satoshi font-bold mb-6 text-gray-900 leading-tight">
+        Powered by Advanced <br class="hidden lg:block"/>
+        <span class="text-[#005a8d]">Finnish Technology</span>
+      </h2>
+      
+      <div class="space-y-4 text-gray-700 font-satoshi text-[17px] md:text-lg leading-relaxed">
+        <p>
+          At Payyavoor Crushers, excellence begins with the use of advanced <strong class="text-gray-900 font-bold">Finnish-engineered Metso machinery</strong>, renowned worldwide for its precision, innovation, and reliability.
+        </p>
+        <p>
+          Built on decades of engineering expertise, Metso technology enables us to produce premium-quality M-Sand and aggregates with exceptional consistency, superior particle shape, and unmatched purity.
+        </p>
+        <p>
+          By combining world-class <span class="text-[#005a8d] font-semibold">Finnish technology</span> with rigorous quality control, we ensure every product meets the highest standards of strength, durability, and performance. This commitment to cutting-edge European engineering allows us to deliver construction materials trusted for landmark infrastructure, commercial, and residential projects alike.
+        </p>
+      </div>
+    </div>
+
+    {/* Metso Logo/Image + Video */}
+    <div class="order-1 md:order-2 w-full max-w-md flex flex-col items-center gap-6 relative pt-8 md:pt-0">
+
+      {/* ── Glassmorphism backdrop ── */}
+      <div class="glass-backdrop"></div>
+
+      {/* ── 3D Tilt Card ── */}
+      <div id="tilt-card" class="tilt-card bg-white p-8 md:p-10 rounded-[1.5rem] shadow-xl w-full h-[280px] md:h-[300px] flex items-center justify-center border border-white/60 relative overflow-hidden cursor-pointer">
+        <div class="tilt-glare"></div>
+        <img 
+          src="/images/metsologo.jpg" 
+          alt="Metso Finnish Technology" 
+          class="w-full h-full object-contain filter contrast-125 relative z-10 pointer-events-none select-none"
+        />
+      </div>
+
+      {/* ── Interactive Video Player ── */}
+      <div id="video-wrapper" class="video-wrapper w-full h-[280px] md:h-[300px] rounded-2xl overflow-hidden shadow-lg border border-white/40 relative cursor-pointer group">
+        <video 
+          id="metso-video"
+          src="/video/metso.mp4" 
+          autoplay 
+          loop 
+          muted 
+          playsinline 
+          class="w-full h-auto object-cover rounded-2xl"
+        ></video>
+
+        {/* Play/Pause overlay */}
+        <div id="video-overlay" class="video-overlay">
+          <div id="video-play-btn" class="video-play-btn">
+            <svg id="icon-pause" class="video-icon" viewBox="0 0 24 24" fill="white">
+              <rect x="6" y="4" width="4" height="16" rx="1"/>
+              <rect x="14" y="4" width="4" height="16" rx="1"/>
+            </svg>
+            <svg id="icon-play" class="video-icon hidden" viewBox="0 0 24 24" fill="white">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+
+        {/* Mute toggle */}
+        <button id="mute-toggle" class="mute-toggle" aria-label="Toggle sound">
+          <svg id="icon-muted" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
+            <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+          </svg>
+          <svg id="icon-unmuted" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="white">
+            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+          </svg>
+        </button>
+
+        {/* Progress bar */}
+        <div class="video-progress-track">
+          <div id="video-progress" class="video-progress-bar"></div>
+        </div>
+
+        {/* Ripple container */}
+        <div id="video-ripple" class="video-ripple-container"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* ── Glassmorphism Backdrop ─────────────────── */
+  .glass-backdrop {
+    position: absolute;
+    inset: -16px;
+    z-index: -1;
+    border-radius: 2rem;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(200, 220, 240, 0.25) 50%,
+      rgba(255, 255, 255, 0.35) 100%
+    );
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    box-shadow:
+      0 8px 32px rgba(0, 90, 141, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+  }
+
+  /* ── 3D Tilt Card ─────────────────────────── */
+  .tilt-card {
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out, box-shadow 0.4s ease;
+    will-change: transform;
+  }
+  .tilt-card:hover {
+    box-shadow: 
+      0 25px 60px -12px rgba(0, 90, 141, 0.15),
+      0 0 0 1px rgba(0, 90, 141, 0.05);
+  }
+
+  /* Moving glare */
+  .tilt-glare {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 20;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: radial-gradient(
+      600px circle at var(--glare-x, 50%) var(--glare-y, 50%),
+      rgba(255, 255, 255, 0.35) 0%,
+      rgba(255, 255, 255, 0.1) 30%,
+      transparent 70%
+    );
+    border-radius: inherit;
+  }
+  .tilt-card:hover .tilt-glare {
+    opacity: 1;
+  }
+
+  /* ── Interactive Video ────────────────────── */
+  .video-wrapper {
+    position: relative;
+    transition: all 0.5s ease;
+  }
+  .video-wrapper:hover {
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.25);
+    transform: translateY(-2px);
+  }
+
+  .video-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: radial-gradient(circle, rgba(0,0,0,0.25) 0%, transparent 70%);
+  }
+  .video-wrapper:hover .video-overlay {
+    opacity: 1;
+  }
+
+  .video-play-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transform: scale(0.85);
+  }
+  .video-wrapper:hover .video-play-btn {
+    transform: scale(1);
+  }
+  .video-play-btn:active {
+    transform: scale(0.9) !important;
+  }
+
+  .video-icon {
+    width: 22px;
+    height: 22px;
+  }
+  .video-icon.hidden {
+    display: none;
+  }
+
+  /* Mute button */
+  .mute-toggle {
+    position: absolute;
+    bottom: 16px;
+    right: 12px;
+    z-index: 15;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.3s ease;
+    transform: translateY(4px);
+  }
+  .video-wrapper:hover .mute-toggle {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .mute-toggle:hover {
+    background: rgba(0, 0, 0, 0.7);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1) !important;
+  }
+  .mute-toggle .hidden {
+    display: none;
+  }
+
+  /* Progress bar */
+  .video-progress-track {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 15;
+    opacity: 0;
+    transition: opacity 0.3s ease, height 0.2s ease;
+  }
+  .video-wrapper:hover .video-progress-track {
+    opacity: 1;
+    height: 4px;
+  }
+  .video-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #007eb5, #1A9487);
+    border-radius: 0 2px 2px 0;
+    transition: width 0.1s linear;
+  }
+
+  /* Click ripple effect */
+  .video-ripple-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 20;
+    overflow: hidden;
+    border-radius: inherit;
+  }
+  .video-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    transform: scale(0);
+    animation: ripple-expand 0.6s ease-out forwards;
+    pointer-events: none;
+  }
+  @keyframes ripple-expand {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  /* Flash on play/pause */
+  @keyframes flash {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  .video-flash {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.12);
+    z-index: 5;
+    pointer-events: none;
+    animation: flash 0.4s ease-out forwards;
+    border-radius: inherit;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    /* ═══════════════════════════════════════════
+       3D TILT CARD
+       ═══════════════════════════════════════════ */
+    const card = document.getElementById('tilt-card') as HTMLElement;
+    const glare = card?.querySelector('.tilt-glare') as HTMLElement;
+
+    if (card) {
+      const maxTilt = 18;    // degrees
+      const perspective = 800; // px
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        // Normalised -1 → 1
+        const normX = (x - centerX) / centerX;
+        const normY = (y - centerY) / centerY;
+
+        const rotateY = normX * maxTilt;
+        const rotateX = -normY * maxTilt;
+
+        card.style.transform = `perspective(${perspective}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+
+        // Move glare with cursor
+        if (glare) {
+          const glareX = ((x / rect.width) * 100).toFixed(1);
+          const glareY = ((y / rect.height) * 100).toFixed(1);
+          glare.style.setProperty('--glare-x', `${glareX}%`);
+          glare.style.setProperty('--glare-y', `${glareY}%`);
+        }
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        card.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease';
+      });
+
+      card.addEventListener('mouseenter', () => {
+        card.style.transition = 'transform 0.1s ease-out, box-shadow 0.4s ease';
+      });
+    }
+
+    /* ═══════════════════════════════════════════
+       INTERACTIVE VIDEO PLAYER
+       ═══════════════════════════════════════════ */
+    const video = document.getElementById('metso-video') as HTMLVideoElement;
+    const wrapper = document.getElementById('video-wrapper') as HTMLElement;
+    const iconPause = document.getElementById('icon-pause') as HTMLElement;
+    const iconPlay = document.getElementById('icon-play') as HTMLElement;
+    const muteBtn = document.getElementById('mute-toggle') as HTMLElement;
+    const iconMuted = document.getElementById('icon-muted') as HTMLElement;
+    const iconUnmuted = document.getElementById('icon-unmuted') as HTMLElement;
+    const progressBar = document.getElementById('video-progress') as HTMLElement;
+    const rippleContainer = document.getElementById('video-ripple') as HTMLElement;
+
+    if (video && wrapper) {
+
+      // Play / Pause on click
+      wrapper.addEventListener('click', (e) => {
+        // Don't toggle if clicking mute button
+        if ((e.target as HTMLElement).closest('#mute-toggle')) return;
+
+        if (video.paused) {
+          video.play();
+          iconPause.classList.remove('hidden');
+          iconPlay.classList.add('hidden');
+        } else {
+          video.pause();
+          iconPause.classList.add('hidden');
+          iconPlay.classList.remove('hidden');
+        }
+
+        // Ripple at click position
+        const rect = wrapper.getBoundingClientRect();
+        const ripple = document.createElement('div');
+        ripple.className = 'video-ripple';
+        const size = Math.max(rect.width, rect.height);
+        ripple.style.width = ripple.style.height = `${size}px`;
+        ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+        ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+        rippleContainer.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+
+        // Flash
+        const flash = document.createElement('div');
+        flash.className = 'video-flash';
+        wrapper.appendChild(flash);
+        setTimeout(() => flash.remove(), 400);
+      });
+
+      // Mute / Unmute
+      muteBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        video.muted = !video.muted;
+        if (video.muted) {
+          iconMuted.classList.remove('hidden');
+          iconUnmuted.classList.add('hidden');
+        } else {
+          iconMuted.classList.add('hidden');
+          iconUnmuted.classList.remove('hidden');
+        }
+      });
+
+      // Progress bar
+      video.addEventListener('timeupdate', () => {
+        if (video.duration) {
+          const pct = (video.currentTime / video.duration) * 100;
+          progressBar.style.width = `${pct}%`;
+        }
+      });
+    }
+
+  });
+</script>
