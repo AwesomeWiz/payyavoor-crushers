@@ -1,12 +1,12 @@
 ---
 const products = [
-  { name: "P Sand", desc: "Fine, smooth texture ideal for plastering applications", img: "https://5.imimg.com/data5/IOS/Default/2023/4/302151310/UX/MS/GC/164138792/product-jpeg-500x500.png" },
-  { name: "M Sand", desc: "Premium manufactured sand for strong concrete", img: "/images/msand.jpg" },
-  {name: "40mm", desc: "Heavy aggregates for foundations and roads", img: "https://5.imimg.com/data5/SELLER/Default/2024/11/467879402/LG/HP/CB/94115244/untitled-design-1-500x500.jpg" },
-  {name: "20mm", desc: "Strong aggregates for concrete structures", img: "/images/12mm.jpg" },
-  { name: "12mm", desc: "Durable aggregates for RCC works", img: "/images/12mm.jpg" },
-  { name: "6mm", desc: "Fine aggregates for precision construction", img: "/images/12mm.jpg" },
-  {name: "Dust", desc: "Fine material for filling and leveling", img: "/images/12mm.jpg" },
+  { name: "P SAND", desc: "Fine, smooth texture ideal for plastering applications", img: "https://5.imimg.com/data5/IOS/Default/2023/4/302151310/UX/MS/GC/164138792/product-jpeg-500x500.png" },
+  { name: "M SAND", desc: "Premium manufactured sand for strong concrete", img: "/images/msand.jpg" },
+  {name: "40MM", desc: "Heavy aggregates for foundations and roads", img: "https://5.imimg.com/data5/SELLER/Default/2024/11/467879402/LG/HP/CB/94115244/untitled-design-1-500x500.jpg" },
+  {name: "20MM", desc: "Strong aggregates for concrete structures", img: "/images/12mm.jpg" },
+  { name: "12MM", desc: "Durable aggregates for RCC works", img: "/images/12mm.jpg" },
+  { name: "6MM", desc: "Fine aggregates for precision construction", img: "/images/12mm.jpg" },
+  {name: "DUST", desc: "Fine material for filling and leveling", img: "/images/12mm.jpg" },
   { name: "WMM", desc: "High-strength mix for road construction", img: "/images/12mm.jpg" },
   {name: "GSB", desc: "Reliable base material for road works", img: "/images/12mm.jpg" }
 
@@ -64,12 +64,14 @@ const products = [
       const cards = document.querySelectorAll('.product-card');
 
       const scrollAmount = track.scrollWidth - window.innerWidth;
+      const isMobile = window.innerWidth <= 768;
+      const scrollDistance = scrollAmount * (isMobile ? 2.5 : 1.2);
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".pin-container",
           start: "center center",
-          end: `+=${scrollAmount * 1.2}`,
+          end: `+=${scrollDistance}`,
           pin: true,
           scrub: 1,
           snap: {
@@ -83,7 +85,7 @@ const products = [
       tl.to(track, {
         x: -scrollAmount,
         ease: "none",
-        duration: scrollAmount * 1.2
+        duration: scrollDistance
       }, 0);
     });
   }
