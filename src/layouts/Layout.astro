@@ -22,7 +22,7 @@ import '../styles/global.css';
 		<div id="intro-overlay">
 		  <div class="intro-glow"></div>
 		  <div class="intro-center">
-			<h2 id="intro-heading" class="intro-h1">
+			<h2 id="intro-heading" class="intro-h1 whitespace-nowrap">
 			  Built on <span class="fn-container"><span id="overlay-fn-inner" class="fn-inner"><span class="fn-word font-bold text-brandBlue">Strength.</span><span class="fn-word fn-word--italic font-bold text-brandBlue">Strength.</span></span></span><br />
 			  Driven by <span class="fn-container"><span id="overlay-quality-inner" class="fn-inner"><span class="fn-word font-bold text-[#1A9487]">Quality.</span><span class="fn-word fn-word--italic font-bold text-[#1A9487]">Quality.</span></span></span>
 			</h2>
@@ -33,6 +33,7 @@ import '../styles/global.css';
 
 		<!-- Floating WhatsApp Button -->
 		<a 
+		  id="whatsapp-button"
 		  href="https://wa.me/918281620000" 
 		  target="_blank" 
 		  rel="noopener noreferrer" 
@@ -108,7 +109,7 @@ import '../styles/global.css';
   /* The overlay heading — starts zoomed-out & invisible */
   .intro-h1 {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-size: clamp(1.85rem, 8vw, 5rem);
     line-height: 1.2;
     font-weight: 400;
     color: #fefdf7;
@@ -229,7 +230,16 @@ import '../styles/global.css';
     box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3), 0 8px 32px rgba(0, 0, 0, 0.15);
     z-index: 99999;
     cursor: pointer;
-    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 0.3s ease,
+                opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .whatsapp-float.intro-revealed {
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .whatsapp-float:hover {
@@ -279,6 +289,7 @@ import '../styles/global.css';
     const heroCopyright  = document.getElementById('hero-copyright') as HTMLElement;
     const navbarWrapper  = document.getElementById('navbar-wrapper') as HTMLElement;
     const overlayQualityInner = document.getElementById('overlay-quality-inner') as HTMLElement;
+    const whatsappButton = document.getElementById('whatsapp-button') as HTMLElement;
 
     /* Prevent browser scroll restoration */
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -329,6 +340,7 @@ import '../styles/global.css';
       heroCarousel?.classList.add('intro-revealed');
       heroCopyright?.classList.add('intro-revealed');
       navbarWrapper?.classList.add('intro-revealed');
+      whatsappButton?.classList.add('intro-revealed');
 
       document.body.style.overflow = '';
 
