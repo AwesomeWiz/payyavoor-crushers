@@ -109,7 +109,7 @@ import '../styles/global.css';
   /* The overlay heading — starts zoomed-out & invisible */
   .intro-h1 {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.85rem, 8vw, 5rem);
+    font-size: 1.875rem;
     line-height: 1.2;
     font-weight: 400;
     color: #fefdf7;
@@ -124,6 +124,24 @@ import '../styles/global.css';
                 color 1.7s cubic-bezier(0.25, 1, 0.5, 1);
     will-change: transform;
     backface-visibility: hidden;
+  }
+
+  @media (min-width: 640px) {
+    .intro-h1 {
+      font-size: 2.25rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .intro-h1 {
+      font-size: 3.75rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .intro-h1 {
+      font-size: 5rem;
+    }
   }
   .intro-h1.entered {
     opacity: 1;
