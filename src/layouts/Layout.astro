@@ -26,11 +26,17 @@ import '../styles/global.css';
 			  Built on
 			  <span class="fn-container">
 				<span id="overlay-fn-inner" class="fn-inner">
-				  <span class="fn-word font-bold">Strength.</span>
-				  <span class="fn-word fn-word--italic font-bold">Strength.</span>
+				  <span class="fn-word font-bold text-[#007eb5]">Strength.</span>
+				  <span class="fn-word fn-word--italic text-[#007eb5]">Strength.</span>
 				</span>
 			  </span><br />
-			  Driven by <span class="font-bold text-[#1A9487]">Quality.</span>
+			  Driven by
+			  <span class="fn-container">
+				<span id="overlay-quality-inner" class="fn-inner">
+				  <span class="fn-word font-bold text-[#1A9487]">Quality.</span>
+				  <span class="fn-word fn-word--italic text-[#1A9487]">Quality.</span>
+				</span>
+			  </span>
 			</h2>
 		  </div>
 		</div>
@@ -108,11 +114,13 @@ import '../styles/global.css';
     margin: 0;
     display: inline-block; /* needed for transform-origin */
     opacity: 0;
-    transform: scale(0.94) translateY(18px);
+    transform: scale(0.94);
     /* entry animation properties */
     transition: opacity 1.7s cubic-bezier(0.25, 1, 0.5, 1),
                 transform 1.7s cubic-bezier(0.25, 1, 0.5, 1),
                 color 1.7s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+    backface-visibility: hidden;
   }
   .intro-h1.entered {
     opacity: 1;
@@ -133,7 +141,6 @@ import '../styles/global.css';
   .fn-word {
     display: block;
     line-height: 1.1;
-    font-weight: 300;
   }
   .fn-word--italic { font-style: italic; }
   .fn-inner.flipped { transform: translateY(-50%); }
@@ -141,6 +148,8 @@ import '../styles/global.css';
   /* ── Real hero h1 — hidden until overlay departs ────── */
   #hero-real-h1 {
     opacity: 0;
+    transform: translateY(0) !important;
+    will-change: opacity;
   }
 
   /* ── Hero text block — no translateY (overlay does the move) */
@@ -208,6 +217,7 @@ import '../styles/global.css';
     const heroCarousel   = document.getElementById('hero-carousel') as HTMLElement;
     const heroCopyright  = document.getElementById('hero-copyright') as HTMLElement;
     const navbarWrapper  = document.getElementById('navbar-wrapper') as HTMLElement;
+    const overlayQualityInner = document.getElementById('overlay-quality-inner') as HTMLElement;
 
     /* Prevent browser scroll restoration */
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -224,6 +234,7 @@ import '../styles/global.css';
     /* ── Step 1 (700ms): flip "foundation" italic ─────── */
     setTimeout(() => {
       overlayFnInner?.classList.add('flipped');
+      overlayQualityInner?.classList.add('flipped');
     }, 700);
 
     /* ── Step 2 (1400ms): bg shift + text glides to hero position ── */
@@ -265,7 +276,10 @@ import '../styles/global.css';
     /* ── Step 3 (2400ms): snap real h1, remove overlay ── */
     setTimeout(() => {
       /* Make real h1 visible instantly (overlay still on top) */
-      if (heroRealH1) heroRealH1.style.opacity = '1';
+      if (heroRealH1) {
+        heroRealH1.style.transition = 'none';
+        heroRealH1.style.opacity = '1';
+      }
       /* Remove overlay — real h1 is now the visible text */
       overlay?.remove();
     }, 2800);
