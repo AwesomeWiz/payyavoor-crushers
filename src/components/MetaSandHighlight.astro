@@ -6,17 +6,19 @@
     
     {/* Image/Logo Side */}
     <div class="flex justify-center md:justify-start order-1 md:order-1 relative">
-      <div class="absolute inset-0 bg-brandBlue/5 rounded-[2rem] transform -rotate-3 scale-105 -z-10"></div>
-      <img 
-        src="/images/meta-sand-logo.jpg" 
-        alt="Meta Sand Logo" 
-        class="w-full max-w-md rounded-[1.5rem] shadow-2xl object-cover hover:scale-105 transition-transform duration-500"
-      />
+      <div class="relative w-56 md:w-full md:max-w-md">
+        <div class="absolute inset-0 bg-brandBlue/5 rounded-[2rem] transform -rotate-3 scale-105 -z-10"></div>
+        <img 
+          src="/images/meta-sand-logo.jpg" 
+          alt="Meta Sand Logo" 
+          class="w-full h-auto rounded-[1.5rem] shadow-2xl object-cover hover:scale-105 transition-transform duration-500"
+        />
+      </div>
     </div>
 
     {/* Text Side */}
     <div class="order-2 md:order-2 flex flex-col justify-center">
-      <div class="inline-block bg-[#005a8d] text-white font-extrabold tracking-widest px-5 py-2 rounded-full text-sm mb-6 w-fit uppercase shadow-sm">
+      <div class="inline-block bg-brandBlue text-white font-extrabold tracking-widest px-5 py-2 rounded-full text-sm mb-6 w-fit uppercase shadow-md shadow-brandBlue/10">
         Our Signature Product
       </div>
       <h2 class="text-3xl md:text-5xl font-satoshi font-bold mb-6 text-gray-900 leading-tight">
