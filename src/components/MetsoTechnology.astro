@@ -1,123 +1,150 @@
 ---
 ---
 
-<section id="technology" class="w-full relative py-20 px-6 md:px-12 bg-white md:bg-[#F6F9FC] overflow-hidden reveal-text border-y border-gray-100">
-  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-20">
+<section id="technology" class="w-full py-16 px-6 md:px-12 bg-transparent overflow-hidden reveal-text">
+  <div class="max-w-7xl mx-auto rounded-[2rem] md:rounded-[2.5rem] bg-gradient-to-br from-[#000428] via-[#00285e] to-[#004e92] border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.08)] p-6 md:p-14 relative overflow-hidden">
     
-    {/* Text Content */}
-    <div class="order-2 md:order-1 flex-1 flex flex-col justify-center">
-      <div class="inline-flex items-center gap-2 bg-white text-[#003882] font-extrabold tracking-widest px-5 py-2.5 rounded-full text-xs md:text-sm mb-6 w-fit uppercase shadow-sm border border-blue-100">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-5 md:w-5" viewBox="0 0 512 512">
-          <path fill="#003882" d="M0 0h512v512H0z"/>
-          <path fill="#fff" d="M140 0h100v512H140z"/>
-          <path fill="#fff" d="M0 200h512v100H0z"/>
-        </svg>
-        Finnish Excellence
-      </div>
-      <h2 class="text-3xl md:text-5xl font-satoshi font-bold mb-6 text-gray-900 leading-tight">
-        Powered by Advanced <br class="hidden lg:block"/>
-        <span class="text-[#005a8d]">Finnish Technology</span>
-      </h2>
-      
-      <div class="space-y-4 text-gray-700 font-satoshi text-[17px] md:text-lg leading-relaxed">
-        <p>
-          At Payyavoor Crushers, excellence begins with the use of advanced <strong class="text-gray-900 font-bold">Finnish-engineered Metso machinery</strong>, renowned worldwide for its precision, innovation, and reliability.
-        </p>
-        <p>
-          Built on decades of engineering expertise, Metso technology enables us to produce premium-quality M-Sand and aggregates with exceptional consistency, superior particle shape, and unmatched purity.
-        </p>
-        <p>
-          By combining world-class <span class="text-[#005a8d] font-semibold">Finnish technology</span> with rigorous quality control, we ensure every product meets the highest standards of strength, durability, and performance. This commitment to cutting-edge European engineering allows us to deliver construction materials trusted for landmark infrastructure, commercial, and residential projects alike.
-        </p>
+    <!-- Outer overflow container for slides -->
+    <div class="overflow-hidden w-full relative z-10">
+      <div class="slides-wrapper flex w-[200%] transition-transform duration-600 ease-out">
+        
+        <!-- SLIDE 1: Metso Video Player & Content -->
+        <div class="metso-slide w-1/2 flex flex-col lg:flex-row items-center gap-10 lg:gap-16 px-1 shrink-0">
+          
+          <!-- Media Column (Left) -->
+          <div class="w-full lg:w-[45%] flex items-center justify-center relative py-6">
+            <div id="video-wrapper" class="video-wrapper w-full max-w-[440px] h-[280px] md:h-[320px] rounded-3xl overflow-hidden shadow-lg border border-white/60 relative cursor-pointer group">
+              <video 
+                id="metso-video"
+                src="/video/metso.mp4" 
+                autoplay 
+                loop 
+                muted 
+                playsinline 
+                class="w-full h-full object-cover rounded-3xl"
+              ></video>
+
+              <!-- Play/Pause overlay -->
+              <div id="video-overlay" class="video-overlay">
+                <div id="video-play-btn" class="video-play-btn">
+                  <svg id="icon-pause" class="video-icon" viewBox="0 0 24 24" fill="white">
+                    <rect x="6" y="4" width="4" height="16" rx="1"/>
+                    <rect x="14" y="4" width="4" height="16" rx="1"/>
+                  </svg>
+                  <svg id="icon-play" class="video-icon hidden" viewBox="0 0 24 24" fill="white">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Mute toggle -->
+              <button id="mute-toggle" class="mute-toggle" aria-label="Toggle sound">
+                <svg id="icon-muted" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
+                  <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+                </svg>
+                <svg id="icon-unmuted" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="white">
+                  <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                </svg>
+              </button>
+
+              <!-- Progress bar -->
+              <div class="video-progress-track">
+                <div id="video-progress" class="video-progress-bar"></div>
+              </div>
+
+              <!-- Ripple container -->
+              <div id="video-ripple" class="video-ripple-container"></div>
+            </div>
+
+            <!-- Floating badges -->
+            <div class="absolute -top-1 -left-1 md:left-2 bg-white text-gray-900 font-bold px-4 py-2 rounded-2xl text-xs md:text-sm shadow-lg border border-blue-50 z-20 font-satoshi tracking-tight select-none">
+              Finnish Engineering
+            </div>
+            <div class="absolute -bottom-1 -right-1 md:right-2 bg-white text-gray-900 font-bold px-4 py-2 rounded-2xl text-xs md:text-sm shadow-lg border border-blue-50 z-20 font-satoshi tracking-tight select-none">
+              Nordberg® HP200™
+            </div>
+          </div>
+
+          <!-- Text Column (Right) -->
+          <div class="w-full lg:w-[55%] flex flex-col justify-center text-left">
+            <span class="inline-block text-[11px] md:text-xs font-bold text-sky-300 tracking-[0.25em] uppercase mb-4 font-satoshi">
+              Finnish Excellence
+            </span>
+            <h3 class="text-3xl md:text-5xl font-semibold mb-6 text-white leading-tight" style="font-family: 'Montserrat', sans-serif;">
+              Advanced Machinery, <br class="hidden lg:block"/>
+              <span class="text-sky-400">High Performance</span>
+            </h3>
+            <p class="text-white/80 font-satoshi text-[15px] md:text-lg leading-relaxed mb-8 max-w-xl">
+              At Payyavoor Crushers, excellence begins with the use of advanced Finnish-engineered Metso machinery, renowned worldwide for precision, innovation, and reliability. This technology enables us to produce premium aggregates with unmatched consistency and shape.
+            </p>
+            <a href="#about" class="inline-flex items-center gap-3 bg-brandBlue text-white font-bold px-6 py-3.5 rounded-full text-xs md:text-sm hover:bg-[#005a8d] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 w-fit shadow-md hover:shadow-lg">
+              Learn More
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- SLIDE 2: Metso Brand Card & Content -->
+        <div class="metso-slide w-1/2 flex flex-col lg:flex-row items-center gap-10 lg:gap-16 px-1 shrink-0">
+          
+          <!-- Media Column (Left) -->
+          <div class="w-full lg:w-[45%] flex items-center justify-center relative py-6">
+            <div id="tilt-card" class="tilt-card bg-white p-6 md:p-10 rounded-3xl shadow-lg w-full max-w-[440px] h-[280px] md:h-[320px] flex items-center justify-center border border-white/60 relative overflow-hidden cursor-pointer">
+              <div class="tilt-glare"></div>
+              <img 
+                src="/images/metsologo.jpg" 
+                alt="Metso Finnish Technology" 
+                class="w-full h-full object-contain filter contrast-125 relative z-10 pointer-events-none select-none"
+              />
+            </div>
+
+            <!-- Floating badges -->
+            <div class="absolute -top-1 -left-1 md:left-2 bg-white text-gray-900 font-bold px-4 py-2 rounded-2xl text-xs md:text-sm shadow-lg border border-blue-50 z-20 font-satoshi tracking-tight select-none">
+              Precision Crushing
+            </div>
+            <div class="absolute -bottom-1 -right-1 md:right-2 bg-white text-gray-900 font-bold px-4 py-2 rounded-2xl text-xs md:text-sm shadow-lg border border-blue-50 z-20 font-satoshi tracking-tight select-none">
+              Consistent Quality
+            </div>
+          </div>
+
+          <!-- Text Column (Right) -->
+          <div class="w-full lg:w-[55%] flex flex-col justify-center text-left">
+            <span class="inline-block text-[11px] md:text-xs font-bold text-sky-300 tracking-[0.25em] uppercase mb-4 font-satoshi">
+              Nordic Standards
+            </span>
+            <h3 class="text-3xl md:text-5xl font-semibold mb-6 text-white leading-tight" style="font-family: 'Montserrat', sans-serif;">
+              Superior Cubicity, <br class="hidden lg:block"/>
+              <span class="text-sky-400">Built to Last</span>
+            </h3>
+            <p class="text-white/80 font-satoshi text-[15px] md:text-lg leading-relaxed mb-8 max-w-xl">
+              By combining world-class Finnish engineering with rigorous quality control, we ensure every aggregate meets the highest standards of durability. Our processing guarantees superior particle shape, optimizing structural strength for your construction.
+            </p>
+            <a href="#products" class="inline-flex items-center gap-3 bg-brandBlue text-white font-bold px-6 py-3.5 rounded-full text-xs md:text-sm hover:bg-[#005a8d] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 w-fit shadow-md hover:shadow-lg">
+              View Products
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          </div>
+
+        </div>
+
       </div>
     </div>
 
-    {/* Metso Logo/Image + Video */}
-    <div class="order-1 md:order-2 w-full max-w-md flex flex-col items-center gap-6 relative pt-8 md:pt-0">
-
-      {/* ── Glassmorphism backdrop ── */}
-      <div class="glass-backdrop"></div>
-
-      {/* ── 3D Tilt Card ── */}
-      <div id="tilt-card" class="tilt-card bg-white p-4 md:p-10 rounded-[1.5rem] shadow-xl w-56 h-28 md:w-full md:h-[300px] flex items-center justify-center border border-white/60 relative overflow-hidden cursor-pointer">
-        <div class="tilt-glare"></div>
-        <img 
-          src="/images/metsologo.jpg" 
-          alt="Metso Finnish Technology" 
-          class="w-full h-full object-contain filter contrast-125 relative z-10 pointer-events-none select-none"
-        />
-      </div>
-
-      {/* ── Interactive Video Player ── */}
-      <div id="video-wrapper" class="video-wrapper w-full h-[280px] md:h-[300px] rounded-2xl overflow-hidden shadow-lg border border-white/40 relative cursor-pointer group">
-        <video 
-          id="metso-video"
-          src="/video/metso.mp4" 
-          autoplay 
-          loop 
-          muted 
-          playsinline 
-          class="w-full h-full object-cover rounded-2xl"
-        ></video>
-
-        {/* Play/Pause overlay */}
-        <div id="video-overlay" class="video-overlay">
-          <div id="video-play-btn" class="video-play-btn">
-            <svg id="icon-pause" class="video-icon" viewBox="0 0 24 24" fill="white">
-              <rect x="6" y="4" width="4" height="16" rx="1"/>
-              <rect x="14" y="4" width="4" height="16" rx="1"/>
-            </svg>
-            <svg id="icon-play" class="video-icon hidden" viewBox="0 0 24 24" fill="white">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-          </div>
-        </div>
-
-        {/* Mute toggle */}
-        <button id="mute-toggle" class="mute-toggle" aria-label="Toggle sound">
-          <svg id="icon-muted" class="w-4 h-4" viewBox="0 0 24 24" fill="white">
-            <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
-          </svg>
-          <svg id="icon-unmuted" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="white">
-            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-          </svg>
-        </button>
-
-        {/* Progress bar */}
-        <div class="video-progress-track">
-          <div id="video-progress" class="video-progress-bar"></div>
-        </div>
-
-        {/* Ripple container */}
-        <div id="video-ripple" class="video-ripple-container"></div>
-      </div>
+    <!-- Dot Indicators at the bottom -->
+    <div class="flex items-center justify-center gap-3 mt-8 md:mt-10 select-none relative z-20">
+      <button class="metso-dot w-2.5 h-2.5 rounded-full bg-white/20 hover:bg-white/40 transition-all duration-300 active" data-index="0" aria-label="Slide 1"></button>
+      <button class="metso-dot w-2.5 h-2.5 rounded-full bg-white/20 hover:bg-white/40 transition-all duration-300" data-index="1" aria-label="Slide 2"></button>
     </div>
 
   </div>
 </section>
 
 <style>
-  /* ── Glassmorphism Backdrop ─────────────────── */
-  .glass-backdrop {
-    position: absolute;
-    inset: -16px;
-    z-index: -1;
-    border-radius: 2rem;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.45) 0%,
-      rgba(200, 220, 240, 0.25) 50%,
-      rgba(255, 255, 255, 0.35) 100%
-    );
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1.5px solid rgba(255, 255, 255, 0.5);
-    box-shadow:
-      0 8px 32px rgba(0, 90, 141, 0.08),
-      inset 0 1px 0 rgba(255, 255, 255, 0.6),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.03);
-  }
-
   /* ── 3D Tilt Card ─────────────────────────── */
   .tilt-card {
     transform-style: preserve-3d;
@@ -303,10 +330,37 @@
     animation: flash 0.4s ease-out forwards;
     border-radius: inherit;
   }
+
+  /* Carousel Dots */
+  .metso-dot.active {
+    background-color: #ffffff;
+    transform: scale(1.25);
+  }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+
+    /* ═══════════════════════════════════════════
+       CAROUSEL / SLIDER LOGIC
+       ═══════════════════════════════════════════ */
+    const dots = document.querySelectorAll('.metso-dot');
+    const wrapper = document.querySelector('.slides-wrapper') as HTMLElement;
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const index = parseInt(dot.getAttribute('data-index') || '0', 10);
+        
+        // Update dots state
+        dots.forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+
+        // Translate wrapper (since wrapper is 200% wide, slide 0 -> 0%, slide 1 -> -50%)
+        if (wrapper) {
+          wrapper.style.transform = `translateX(-${index * 50}%)`;
+        }
+      });
+    });
 
     /* ═══════════════════════════════════════════
        3D TILT CARD
@@ -357,7 +411,7 @@
        INTERACTIVE VIDEO PLAYER
        ═══════════════════════════════════════════ */
     const video = document.getElementById('metso-video') as HTMLVideoElement;
-    const wrapper = document.getElementById('video-wrapper') as HTMLElement;
+    const videoWrapper = document.getElementById('video-wrapper') as HTMLElement;
     const iconPause = document.getElementById('icon-pause') as HTMLElement;
     const iconPlay = document.getElementById('icon-play') as HTMLElement;
     const muteBtn = document.getElementById('mute-toggle') as HTMLElement;
@@ -366,10 +420,10 @@
     const progressBar = document.getElementById('video-progress') as HTMLElement;
     const rippleContainer = document.getElementById('video-ripple') as HTMLElement;
 
-    if (video && wrapper) {
+    if (video && videoWrapper) {
 
       // Play / Pause on click
-      wrapper.addEventListener('click', (e) => {
+      videoWrapper.addEventListener('click', (e) => {
         // Don't toggle if clicking mute button
         if ((e.target as HTMLElement).closest('#mute-toggle')) return;
 
@@ -384,7 +438,7 @@
         }
 
         // Ripple at click position
-        const rect = wrapper.getBoundingClientRect();
+        const rect = videoWrapper.getBoundingClientRect();
         const ripple = document.createElement('div');
         ripple.className = 'video-ripple';
         const size = Math.max(rect.width, rect.height);
@@ -397,7 +451,7 @@
         // Flash
         const flash = document.createElement('div');
         flash.className = 'video-flash';
-        wrapper.appendChild(flash);
+        videoWrapper.appendChild(flash);
         setTimeout(() => flash.remove(), 400);
       });
 

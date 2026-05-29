@@ -1,0 +1,158 @@
+---
+const clients = [
+  {
+    name: "Kannur Intl. Airport",
+    role: "Kannur,Kerala",
+    image: "/images/airportknr.jpg"
+  },
+  {
+    name: "Indian Naval Academy ",
+    role: "Ezhimala,Kerala",
+    image: "/images/ezhimala.jpg"
+  },
+  {
+    name: "KIMS Sreechand Hospital ",
+    role: "Kannur,Kerala",
+    image: "/images/sree.jpg"
+  },
+  {
+    name: "Thalassery-Mahe NH 66",
+    role: "Kerala",
+    image: "/images/maheby.jpg"
+  },
+  {
+    name: "SOBHA Limited",
+    role: "Luxury Residential",
+    logoSvg: `<svg class="w-10 h-10 text-[#9B7D46] transition-colors duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 7v10l8 5 8-5V7z" /><path d="M12 2v20" /><path d="M4 12h16" /><circle cx="12" cy="12" r="4" fill="currentColor" class="text-[#9B7D46]/20" /></svg>`
+  },
+  {
+    name: "Skyline Builders",
+    role: "Commercial & Housing",
+    logoSvg: `<svg class="w-10 h-10 text-[#005a8d] transition-colors duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18" /><path d="M5 21V10l4-3v14" /><path d="M9 21V6l4-2v17" /><path d="M13 21V12l4-2v9" /><path d="M17 21V8l4 3v10" /></svg>`
+  },
+  {
+    name: "Asset Homes",
+    role: "Premium Housing",
+    logoSvg: `<svg class="w-10 h-10 text-[#2E7D32] transition-colors duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22C12 22 20 16 20 10C20 4 12 2 12 2S4 4 4 10C4 16 12 22 12 22Z" /><path d="M12 2v20" /><path d="M12 10c0 0 4-2 4-5" /><path d="M12 14c0 0-4-2-4-5" /></svg>`
+  },
+  {
+    name: "Adani Infrastructure",
+    role: "Heavy Industrial",
+    logoSvg: `<svg class="w-10 h-10 text-[#FF8F00] transition-colors duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></svg>`
+  }
+];
+
+// Replicate for marquee looping
+const marqueeItems = [...clients, ...clients, ...clients];
+
+interface Props {
+  bgImage?: string;
+  bgImageClass?: string;
+}
+
+const {
+  bgImage,
+  bgImageClass = "absolute right-4 bottom-0 w-32 md:w-44 h-auto opacity-[0.06] pointer-events-none z-0 mix-blend-multiply"
+} = Astro.props;
+---
+
+<section id="clients-showcase" class="w-full relative py-12 md:py-16 bg-gradient-to-r from-[#000428]/8 to-[#004e92]/8 overflow-hidden reveal-text">
+  <!-- Top and Bottom vertical fades to prevent sharp lines -->
+  <div class="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-brandBg to-transparent z-10 pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-brandBg to-transparent z-10 pointer-events-none"></div>
+
+  {bgImage && (
+    <img src={bgImage} alt="" class={bgImageClass} aria-hidden="true" />
+  )}
+  <div class="max-w-7xl mx-auto px-6 md:px-12 mb-6 md:mb-8 text-center relative z-20">
+    <span class="inline-block text-[11px] md:text-xs font-bold text-brandBlue tracking-[0.25em] uppercase mb-2 font-satoshi">
+      CHOSEN BY EXPERTS
+    </span>
+    <h2 class="text-2xl md:text-4xl font-semibold text-gray-900 tracking-tight leading-tight" style="font-family: 'Montserrat', sans-serif;">
+      Structured on Our Strength
+    </h2>
+  </div>
+
+  <!-- Marquee Area -->
+  <div class="relative w-full overflow-hidden select-none">
+    
+    <!-- Edge Fades for premium transition effect -->
+    <div class="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-brandBg via-brandBg/60 to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-brandBg via-brandBg/60 to-transparent z-10 pointer-events-none"></div>
+
+    <!-- Continuous Marquee Track -->
+    <div class="flex gap-5 w-max animate-marquee py-3">
+      {marqueeItems.map((client) => (
+        client.image ? (
+          /* Card with Photo Background */
+          <div class="group relative w-[210px] md:w-[250px] h-[120px] md:h-[140px] rounded-2xl overflow-hidden shadow-[0_6px_24px_rgba(0,126,181,0.03)] hover:shadow-[0_20px_45px_rgba(0,126,181,0.08)] hover:-translate-y-1 transition-all duration-300 border border-white/80 shrink-0">
+            <img src={client.image} alt={client.name} class="client-card-media absolute inset-0 w-full h-full object-cover filter grayscale contrast-[1.1] transition-all duration-300" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-4 z-20">
+              <span class="text-[9px] font-semibold text-sky-300 uppercase tracking-widest block mb-0.5">{client.role}</span>
+              <span class="font-bold text-white text-sm md:text-base font-satoshi truncate block">{client.name}</span>
+            </div>
+          </div>
+        ) : (
+          /* Card with SVG Logo */
+          <div class="group relative w-[210px] md:w-[250px] h-[120px] md:h-[140px] rounded-2xl overflow-hidden shadow-[0_6px_24px_rgba(0,126,181,0.03)] hover:shadow-[0_20px_45px_rgba(0,126,181,0.08)] hover:-translate-y-1 transition-all duration-300 border border-white/80 bg-white flex flex-col justify-between p-4 shrink-0">
+            <div class="client-card-media flex-grow flex items-center justify-center filter grayscale transition-all duration-300 text-gray-700">
+              <Fragment set:html={client.logoSvg} />
+            </div>
+            <div class="text-center mt-1">
+              <span class="text-[9px] font-semibold text-brandBlue uppercase tracking-widest block">{client.role}</span>
+              <span class="font-bold text-gray-900 text-sm md:text-base font-satoshi truncate block mt-0.5">{client.name}</span>
+            </div>
+          </div>
+        )
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-33.3333333333%);
+    }
+  }
+
+  .animate-marquee {
+    display: flex;
+    animation: marquee 42s linear infinite;
+  }
+
+  /* Hover override to instantly color card media, overriding GSAP inline filter styles */
+  .group:hover .client-card-media {
+    filter: grayscale(0%) contrast(1) !important;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  
+  gsap.registerPlugin(ScrollTrigger);
+
+  window.addEventListener("DOMContentLoaded", () => {
+    // Create scroll-linked grayscale timeline
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: "#clients-showcase",
+        start: "top bottom", // starts when top of showcase enters bottom of screen
+        end: "bottom top",   // ends when bottom of showcase leaves top of screen
+        scrub: 1.5,          // smooth link directly to scrollbar
+      }
+    })
+    .fromTo(".client-card-media", 
+      { filter: "grayscale(100%) contrast(1.1)" }, 
+      { filter: "grayscale(0%) contrast(1)", duration: 0.5, ease: "none" }
+    )
+    .to(".client-card-media", 
+      { filter: "grayscale(100%) contrast(1.1)", duration: 0.5, ease: "none" }
+    );
+  });
+</script>
