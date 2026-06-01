@@ -12,20 +12,20 @@ const products = [
 ];
 ---
 
-<section id="products" class="scroll-mt-16 md:scroll-mt-20 w-full relative bg-gradient-to-b from-[#000428] via-[#001026] to-[#000428] overflow-x-hidden pt-24 md:pt-32 pb-16 md:pb-24 select-none text-white">
+<section id="products" class="scroll-mt-16 md:scroll-mt-20 w-full relative bg-gradient-to-b from-[#000428] via-[#00224d] to-[#004e92] overflow-x-hidden pt-24 md:pt-32 pb-16 md:pb-24 select-none text-white animate-bg">
 
   <!-- Soft Radial Background Glow Spot Light -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[85%] max-w-[850px] aspect-square rounded-full bg-radial-glow pointer-events-none -z-10 opacity-70"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[85%] max-w-[850px] aspect-square rounded-full bg-radial-glow pointer-events-none -z-10 opacity-70 animate-pulse-slow"></div>
 
   <!-- Heading -->
   <div class="w-full text-center pb-6 relative z-10 select-none">
-    <span class="inline-block text-[10px] font-bold text-sky-400 tracking-[0.3em] uppercase mb-1.5 font-satoshi">
+    <span class="inline-block text-[10px] font-bold text-sky-300 tracking-[0.3em] uppercase mb-1.5 font-satoshi">
       OUR MATERIALS
     </span>
-    <h2 class="text-3xl md:text-5xl font-bold tracking-wide uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-sky-100 to-sky-400 mb-2" style="font-family: 'Montserrat', sans-serif;">
+    <h2 class="text-3xl md:text-5xl font-bold tracking-wide uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-sky-100 to-sky-300 mb-2" style="font-family: 'Montserrat', sans-serif;">
       Our Products
     </h2>
-    <div class="w-12 h-0.5 bg-gradient-to-r from-sky-400 to-transparent mx-auto mt-2"></div>
+    <div class="w-12 h-0.5 bg-gradient-to-r from-sky-300 to-transparent mx-auto mt-2"></div>
   </div>
 
   <!-- Desktop view: Pinned Stage Slider -->
@@ -56,19 +56,6 @@ const products = [
 
             <!-- Glossy Sheen Overlay -->
             <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.015] to-white/[0.06] pointer-events-none z-20"></div>
-            
-            <!-- Top Badges -->
-            <div class="absolute top-5 left-5 right-5 flex justify-between items-center z-30">
-              <!-- Brand Badge -->
-              <div class="w-8 h-8 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center">
-                <span class="text-[10px] font-extrabold tracking-wider text-white">PC</span>
-              </div>
-              <!-- Rating / Quality Badge -->
-              <div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
-                <span class="text-[10px] font-bold text-amber-300">★</span>
-                <span class="text-[10px] font-bold text-white">4.9</span>
-              </div>
-            </div>
 
             <!-- Card Content -->
             <div class="absolute bottom-6 left-5 right-5 text-white z-30">
@@ -98,7 +85,7 @@ const products = [
     <div class="mobile-slider-container w-full h-[360px] flex items-center justify-start overflow-x-auto scrollbar-hide snap-x snap-mandatory">
       <div class="mobile-slider-track flex items-center gap-6">
         {products.map((product, index) => (
-          <div class="mobile-product-card snap-center flex-shrink-0 w-[230px] h-[320px] flex items-center justify-center relative cursor-pointer" data-index={index}>
+          <div class="mobile-product-card snap-center flex-shrink-0 relative cursor-pointer" data-index={index}>
             <div class="mobile-card-3d w-full h-full relative rounded-[28px] overflow-hidden flex flex-col justify-end border border-white/5 shadow-xl">
               <!-- Card Image Background -->
               <div class="w-full h-full absolute inset-0 z-0 rounded-[28px] overflow-hidden">
@@ -107,21 +94,10 @@ const products = [
               </div>
 
               <!-- Theme Color Wash Overlay for Mobile Side Cards -->
-              <div class="product-color-overlay absolute inset-0 bg-gradient-to-b from-[#000428]/80 to-[#004e92]/80 opacity-0 pointer-events-none transition-opacity duration-500 rounded-[28px] z-20"></div>
+              <div class="product-color-overlay absolute inset-0 bg-gradient-to-b from-[#000428]/85 to-[#004e92]/85 opacity-0 pointer-events-none transition-opacity duration-500 rounded-[28px] z-20"></div>
 
               <!-- Glossy Sheen Overlay -->
               <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.01] to-white/[0.04] pointer-events-none z-20"></div>
-              
-              <!-- Top Badges -->
-              <div class="absolute top-5 left-5 right-5 flex justify-between items-center z-30">
-                <div class="w-8 h-8 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center">
-                  <span class="text-[10px] font-extrabold tracking-wider text-white">PC</span>
-                </div>
-                <div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
-                  <span class="text-[10px] font-bold text-amber-300">★</span>
-                  <span class="text-[10px] font-bold text-white">4.9</span>
-                </div>
-              </div>
 
               <!-- Card Content -->
               <div class="p-5 text-white z-30">
@@ -141,13 +117,13 @@ const products = [
     </div>
 
     <!-- Mobile Scroll indicator hint -->
-    <div class="w-full flex justify-center mt-3 text-sky-300/40 font-satoshi text-[10px] tracking-widest uppercase items-center gap-2 select-none">
+    <div class="w-full flex justify-center mt-3 text-sky-200/40 font-satoshi text-[10px] tracking-widest uppercase items-center gap-2 select-none">
       Swipe left or right
     </div>
   </div>
 
   <!-- Scroll Indicator Hint (Desktop only) -->
-  <div class="hidden lg:flex w-full justify-center mt-4 text-sky-300/60 font-satoshi text-xs tracking-widest uppercase items-center gap-2 select-none relative z-20">
+  <div class="hidden lg:flex w-full justify-center mt-4 text-sky-200/50 font-satoshi text-xs tracking-widest uppercase items-center gap-2 select-none relative z-20">
     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
       <path stroke-linecap="round" stroke-linejoin="round" d="M19 13l-7 7-7-7m14-6l-7 7-7-7" />
     </svg>
@@ -157,7 +133,7 @@ const products = [
 
 <style>
   .bg-radial-glow {
-    background: radial-gradient(circle, rgba(0, 78, 146, 0.3) 0%, rgba(0, 4, 40, 0) 70%);
+    background: radial-gradient(circle, rgba(0, 78, 146, 0.35) 0%, rgba(0, 4, 40, 0) 70%);
   }
 
   .slider-stage-container {
@@ -197,6 +173,9 @@ const products = [
   }
 
   .mobile-product-card {
+    flex-shrink: 0;
+    width: 230px;
+    height: 320px;
     transform-style: preserve-3d;
     will-change: transform;
   }
@@ -204,7 +183,7 @@ const products = [
   .mobile-card-3d {
     will-change: transform, opacity, filter, box-shadow, border-color;
     transform-style: preserve-3d;
-    transition: transform 0.1s ease-out; /* Damping */
+    transition: transform 0.15s ease-out; /* Damping */
   }
 
   /* Tactile touch-down compression on mobile */
@@ -230,6 +209,14 @@ const products = [
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.05); }
+  }
+  .animate-pulse-slow {
+    animation: pulse-slow 8s ease-in-out infinite;
+  }
 </style>
 
 <script>
@@ -239,197 +226,199 @@ const products = [
   if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 
-    window.addEventListener("DOMContentLoaded", () => {
+    const initProducts = () => {
       const container = document.querySelector('.slider-stage-container') as HTMLElement;
       const track = document.querySelector('.slider-track') as HTMLElement;
       const cards = document.querySelectorAll('.product-card');
       const leftArrow = document.querySelector('.nav-arrow-left') as HTMLButtonElement;
       const rightArrow = document.querySelector('.nav-arrow-right') as HTMLButtonElement;
 
-      if (!container || !track || !cards.length) return;
+      // 1. Desktop Slider Logic
+      if (container && track && cards.length) {
+        let triggerInstance: any = null;
 
-      let triggerInstance: any = null;
+        // Dynamic Padding Setup
+        const resizePadding = () => {
+          const cardWidth = cards[0].clientWidth;
+          const padVal = (container.clientWidth / 2) - (cardWidth / 2);
+          track.style.paddingLeft = `${padVal}px`;
+          track.style.paddingRight = `${padVal}px`;
+        };
 
-      // 1. Dynamic Padding Setup (Centers the first and last card)
-      function resizePadding() {
-        const cardWidth = cards[0].clientWidth;
-        const padVal = (container.clientWidth / 2) - (cardWidth / 2);
-        track.style.paddingLeft = `${padVal}px`;
-        track.style.paddingRight = `${padVal}px`;
-      }
+        // Focus Update Loop
+        const updateActiveStates = () => {
+          const containerCenter = container.getBoundingClientRect().left + container.clientWidth / 2;
 
-      // 2. Card Focus logic (grays out other cards, zooms center one, adds glow)
-      function updateActiveStates() {
-        const containerCenter = container.getBoundingClientRect().left + container.clientWidth / 2;
+          let closestCardIndex = 0;
+          let minDistance = Infinity;
 
-        let closestCardIndex = 0;
-        let minDistance = Infinity;
+          cards.forEach((card, index) => {
+            const cardRect = card.getBoundingClientRect();
+            const cardCenter = cardRect.left + cardRect.width / 2;
+            const distance = Math.abs(containerCenter - cardCenter);
 
-        cards.forEach((card, index) => {
-          const cardRect = card.getBoundingClientRect();
-          const cardCenter = cardRect.left + cardRect.width / 2;
-          const distance = Math.abs(containerCenter - cardCenter);
-
-          if (distance < minDistance) {
-            minDistance = distance;
-            closestCardIndex = index;
-          }
-        });
-
-        cards.forEach((card, index) => {
-          const cardElem = card as HTMLElement;
-          const isCenter = index === closestCardIndex;
-          const overlay = cardElem.querySelector('.product-color-overlay');
-
-          const d = index - closestCardIndex;
-          let rotateYVal = 0;
-          if (d < 0) {
-            rotateYVal = 22;
-          } else if (d > 0) {
-            rotateYVal = -22;
-          }
-
-          if (isCenter) {
-            cardElem.classList.add('is-active');
-            gsap.to(cardElem, {
-              scale: 1.08,
-              opacity: 1,
-              rotateY: 0,
-              z: 0,
-              filter: "grayscale(0%)",
-              boxShadow: "0 30px 70px -10px rgba(0, 78, 146, 0.55), 0 20px 45px -15px rgba(0, 4, 40, 0.6)",
-              borderColor: "rgba(255, 255, 255, 0.25)",
-              duration: 0.45,
-              ease: "power2.out",
-              overwrite: "auto"
-            });
-            if (overlay) {
-              gsap.to(overlay, { opacity: 0, duration: 0.45, ease: "power2.out" });
+            if (distance < minDistance) {
+              minDistance = distance;
+              closestCardIndex = index;
             }
-          } else {
-            cardElem.classList.remove('is-active');
-            gsap.to(cardElem, {
-              scale: 0.88,
-              opacity: 0.65,
-              rotateY: rotateYVal,
-              z: -120,
-              filter: "grayscale(0%)",
-              boxShadow: "0 10px 30px -10px rgba(0, 78, 146, 0.1), 0 5px 15px -10px rgba(0, 4, 40, 0.15)",
-              borderColor: "rgba(255, 255, 255, 0.05)",
-              duration: 0.45,
-              ease: "power2.out",
-              overwrite: "auto"
-            });
-            if (overlay) {
-              gsap.to(overlay, { opacity: 1, duration: 0.45, ease: "power2.out" });
-            }
-          }
-        });
-
-        if (leftArrow) leftArrow.disabled = closestCardIndex === 0;
-        if (rightArrow) rightArrow.disabled = closestCardIndex === cards.length - 1;
-      }
-
-      // 3. Scroll to specific card function
-      function scrollToCard(index: number) {
-        if (index < 0 || index >= cards.length) return;
-
-        if (triggerInstance) {
-          const start = triggerInstance.start;
-          const end = triggerInstance.end;
-          const scrollRange = end - start;
-          const targetScroll = start + (index / (cards.length - 1)) * scrollRange;
-
-          window.scrollTo({
-            top: targetScroll,
-            behavior: 'smooth'
           });
-        }
-      }
 
-      // 4. Arrow navigation binding
-      leftArrow?.addEventListener('click', () => {
-        const activeCard = document.querySelector('.product-card.is-active');
-        if (activeCard) {
-          const index = parseInt(activeCard.getAttribute('data-index') || '0');
-          scrollToCard(index - 1);
-        }
-      });
+          cards.forEach((card, index) => {
+            const cardElem = card as HTMLElement;
+            const isCenter = index === closestCardIndex;
+            const overlay = cardElem.querySelector('.product-color-overlay');
 
-      rightArrow?.addEventListener('click', () => {
-        const activeCard = document.querySelector('.product-card.is-active');
-        if (activeCard) {
-          const index = parseInt(activeCard.getAttribute('data-index') || '0');
-          scrollToCard(index + 1);
-        }
-      });
+            const d = index - closestCardIndex;
+            let rotateYVal = 0;
+            if (d < 0) {
+              rotateYVal = 22;
+            } else if (d > 0) {
+              rotateYVal = -22;
+            }
 
-      // Card click focusing
-      cards.forEach((card, index) => {
-        card.addEventListener('click', () => {
-          scrollToCard(index);
+            if (isCenter) {
+              cardElem.classList.add('is-active');
+              gsap.to(cardElem, {
+                scale: 1.08,
+                opacity: 1,
+                rotateY: 0,
+                z: 0,
+                filter: "grayscale(0%)",
+                boxShadow: "0 30px 70px -10px rgba(0, 78, 146, 0.55), 0 20px 45px -15px rgba(0, 4, 40, 0.6)",
+                borderColor: "rgba(255, 255, 255, 0.25)",
+                duration: 0.45,
+                ease: "power2.out",
+                overwrite: "auto"
+              });
+              if (overlay) {
+                gsap.to(overlay, { opacity: 0, duration: 0.45, ease: "power2.out" });
+              }
+            } else {
+              cardElem.classList.remove('is-active');
+              gsap.to(cardElem, {
+                scale: 0.88,
+                opacity: 0.65,
+                rotateY: rotateYVal,
+                z: -120,
+                filter: "grayscale(0%)",
+                boxShadow: "0 10px 30px -10px rgba(0, 78, 146, 0.1), 0 5px 15px -10px rgba(0, 4, 40, 0.15)",
+                borderColor: "rgba(255, 255, 255, 0.05)",
+                duration: 0.45,
+                ease: "power2.out",
+                overwrite: "auto"
+              });
+              if (overlay) {
+                gsap.to(overlay, { opacity: 1, duration: 0.45, ease: "power2.out" });
+              }
+            }
+          });
+
+          if (leftArrow) leftArrow.disabled = closestCardIndex === 0;
+          if (rightArrow) rightArrow.disabled = closestCardIndex === cards.length - 1;
+        };
+
+        // Scroll to card index
+        const scrollToCard = (index: number) => {
+          if (index < 0 || index >= cards.length) return;
+
+          if (triggerInstance) {
+            const start = triggerInstance.start;
+            const end = triggerInstance.end;
+            const scrollRange = end - start;
+            const targetScroll = start + (index / (cards.length - 1)) * scrollRange;
+
+            window.scrollTo({
+              top: targetScroll,
+              behavior: 'smooth'
+            });
+          }
+        };
+
+        // Navigation arrow click event
+        leftArrow?.addEventListener('click', () => {
+          const activeCard = document.querySelector('.product-card.is-active');
+          if (activeCard) {
+            const index = parseInt(activeCard.getAttribute('data-index') || '0');
+            scrollToCard(index - 1);
+          }
         });
-      });
 
-      // 5. GSAP Responsive MatchMedia Setup
-      const mm = gsap.matchMedia();
+        rightArrow?.addEventListener('click', () => {
+          const activeCard = document.querySelector('.product-card.is-active');
+          if (activeCard) {
+            const index = parseInt(activeCard.getAttribute('data-index') || '0');
+            scrollToCard(index + 1);
+          }
+        });
 
-      // Desktop layout (pinned scrolling)
-      mm.add("(min-width: 1024px)", () => {
-        // Initialize padding first
-        resizePadding();
-        
-        container.style.overflowX = 'hidden';
-        gsap.set(track, { x: 0 });
+        // Focus card on click
+        cards.forEach((card, index) => {
+          card.addEventListener('click', () => {
+            scrollToCard(index);
+          });
+        });
 
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: "#products",
-            start: "top top",
-            end: () => `+=${track.scrollWidth - container.clientWidth + 500}`,
-            pin: true,
-            scrub: 0.8,
-            invalidateOnRefresh: true
-          },
-          onUpdate: () => {
+        // GSAP media query layout
+        const mm = gsap.matchMedia();
+
+        mm.add("(min-width: 1024px)", () => {
+          resizePadding();
+          container.style.overflowX = 'hidden';
+          gsap.set(track, { x: 0 });
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: "#products",
+              start: "top top",
+              end: () => `+=${track.scrollWidth - container.clientWidth + 500}`,
+              pin: true,
+              scrub: 0.8,
+              invalidateOnRefresh: true
+            },
+            onUpdate: () => {
+              updateActiveStates();
+            }
+          });
+
+          tl.to(track, {
+            x: () => -(track.scrollWidth - container.clientWidth),
+            ease: "none"
+          });
+
+          triggerInstance = tl.scrollTrigger;
+          setTimeout(updateActiveStates, 100);
+
+          return () => {
+            gsap.set(track, { x: 0 });
+            container.style.overflowX = 'hidden';
+            triggerInstance = null;
+          };
+        });
+
+        window.addEventListener('resize', () => {
+          if (window.innerWidth >= 1024) {
+            resizePadding();
             updateActiveStates();
           }
         });
+      }
 
-        tl.to(track, {
-          x: () => -(track.scrollWidth - container.clientWidth),
-          ease: "none"
-        });
+      // 2. Mobile Slider Logic
+      const mContainer = document.querySelector('.mobile-slider-container') as HTMLElement;
+      const mTrack = document.querySelector('.mobile-slider-track') as HTMLElement;
+      const mCards = document.querySelectorAll('.mobile-product-card');
 
-        triggerInstance = tl.scrollTrigger;
-
-        setTimeout(updateActiveStates, 100);
-
-        return () => {
-          gsap.set(track, { x: 0 });
-          container.style.overflowX = 'hidden';
-          triggerInstance = null;
-        };
-      });
-
-      // Mobile/Tablet layout (native vertical grid scroll reveal + scroll tilt + tap sheen)
-      mm.add("(max-width: 1023px)", () => {
-        const mContainer = document.querySelector('.mobile-slider-container') as HTMLElement;
-        const mTrack = document.querySelector('.mobile-slider-track') as HTMLElement;
-        const mCards = document.querySelectorAll('.mobile-product-card');
-
-        if (!mContainer || !mTrack || !mCards.length) return;
-
-        // Dynamic Padding Setup
-        function resizeMobilePadding() {
-          const cardWidth = mCards[0].clientWidth;
+      if (mContainer && mTrack && mCards.length) {
+        // Dynamic padding to center cards on mobile
+        const resizeMobilePadding = () => {
+          const cardWidth = mCards[0].clientWidth || 230;
           const padVal = (mContainer.clientWidth / 2) - (cardWidth / 2);
           mTrack.style.paddingLeft = `${padVal}px`;
           mTrack.style.paddingRight = `${padVal}px`;
-        }
+        };
 
-        // 3D Cylindrical Cylinder Transform Loop
-        function updateMobile3DStates() {
+        // Mobile 3D cylinder transform calculations
+        const updateMobile3DStates = () => {
           const containerCenter = mContainer.getBoundingClientRect().left + mContainer.clientWidth / 2;
 
           let closestIndex = 0;
@@ -456,16 +445,15 @@ const products = [
             
             const maxDistance = mContainer.clientWidth / 2;
             const distance = cardCenter - containerCenter;
-            const progress = Math.max(-1.2, Math.min(1.2, distance / maxDistance)); // Normalized position relative to center
+            const progress = Math.max(-1.2, Math.min(1.2, distance / maxDistance)); // Range: -1.2 to 1.2
 
             const isCenter = index === closestIndex;
 
-            // 3D cylinder properties
-            const rotateYVal = progress * 32; // Angling inward
-            const translateZVal = -Math.abs(progress) * 110; // Pushing back
-            const scaleVal = 1 - Math.abs(progress) * 0.1; // Shrinking
-            const opacityVal = 1 - Math.abs(progress) * 0.35; // Fading
-            const overlayOpacity = Math.min(1, Math.max(0, Math.abs(progress) * 1.5)); // smooth wash fade
+            const rotateYVal = progress * 32;
+            const translateZVal = -Math.abs(progress) * 110;
+            const scaleVal = 1 - Math.abs(progress) * 0.1;
+            const opacityVal = 1 - Math.abs(progress) * 0.35;
+            const overlayOpacity = Math.min(1, Math.max(0, Math.abs(progress) * 1.5));
 
             gsap.set(cardInner, {
               rotateY: rotateYVal,
@@ -482,14 +470,17 @@ const products = [
               gsap.set(overlay, { opacity: overlayOpacity });
             }
           });
-        }
+        };
 
-        // Tap Sheen Animation trigger
+        // Scroll listener for real-time 3D transforms
+        mContainer.addEventListener('scroll', updateMobile3DStates);
+
+        // Tap gestures binding
         mCards.forEach((card, index) => {
           const cardElem = card as HTMLElement;
           const sheen = cardElem.querySelector('.mobile-sheen');
 
-          // Trigger sheen sweep on tap
+          // Sheen sweep on tap
           cardElem.addEventListener('click', () => {
             if (sheen) {
               gsap.fromTo(sheen,
@@ -499,7 +490,7 @@ const products = [
             }
           });
 
-          // Snap scroll to card center on tap
+          // Snap to center on tap
           cardElem.addEventListener('click', () => {
             const targetScrollLeft = cardElem.offsetLeft - (mContainer.clientWidth - cardElem.clientWidth) / 2;
             gsap.to(mContainer, {
@@ -511,30 +502,30 @@ const products = [
           });
         });
 
-        // Event listeners
-        mContainer.addEventListener('scroll', updateMobile3DStates);
-        window.addEventListener('resize', resizeMobilePadding);
+        // Initialize mobile view
+        const mm = gsap.matchMedia();
+        mm.add("(max-width: 1023px)", () => {
+          resizeMobilePadding();
+          
+          setTimeout(() => {
+            updateMobile3DStates();
+          }, 150);
+        });
 
-        // Init
-        resizeMobilePadding();
-        // Slight delay to ensure layout is complete
-        setTimeout(() => {
-          updateMobile3DStates();
-        }, 150);
+        window.addEventListener('resize', () => {
+          if (window.innerWidth < 1024) {
+            resizeMobilePadding();
+            updateMobile3DStates();
+          }
+        });
+      }
+    };
 
-        return () => {
-          mContainer.removeEventListener('scroll', updateMobile3DStates);
-          window.removeEventListener('resize', resizeMobilePadding);
-        };
-      });
-
-      // Resize event handler
-      window.addEventListener('resize', () => {
-        if (window.innerWidth >= 1024) {
-          resizePadding();
-          updateActiveStates();
-        }
-      });
-    });
+    // Robust deferred execution checks
+    if (document.readyState === "loading") {
+      window.addEventListener("DOMContentLoaded", initProducts);
+    } else {
+      initProducts();
+    }
   }
 </script>
