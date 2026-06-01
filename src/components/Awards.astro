@@ -1,8 +1,7 @@
 ---
 const awards = [
-  { year: "2026", title: "Govt Award", image: "/images/award1.jpg", text: "Recognized for outstanding contribution to regional infrastructure development." },
   { year: "2018", title: "State Award for Environmental Practice", image: "/images/award1.jpg", text: "3rd Prize in Best Environmental Practice, handed over by former CM Pinarayi Vijayan." },
-  { year: "2014", title: "Top 3 in Pollution Control", image: "/images/c3.jpeg", text: "Secured 3rd place statewide for sustained pollution control in the Crusher category." },
+  { year: "2014", title: "Top 3 in Pollution Control", image: "/images/c3.jpeg", text: "Secured 3rd place statewide for sustained pollution control " },
   { year: "2013", title: "Eco-Initiatives Award", image: "/images/c1.jpeg", text: "Awarded by the Kerala State Pollution Control Board for environmental responsibility." },
 ];
 
@@ -11,12 +10,27 @@ const displayAwards = [...awards, ...awards]; // Replicate to make 8 items for a
 
 <section id="awards-legacy" class="min-h-screen w-full flex flex-col justify-center px-6 md:px-12 relative overflow-hidden bg-white select-none">
   
-  <!-- Header -->
-  <div class="max-w-7xl mx-auto w-full mb-6 md:mb-8 text-center">
-    <span class="inline-block text-[11px] md:text-xs font-bold text-brandBlue tracking-[0.25em] uppercase mb-2 font-satoshi">
+  <!-- Mobile Header (Visible only on small screens) -->
+  <div class="max-w-7xl mx-auto w-full mb-6 text-center md:hidden">
+    <span class="inline-block text-[10px] font-bold text-brandBlue tracking-[0.3em] uppercase mb-1.5 font-satoshi">
       OUR RECOGNITIONS
     </span>
-    <h3 class="text-3xl md:text-5xl font-semibold text-gray-900 tracking-tight" style="font-family: 'Montserrat', sans-serif;">
+    <h3 class="text-3xl font-bold tracking-wide uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-800 to-[#007eb5]" style="font-family: 'Montserrat', sans-serif;">
+      Awards
+    </h3>
+    <div class="w-12 h-0.5 bg-gradient-to-r from-[#007eb5] to-transparent mx-auto mt-2"></div>
+  </div>
+
+  <!-- Desktop Sideways Header (Rotated 90 degrees on the left side) -->
+  <div class="absolute left-4 lg:left-8 top-1/2 z-30 select-none hidden md:flex flex-col items-center justify-center whitespace-nowrap" style="writing-mode: vertical-lr; transform: translateY(-50%) rotate(180deg);">
+    <span class="text-[10px] font-bold text-brandBlue/80 tracking-[0.3em] uppercase font-satoshi">
+      OUR RECOGNITIONS
+    </span>
+    
+    <!-- Premium vertical line spacer -->
+    <div class="w-px h-16 bg-gradient-to-b from-[#007eb5]/40 via-[#007eb5]/10 to-transparent my-5"></div>
+    
+    <h3 class="text-4xl lg:text-5xl font-extrabold tracking-widest uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-800 to-[#007eb5]" style="font-family: 'Montserrat', sans-serif;">
       Awards
     </h3>
   </div>
@@ -31,7 +45,7 @@ const displayAwards = [...awards, ...awards]; // Replicate to make 8 items for a
           return (
             <div class="carousel-card group">
               <!-- Premium Opaque Glassmorphic Card -->
-              <div class="w-full h-full border border-white/10 bg-[#0f0f11] rounded-[24px] p-5 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+              <div class="w-full h-full border border-white/10 bg-gradient-to-br from-[#000428] to-[#004e92] rounded-[24px] p-5 flex flex-col justify-between shadow-2xl relative overflow-hidden">
                 <!-- Glossy sheen reflection overlay -->
                 <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.015] to-white/[0.06] pointer-events-none z-10"></div>
                 
@@ -41,27 +55,24 @@ const displayAwards = [...awards, ...awards]; // Replicate to make 8 items for a
                     <span class="text-2xl md:text-3xl font-bold text-white font-satoshi tracking-tight leading-none">
                       {award.year}
                     </span>
-                    <span class="text-[9px] uppercase tracking-widest text-sky-400 font-semibold px-2 py-0.5 rounded-full bg-white/5 border border-white/10">
-                      Legacy
-                    </span>
                   </div>
                   
                   <!-- Award Title -->
-                  <h4 class="text-base md:text-lg font-semibold text-white/95 mt-3 tracking-tight leading-snug">
+                  <h4 class="text-lg md:text-xl font-semibold text-white/95 mt-4 tracking-tight leading-snug">
                     {award.title}
                   </h4>
 
                   <!-- Divider line -->
-                  <div class="w-full h-px bg-white/10 my-2.5"></div>
+                  <div class="w-full h-px bg-white/10 my-3.5"></div>
 
                   <!-- Award Description -->
-                  <p class="text-[11px] md:text-[12px] text-white/60 font-satoshi leading-relaxed">
+                  <p class="text-[12px] md:text-[13px] text-white/60 font-satoshi leading-relaxed">
                     {award.text}
                   </p>
                 </div>
 
                 <!-- Award Image -->
-                <div class="w-full h-20 md:h-24 rounded-xl overflow-hidden relative shadow-inner mt-3 z-20">
+                <div class="w-full h-24 md:h-28 rounded-xl overflow-hidden relative shadow-inner mt-4 z-20">
                   <img 
                     src={award.image} 
                     alt={award.title} 
@@ -90,18 +101,19 @@ const displayAwards = [...awards, ...awards]; // Replicate to make 8 items for a
 <style>
   .carousel-viewport {
     perspective: 1400px;
-    height: 460px;
+    height: 520px;
   }
 
   .carousel-tilt {
     transform-style: preserve-3d;
-    transform: rotateY(-12deg);
+    /* Angle Y-tilt and translate vertically down by 45px to clear the header */
+    transform: rotateY(-12deg) translateY(45px);
     will-change: transform;
   }
 
   .carousel-container {
-    width: 230px;
-    height: 300px;
+    width: 240px;
+    height: 350px;
     position: relative;
     transform-style: preserve-3d;
     transform: rotateX(0deg);
@@ -134,14 +146,15 @@ const displayAwards = [...awards, ...awards]; // Replicate to make 8 items for a
 
   @media (max-width: 640px) {
     .carousel-viewport {
-      height: 360px;
+      height: 400px;
     }
     .carousel-tilt {
-      transform: rotateY(-8deg);
+      /* Angle Y-tilt and translate vertically down by 25px on mobile */
+      transform: rotateY(-8deg) translateY(25px);
     }
     .carousel-container {
-      width: 180px;
-      height: 245px;
+      width: 190px;
+      height: 280px;
     }
   }
 </style>
@@ -160,7 +173,7 @@ const displayAwards = [...awards, ...awards]; // Replicate to make 8 items for a
     const numCards = cards.length;
 
     // Compact radius to keep the orbit well within the screen boundaries
-    let R = window.innerWidth < 640 ? 110 : 160;
+    let R = window.innerWidth < 640 ? 120 : 175;
 
     // Function to calculate and apply 3D positions of the Ferris Wheel
     const updateFerrisWheel = (rotationX) => {
@@ -186,7 +199,7 @@ const displayAwards = [...awards, ...awards]; // Replicate to make 8 items for a
 
     // Dynamic radius adjustment on resize
     window.addEventListener("resize", () => {
-      R = window.innerWidth < 640 ? 110 : 160;
+      R = window.innerWidth < 640 ? 120 : 175;
       const currentRX = gsap.getProperty(track, "rotateX") as number || 0;
       updateFerrisWheel(currentRX);
     });

@@ -5,14 +5,17 @@
   <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
     
     {/* Image/Logo Side */}
-    <div class="flex justify-center md:justify-start order-1 md:order-1 relative">
-      <div class="relative w-56 md:w-full md:max-w-md">
-        <div class="absolute inset-0 bg-brandBlue/5 rounded-[2rem] transform -rotate-3 scale-105 -z-10"></div>
-        <img 
-          src="/images/meta-sand-logo.jpg" 
-          alt="Meta Sand Logo" 
-          class="w-full h-auto rounded-[1.5rem] shadow-2xl object-cover hover:scale-105 transition-transform duration-500"
-        />
+    <div class="flex justify-center md:justify-start order-1 md:order-1 relative logo-perspective">
+      <div class="relative w-56 md:w-full md:max-w-md logo-card group cursor-pointer">
+        <div class="logo-accent absolute inset-0 bg-brandBlue/10 rounded-[2rem] transform -rotate-3 scale-105 -z-10"></div>
+        <div class="logo-img-wrapper rounded-[1.5rem] overflow-hidden shadow-2xl relative w-full h-auto">
+          <img 
+            src="/images/meta-sand-logo.jpg" 
+            alt="Meta Sand Logo" 
+            class="logo-img w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div class="logo-sheen absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full pointer-events-none z-10"></div>
+        </div>
       </div>
     </div>
 
@@ -44,3 +47,188 @@
 
   </div>
 </section>
+
+<style>
+  .logo-perspective {
+    perspective: 1200px;
+  }
+  .logo-card {
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  .logo-accent {
+    will-change: transform, opacity;
+  }
+  .logo-img-wrapper {
+    will-change: transform;
+    transform-style: preserve-3d;
+  }
+  .logo-sheen {
+    width: 200%;
+    transform: skewX(-25deg);
+    will-change: transform, opacity;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const card = document.querySelector('.logo-card');
+      const accent = document.querySelector('.logo-accent');
+      const sheen = document.querySelector('.logo-sheen');
+
+      if (!card || !accent) return;
+
+      // 1. Entrance Scroll Trigger Animation
+      gsap.fromTo(card, 
+        {
+          opacity: 0,
+          scale: 0.82,
+          x: -50,
+          rotateY: 18,
+          rotateX: 8,
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          x: 0,
+          rotateY: 0,
+          rotateX: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: "#meta-sand",
+            start: "top 80%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
+
+      gsap.fromTo(accent,
+        {
+          rotate: 0,
+          scale: 0.9,
+          opacity: 0
+        },
+        {
+          rotate: -3,
+          scale: 1.05,
+          opacity: 1,
+          duration: 1.4,
+          ease: "power2.out",
+          delay: 0.15,
+          scrollTrigger: {
+            trigger: "#meta-sand",
+            start: "top 80%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
+
+      // Animate the text elements on scroll
+      const badge = document.querySelector('#meta-sand .bg-\\[\\#005a8d\\]');
+      const title = document.querySelector('#meta-sand h2');
+      const paragraphs = document.querySelectorAll('#meta-sand p');
+      const button = document.querySelector('#meta-sand a');
+
+      const textTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#meta-sand",
+          start: "top 75%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      if (badge) textTimeline.from(badge, { opacity: 0, y: 25, duration: 0.5, ease: "power2.out" });
+      if (title) textTimeline.from(title, { opacity: 0, y: 30, duration: 0.6, ease: "power2.out" }, "-=0.3");
+      if (paragraphs.length > 0) {
+        textTimeline.from(paragraphs, { 
+          opacity: 0, 
+          y: 20, 
+          stagger: 0.12, 
+          duration: 0.6, 
+          ease: "power2.out" 
+        }, "-=0.4");
+      }
+      if (button) textTimeline.from(button, { opacity: 0, y: 15, duration: 0.5, ease: "power2.out" }, "-=0.3");
+
+      // 2. 3D Mouse Tilt & Sheen on Hover (Desktop only)
+      if (window.innerWidth >= 768) {
+        const logoContainer = document.querySelector('.logo-perspective');
+        if (!logoContainer) return;
+
+        logoContainer.addEventListener('mousemove', (e: Event) => {
+          const mouseEvent = e as MouseEvent;
+          const rect = logoContainer.getBoundingClientRect();
+          const x = mouseEvent.clientX - rect.left;
+          const y = mouseEvent.clientY - rect.top;
+          
+          const normX = (x / rect.width) - 0.5;
+          const normY = (y / rect.height) - 0.5;
+          
+          const maxTiltX = 10; 
+          const maxTiltY = 10; 
+          
+          gsap.to(card, {
+            rotateX: -normY * maxTiltX,
+            rotateY: normX * maxTiltY,
+            scale: 1.025,
+            duration: 0.35,
+            ease: "power2.out",
+            overwrite: "auto"
+          });
+
+          gsap.to(accent, {
+            rotate: -3 + (normX * 6),
+            scale: 1.07,
+            duration: 0.35,
+            ease: "power2.out",
+            overwrite: "auto"
+          });
+
+          if (sheen) {
+            gsap.to(sheen, {
+              x: (normX * 100 + 50) + '%',
+              duration: 0.35,
+              ease: "power2.out",
+              overwrite: "auto"
+            });
+          }
+        });
+
+        logoContainer.addEventListener('mouseleave', () => {
+          gsap.to(card, {
+            rotateX: 0,
+            rotateY: 0,
+            scale: 1,
+            duration: 0.5,
+            ease: "power3.out",
+            overwrite: "auto"
+          });
+
+          gsap.to(accent, {
+            rotate: -3,
+            scale: 1.05,
+            duration: 0.5,
+            ease: "power3.out",
+            overwrite: "auto"
+          });
+
+          if (sheen) {
+            gsap.to(sheen, {
+              x: '-100%',
+              duration: 0.5,
+              ease: "power3.out",
+              overwrite: "auto"
+            });
+          }
+        });
+      }
+    });
+  }
+</script>

@@ -9,47 +9,89 @@ const products = [
   {name: "DUST", desc: "Fine material for filling and leveling", img: "/images/12mm.jpg" },
   { name: "WMM", desc: "High-strength mix for road construction", img: "/images/12mm.jpg" },
   {name: "GSB", desc: "Reliable base material for road works", img: "/images/12mm.jpg" }
-
 ];
 ---
 
-<section id="products" class="scroll-mt-16 md:scroll-mt-20 w-full relative bg-brandBg overflow-hidden pb-12 md:pb-8">
+<section id="products" class="scroll-mt-16 md:scroll-mt-20 w-full relative bg-brandBg overflow-x-hidden pb-12 md:pb-16 select-none">
 
-  {/* Heading */}
-  <div class="w-full text-center pt-4 md:pt-6 pb-3 relative z-10 reveal-text">
-    <h2 class="text-4xl md:text-5xl font-satoshi font-medium mb-2">Our Products</h2>
-    <p class="font-serif text-2xl md:text-3xl text-gray-800">Engineered Aggregates for Every Need</p>
+  <!-- Heading -->
+  <div class="w-full text-center pt-8 md:pt-12 pb-4 relative z-10 select-none">
+    <span class="inline-block text-[10px] font-bold text-brandBlue tracking-[0.3em] uppercase mb-1.5 font-satoshi">
+      OUR MATERIALS
+    </span>
+    <h2 class="text-3xl md:text-5xl font-bold tracking-wide uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-800 to-[#007eb5] mb-2" style="font-family: 'Montserrat', sans-serif;">
+      Our Products
+    </h2>
+    <div class="w-12 h-0.5 bg-gradient-to-r from-[#007eb5] to-transparent mx-auto mt-2"></div>
   </div>
 
-  {/* Container */}
-  <div class="pin-container w-full min-h-[55vh] md:h-[550px] mt-2 md:mt-4 flex items-center relative overflow-hidden scroll-smooth snap-none">
-
-    {/* Scroll Area */}
-    <div class="product-right w-full h-full flex items-center justify-start relative z-10 w-max" id="horizontal-track-container">
-
-      <div id="horizontal-track" class="flex gap-4 md:gap-12 items-center h-full w-max pl-4 md:pl-16 pr-6 md:pr-32">
-
-        {products.map((product) => (
-          <div class="product-card snap-center flex-shrink-0 w-[280px] md:w-[400px] h-[350px] md:h-[450px] relative rounded-[16px] overflow-hidden group shadow-lg bg-white">
-            
-            <img src={product.img} alt={product.name} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-
-            <div class="absolute bottom-6 left-6 text-white z-10">
-              <h3 class="text-2xl md:text-4xl font-satoshi font-semibold mb-2">{product.name}</h3>
-              <p class="text-sm md:text-base font-satoshi w-5/6 text-gray-200">{product.desc}</p>
-            </div>
-
+  <!-- Container -->
+  <div class="pin-container w-full min-h-[60vh] md:h-[600px] flex items-center justify-center relative">
+    <!-- Card Stack Wrapper -->
+    <div class="stack-container relative">
+      {products.map((product) => (
+        <div class="product-card rounded-[24px] overflow-hidden group shadow-2xl flex flex-col justify-between relative">
+          <!-- Card Image Background -->
+          <div class="w-full h-full absolute inset-0 z-0 rounded-[24px] overflow-hidden">
+            <img src={product.img} alt={product.name} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none rounded-[24px]" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent rounded-[24px]"></div>
           </div>
-        ))}
 
-      </div>
-
+          <!-- Glossy Sheen Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.015] to-white/[0.06] pointer-events-none z-10"></div>
+          
+          <!-- Card Content -->
+          <div class="absolute bottom-6 left-5 right-5 text-white z-20">
+            <h3 class="text-xl md:text-3xl font-bold font-satoshi mb-2 tracking-tight">{product.name}</h3>
+            <p class="text-[11px] md:text-[12px] font-satoshi w-11/12 text-gray-200 leading-relaxed">{product.desc}</p>
+          </div>
+        </div>
+      ))}
     </div>
+  </div>
 
+  <!-- Scroll Indicator Hint -->
+  <div class="w-full flex justify-center mt-6 text-gray-400 font-satoshi text-xs tracking-widest uppercase items-center gap-2 select-none opacity-60 relative z-20">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M19 13l-7 7-7-7m14-6l-7 7-7-7" />
+    </svg>
+    Scroll to expand products
   </div>
 </section>
+
+<style>
+  .stack-container {
+    position: relative;
+    width: 240px;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+  }
+
+  .product-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-origin: bottom center;
+    will-change: transform, opacity;
+    box-shadow: 0 20px 50px -12px rgba(0, 78, 146, 0.22), 0 12px 30px -15px rgba(0, 4, 40, 0.3);
+    /* Smooth transition for mouse hover lift-off */
+    transition: box-shadow 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  .product-card:hover {
+    box-shadow: 0 40px 80px -15px rgba(0, 78, 146, 0.35), 0 20px 45px -20px rgba(0, 4, 40, 0.45);
+  }
+
+  @media (max-width: 640px) {
+    .stack-container {
+      width: 170px;
+      height: 250px;
+    }
+  }
+</style>
 
 <script>
   import { gsap } from "gsap";
@@ -59,34 +101,96 @@ const products = [
     gsap.registerPlugin(ScrollTrigger);
 
     window.addEventListener("DOMContentLoaded", () => {
-      const track = document.getElementById('horizontal-track');
-      if (!track) return;
       const cards = document.querySelectorAll('.product-card');
+      const totalCards = cards.length;
+      if (totalCards === 0) return;
 
-      const scrollAmount = track.scrollWidth - window.innerWidth;
-      const isMobile = window.innerWidth <= 768;
-      const scrollDistance = scrollAmount * (isMobile ? 2.5 : 1.2);
+      const middleIndex = (totalCards - 1) / 2;
 
+      // Spacing configuration based on screen width
+      const isMobile = window.innerWidth < 640;
+      const spacing = isMobile ? 26 : Math.min(85, (window.innerWidth - 120) / 10);
+      const yFactor = isMobile ? 3 : 6;
+      const rotateFactor = isMobile ? 2.5 : 3.5;
+
+      // 1. Initial Stack Setup (All cards overlapping in the center)
+      cards.forEach((card, index) => {
+        const cardElem = card as HTMLElement;
+        cardElem.style.zIndex = (totalCards - index).toString();
+        
+        gsap.set(card, {
+          x: 0,
+          y: index * 3.5,
+          rotate: index % 2 === 0 ? -1.5 : 1.5,
+          scale: 1,
+          opacity: 1
+        });
+      });
+
+      // 2. Scroll-Linked Fan-Out Timeline
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".pin-container",
           start: "center center",
-          end: `+=${scrollDistance}`,
+          end: `+=1500`, // Scroll depth for fanning out
           pin: true,
-          scrub: 1,
-          snap: {
-            snapTo: 1 / (cards.length - 1),
-            duration: 0.5,
-            ease: "power1.inOut"
-          }
+          scrub: 1.2,
         }
       });
 
-      tl.to(track, {
-        x: -scrollAmount,
-        ease: "none",
-        duration: scrollDistance
-      }, 0);
+      // Fan out cards into a 3D curved arc simultaneously
+      cards.forEach((card, index) => {
+        const d = index - middleIndex;
+        const targetX = d * spacing;
+        const targetY = d * d * yFactor;
+        const targetRotate = d * rotateFactor;
+
+        tl.to(card, {
+          x: targetX,
+          y: targetY,
+          rotate: targetRotate,
+          ease: "power2.out",
+          duration: 1
+        }, 0);
+      });
+
+      // 3. Hover Interaction (Card Lift-Off)
+      cards.forEach((card, index) => {
+        card.addEventListener('mouseenter', () => {
+          const d = index - middleIndex;
+          const targetY = d * d * yFactor;
+          
+          gsap.to(card, {
+            scale: isMobile ? 1.08 : 1.15,
+            y: targetY - (isMobile ? 35 : 55), // Lift upward out of the stack
+            rotate: 0, // Straighten card for reading
+            overwrite: "auto",
+            duration: 0.35,
+            ease: "power2.out"
+          });
+          // Temporarily bring hovered card to the very front
+          (card as HTMLElement).style.zIndex = "100";
+        });
+
+        card.addEventListener('mouseleave', () => {
+          const d = index - middleIndex;
+          const targetY = d * d * yFactor;
+          const targetRotate = d * rotateFactor;
+
+          gsap.to(card, {
+            scale: 1,
+            y: targetY,
+            rotate: targetRotate,
+            overwrite: "auto",
+            duration: 0.35,
+            ease: "power2.out",
+            onComplete: () => {
+              // Restore original z-index order
+              (card as HTMLElement).style.zIndex = (totalCards - index).toString();
+            }
+          });
+        });
+      });
     });
   }
 </script>
