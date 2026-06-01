@@ -2,13 +2,13 @@
 const products = [
   { name: "P SAND", desc: "Fine, smooth texture ideal for plastering applications", img: "https://5.imimg.com/data5/IOS/Default/2023/4/302151310/UX/MS/GC/164138792/product-jpeg-500x500.png" },
   { name: "M SAND", desc: "Premium manufactured sand for strong concrete", img: "/images/msand.jpg" },
-  {name: "40MM", desc: "Heavy aggregates for foundations and roads", img: "https://5.imimg.com/data5/SELLER/Default/2024/11/467879402/LG/HP/CB/94115244/untitled-design-1-500x500.jpg" },
-  {name: "20MM", desc: "Strong aggregates for concrete structures", img: "/images/12mm.jpg" },
+  { name: "40MM", desc: "Heavy aggregates for foundations and roads", img: "https://5.imimg.com/data5/SELLER/Default/2024/11/467879402/LG/HP/CB/94115244/untitled-design-1-500x500.jpg" },
+  { name: "20MM", desc: "Strong aggregates for concrete structures", img: "/images/12mm.jpg" },
   { name: "12MM", desc: "Durable aggregates for RCC works", img: "/images/12mm.jpg" },
   { name: "6MM", desc: "Fine aggregates for precision construction", img: "/images/12mm.jpg" },
-  {name: "DUST", desc: "Fine material for filling and leveling", img: "/images/12mm.jpg" },
+  { name: "DUST", desc: "Fine material for filling and leveling", img: "/images/12mm.jpg" },
   { name: "WMM", desc: "High-strength mix for road construction", img: "/images/12mm.jpg" },
-  {name: "GSB", desc: "Reliable base material for road works", img: "/images/12mm.jpg" }
+  { name: "GSB", desc: "Reliable base material for road works", img: "/images/12mm.jpg" }
 ];
 ---
 
@@ -25,70 +25,107 @@ const products = [
     <div class="w-12 h-0.5 bg-gradient-to-r from-[#007eb5] to-transparent mx-auto mt-2"></div>
   </div>
 
-  <!-- Container -->
-  <div class="pin-container w-full min-h-[60vh] md:h-[600px] flex items-center justify-center relative">
-    <!-- Card Stack Wrapper -->
-    <div class="stack-container relative">
-      {products.map((product) => (
-        <div class="product-card rounded-[24px] overflow-hidden group shadow-2xl flex flex-col justify-between relative">
-          <!-- Card Image Background -->
-          <div class="w-full h-full absolute inset-0 z-0 rounded-[24px] overflow-hidden">
-            <img src={product.img} alt={product.name} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none rounded-[24px]" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent rounded-[24px]"></div>
-          </div>
-
-          <!-- Glossy Sheen Overlay -->
-          <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.015] to-white/[0.06] pointer-events-none z-10"></div>
-          
-          <!-- Card Content -->
-          <div class="absolute bottom-6 left-5 right-5 text-white z-20">
-            <h3 class="text-xl md:text-3xl font-bold font-satoshi mb-2 tracking-tight">{product.name}</h3>
-            <p class="text-[11px] md:text-[12px] font-satoshi w-11/12 text-gray-200 leading-relaxed">{product.desc}</p>
-          </div>
-        </div>
-      ))}
+  <!-- Relative Wrapper for Arrows & Slider -->
+  <div class="relative w-full overflow-visible px-4 md:px-12">
+    
+    <!-- Left Arrow Navigation -->
+    <div class="hidden sm:flex absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 pointer-events-none">
+      <button class="nav-arrow-left w-12 h-12 rounded-full bg-[#000428]/85 hover:bg-[#004e92] border border-white/10 text-white flex items-center justify-center shadow-lg shadow-brandBlue/10 pointer-events-auto transition-all duration-300 hover:scale-110 active:scale-95 disabled:opacity-30 disabled:pointer-events-none" aria-label="Previous product">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
     </div>
+
+    <!-- Slider Container -->
+    <div class="slider-stage-container w-full min-h-[50vh] md:h-[500px] flex items-center justify-start relative overflow-x-auto scrollbar-hide py-8">
+      <!-- Slider Track -->
+      <div class="slider-track flex items-center gap-8 md:gap-12">
+        {products.map((product, index) => (
+          <div class="product-card rounded-[24px] overflow-hidden group shadow-2xl flex flex-col justify-between relative cursor-pointer" data-index={index}>
+            <!-- Card Image Background -->
+            <div class="w-full h-full absolute inset-0 z-0 rounded-[24px] overflow-hidden">
+              <img src={product.img} alt={product.name} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none rounded-[24px]" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent rounded-[24px]"></div>
+            </div>
+
+            <!-- Glossy Sheen Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.015] to-white/[0.06] pointer-events-none z-10"></div>
+            
+            <!-- Card Content -->
+            <div class="absolute bottom-6 left-5 right-5 text-white z-20">
+              <h3 class="text-xl md:text-3xl font-bold font-satoshi mb-2 tracking-tight">{product.name}</h3>
+              <p class="text-[11px] md:text-[12px] font-satoshi w-11/12 text-gray-200 leading-relaxed">{product.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Right Arrow Navigation -->
+    <div class="hidden sm:flex absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 pointer-events-none">
+      <button class="nav-arrow-right w-12 h-12 rounded-full bg-[#000428]/85 hover:bg-[#004e92] border border-white/10 text-white flex items-center justify-center shadow-lg shadow-brandBlue/10 pointer-events-auto transition-all duration-300 hover:scale-110 active:scale-95 disabled:opacity-30 disabled:pointer-events-none" aria-label="Next product">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+
   </div>
 
   <!-- Scroll Indicator Hint -->
-  <div class="w-full flex justify-center mt-6 text-gray-400 font-satoshi text-xs tracking-widest uppercase items-center gap-2 select-none opacity-60 relative z-20">
+  <div class="w-full flex justify-center mt-4 text-gray-400 font-satoshi text-xs tracking-widest uppercase items-center gap-2 select-none opacity-60 relative z-20">
     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
       <path stroke-linecap="round" stroke-linejoin="round" d="M19 13l-7 7-7-7m14-6l-7 7-7-7" />
     </svg>
-    Scroll to expand products
+    Scroll or swipe to explore products
   </div>
 </section>
 
 <style>
-  .stack-container {
-    position: relative;
-    width: 240px;
-    height: 350px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .slider-stage-container {
+    perspective: 1000px;
+  }
+
+  .slider-track {
     transform-style: preserve-3d;
   }
 
   .product-card {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    transform-origin: bottom center;
-    will-change: transform, opacity;
-    box-shadow: 0 20px 50px -12px rgba(0, 78, 146, 0.22), 0 12px 30px -15px rgba(0, 4, 40, 0.3);
-    /* Smooth transition for mouse hover lift-off */
-    transition: box-shadow 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    flex-shrink: 0;
+    width: 280px;
+    height: 380px;
+    position: relative;
+    will-change: transform, opacity, filter;
+    transform-style: preserve-3d;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px -10px rgba(0, 78, 146, 0.15), 0 5px 15px -10px rgba(0, 4, 40, 0.2);
+    /* Smooth transitions when active classes are toggled */
+    transition: 
+      box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+      border-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+      transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1),
+      filter 0.45s cubic-bezier(0.25, 0.8, 0.25, 1),
+      opacity 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
-  .product-card:hover {
-    box-shadow: 0 40px 80px -15px rgba(0, 78, 146, 0.35), 0 20px 45px -20px rgba(0, 4, 40, 0.45);
+  /* Subpixel anti-aliasing fix on rounded corners */
+  .product-card, .product-card * {
+    backface-visibility: hidden;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
   @media (max-width: 640px) {
-    .stack-container {
-      width: 170px;
-      height: 250px;
+    .product-card {
+      width: 200px;
+      height: 280px;
     }
   }
 </style>
@@ -101,95 +138,204 @@ const products = [
     gsap.registerPlugin(ScrollTrigger);
 
     window.addEventListener("DOMContentLoaded", () => {
+      const container = document.querySelector('.slider-stage-container') as HTMLElement;
+      const track = document.querySelector('.slider-track') as HTMLElement;
       const cards = document.querySelectorAll('.product-card');
-      const totalCards = cards.length;
-      if (totalCards === 0) return;
+      const leftArrow = document.querySelector('.nav-arrow-left') as HTMLButtonElement;
+      const rightArrow = document.querySelector('.nav-arrow-right') as HTMLButtonElement;
 
-      const middleIndex = (totalCards - 1) / 2;
+      if (!container || !track || !cards.length) return;
 
-      // Spacing configuration based on screen width
-      const isMobile = window.innerWidth < 640;
-      const spacing = isMobile ? 26 : Math.min(85, (window.innerWidth - 120) / 10);
-      const yFactor = isMobile ? 3 : 6;
-      const rotateFactor = isMobile ? 2.5 : 3.5;
+      let triggerInstance: any = null;
 
-      // 1. Initial Stack Setup (All cards overlapping in the center)
-      cards.forEach((card, index) => {
-        const cardElem = card as HTMLElement;
-        cardElem.style.zIndex = (totalCards - index).toString();
-        
-        gsap.set(card, {
-          x: 0,
-          y: index * 3.5,
-          rotate: index % 2 === 0 ? -1.5 : 1.5,
-          scale: 1,
-          opacity: 1
+      // 1. Dynamic Padding Setup (Centers the first and last card)
+      function resizePadding() {
+        const cardWidth = cards[0].clientWidth;
+        const padVal = (container.clientWidth / 2) - (cardWidth / 2);
+        track.style.paddingLeft = `${padVal}px`;
+        track.style.paddingRight = `${padVal}px`;
+      }
+
+      // 2. Card Focus logic (grays out other cards, zooms center one, adds glow)
+      function updateActiveStates() {
+        const containerCenter = container.getBoundingClientRect().left + container.clientWidth / 2;
+
+        let closestCardIndex = 0;
+        let minDistance = Infinity;
+
+        cards.forEach((card, index) => {
+          const cardRect = card.getBoundingClientRect();
+          const cardCenter = cardRect.left + cardRect.width / 2;
+          const distance = Math.abs(containerCenter - cardCenter);
+
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestCardIndex = index;
+          }
         });
-      });
 
-      // 2. Scroll-Linked Fan-Out Timeline
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".pin-container",
-          start: "center center",
-          end: `+=1500`, // Scroll depth for fanning out
-          pin: true,
-          scrub: 1.2,
+        cards.forEach((card, index) => {
+          const cardElem = card as HTMLElement;
+          const isCenter = index === closestCardIndex;
+
+          const d = index - closestCardIndex;
+          let rotateYVal = 0;
+          if (d < 0) {
+            rotateYVal = 10;
+          } else if (d > 0) {
+            rotateYVal = -10;
+          }
+
+          if (isCenter) {
+            cardElem.classList.add('is-active');
+            gsap.to(cardElem, {
+              scale: 1.06,
+              opacity: 1,
+              rotateY: 0,
+              filter: "grayscale(0%)",
+              boxShadow: "0 25px 60px -10px rgba(0, 78, 146, 0.45), 0 15px 35px -15px rgba(0, 4, 40, 0.5)",
+              borderColor: "rgba(255, 255, 255, 0.25)",
+              duration: 0.45,
+              ease: "power2.out",
+              overwrite: "auto"
+            });
+          } else {
+            cardElem.classList.remove('is-active');
+            gsap.to(cardElem, {
+              scale: 0.9,
+              opacity: 0.5,
+              rotateY: rotateYVal,
+              filter: "grayscale(100%)",
+              boxShadow: "0 10px 30px -10px rgba(0, 78, 146, 0.1), 0 5px 15px -10px rgba(0, 4, 40, 0.15)",
+              borderColor: "rgba(255, 255, 255, 0.05)",
+              duration: 0.45,
+              ease: "power2.out",
+              overwrite: "auto"
+            });
+          }
+        });
+
+        if (leftArrow) leftArrow.disabled = closestCardIndex === 0;
+        if (rightArrow) rightArrow.disabled = closestCardIndex === cards.length - 1;
+      }
+
+      // 3. Scroll to specific card function
+      function scrollToCard(index: number) {
+        if (index < 0 || index >= cards.length) return;
+
+        const isMobile = window.innerWidth < 1024;
+        if (isMobile) {
+          const card = cards[index] as HTMLElement;
+          const targetScrollLeft = card.offsetLeft - (container.clientWidth - card.clientWidth) / 2;
+          
+          gsap.to(container, {
+            scrollLeft: targetScrollLeft,
+            duration: 0.5,
+            ease: "power2.out",
+            onUpdate: () => updateActiveStates()
+          });
+        } else {
+          if (triggerInstance) {
+            const start = triggerInstance.start;
+            const end = triggerInstance.end;
+            const scrollRange = end - start;
+            const targetScroll = start + (index / (cards.length - 1)) * scrollRange;
+
+            window.scrollTo({
+              top: targetScroll,
+              behavior: 'smooth'
+            });
+          }
+        }
+      }
+
+      // 4. Arrow navigation binding
+      leftArrow?.addEventListener('click', () => {
+        const activeCard = document.querySelector('.product-card.is-active');
+        if (activeCard) {
+          const index = parseInt(activeCard.getAttribute('data-index') || '0');
+          scrollToCard(index - 1);
         }
       });
 
-      // Fan out cards into a 3D curved arc simultaneously
-      cards.forEach((card, index) => {
-        const d = index - middleIndex;
-        const targetX = d * spacing;
-        const targetY = d * d * yFactor;
-        const targetRotate = d * rotateFactor;
-
-        tl.to(card, {
-          x: targetX,
-          y: targetY,
-          rotate: targetRotate,
-          ease: "power2.out",
-          duration: 1
-        }, 0);
+      rightArrow?.addEventListener('click', () => {
+        const activeCard = document.querySelector('.product-card.is-active');
+        if (activeCard) {
+          const index = parseInt(activeCard.getAttribute('data-index') || '0');
+          scrollToCard(index + 1);
+        }
       });
 
-      // 3. Hover Interaction (Card Lift-Off)
+      // Card click focusing
       cards.forEach((card, index) => {
-        card.addEventListener('mouseenter', () => {
-          const d = index - middleIndex;
-          const targetY = d * d * yFactor;
-          
-          gsap.to(card, {
-            scale: isMobile ? 1.08 : 1.15,
-            y: targetY - (isMobile ? 35 : 55), // Lift upward out of the stack
-            rotate: 0, // Straighten card for reading
-            overwrite: "auto",
-            duration: 0.35,
-            ease: "power2.out"
-          });
-          // Temporarily bring hovered card to the very front
-          (card as HTMLElement).style.zIndex = "100";
+        card.addEventListener('click', () => {
+          scrollToCard(index);
         });
+      });
 
-        card.addEventListener('mouseleave', () => {
-          const d = index - middleIndex;
-          const targetY = d * d * yFactor;
-          const targetRotate = d * rotateFactor;
+      // 5. GSAP Responsive MatchMedia Setup
+      const mm = gsap.matchMedia();
 
-          gsap.to(card, {
-            scale: 1,
-            y: targetY,
-            rotate: targetRotate,
-            overwrite: "auto",
-            duration: 0.35,
-            ease: "power2.out",
-            onComplete: () => {
-              // Restore original z-index order
-              (card as HTMLElement).style.zIndex = (totalCards - index).toString();
+      // Initialize padding first so width calculations are correct
+      resizePadding();
+
+      // Desktop layout (pinned scrolling)
+      mm.add("(min-width: 1024px)", () => {
+        container.style.overflowX = 'hidden';
+        gsap.set(track, { x: 0 });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: "#products",
+            start: "center center",
+            end: () => `+=${track.scrollWidth - container.clientWidth + 500}`,
+            pin: true,
+            scrub: 0.8,
+            invalidateOnRefresh: true,
+            onUpdate: () => {
+              updateActiveStates();
             }
-          });
+          }
         });
+
+        tl.to(track, {
+          x: () => -(track.scrollWidth - container.clientWidth),
+          ease: "none"
+        });
+
+        triggerInstance = tl.scrollTrigger;
+
+        setTimeout(updateActiveStates, 100);
+
+        return () => {
+          gsap.set(track, { x: 0 });
+          container.style.overflowX = 'hidden';
+          triggerInstance = null;
+        };
+      });
+
+      // Mobile/Tablet layout (native swipe scroll)
+      mm.add("(max-width: 1023px)", () => {
+        container.style.overflowX = 'auto';
+        gsap.set(track, { x: 0 });
+
+        const handleScroll = () => {
+          updateActiveStates();
+        };
+
+        container.addEventListener('scroll', handleScroll);
+        
+        setTimeout(updateActiveStates, 100);
+
+        return () => {
+          container.removeEventListener('scroll', handleScroll);
+        };
+      });
+
+      // Resize event handler
+      window.addEventListener('resize', () => {
+        resizePadding();
+        updateActiveStates();
       });
     });
   }
