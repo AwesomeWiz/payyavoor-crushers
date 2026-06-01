@@ -71,24 +71,29 @@ const products = [
     </div>
   </div>
 
-  <!-- Mobile view: Staggered vertical grid -->
-  <div class="lg:hidden w-full px-6 py-4">
+  <!-- Mobile view: Staggered vertical grid with 3D perspective -->
+  <div class="lg:hidden w-full px-6 py-4 mobile-perspective">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full mobile-products-grid">
       {products.map((product, index) => (
-        <div class="mobile-product-card rounded-[20px] overflow-hidden group shadow-xl relative w-full h-[220px] flex flex-col justify-end border border-white/5" data-index={index}>
-          <!-- Card Image Background -->
-          <div class="w-full h-full absolute inset-0 z-0 rounded-[20px] overflow-hidden">
-            <img src={product.img} alt={product.name} class="w-full h-full object-cover pointer-events-none rounded-[20px]" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent rounded-[20px]"></div>
-          </div>
+        <div class="mobile-product-card rounded-[20px] relative w-full h-[220px] cursor-pointer" data-index={index}>
+          <div class="mobile-card-inner w-full h-full relative rounded-[20px] overflow-hidden flex flex-col justify-end border border-white/5 shadow-xl">
+            <!-- Card Image Background -->
+            <div class="w-full h-full absolute inset-0 z-0 rounded-[20px] overflow-hidden">
+              <img src={product.img} alt={product.name} class="w-full h-full object-cover pointer-events-none rounded-[20px]" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent rounded-[20px]"></div>
+            </div>
 
-          <!-- Glossy Sheen Overlay -->
-          <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.01] to-white/[0.04] pointer-events-none z-10"></div>
-          
-          <!-- Card Content -->
-          <div class="p-5 text-white z-20">
-            <h3 class="text-xl font-bold font-satoshi mb-1.5 tracking-tight">{product.name}</h3>
-            <p class="text-[11px] font-satoshi text-gray-200 leading-relaxed">{product.desc}</p>
+            <!-- Glossy Sheen Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.01] to-white/[0.04] pointer-events-none z-10"></div>
+            
+            <!-- Card Content -->
+            <div class="p-5 text-white z-20">
+              <h3 class="text-xl font-bold font-satoshi mb-1.5 tracking-tight">{product.name}</h3>
+              <p class="text-[11px] font-satoshi text-gray-200 leading-relaxed">{product.desc}</p>
+            </div>
+
+            <!-- Sheen Sweep Overlay for Mobile -->
+            <div class="mobile-sheen absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full pointer-events-none z-30"></div>
           </div>
         </div>
       ))}
@@ -131,9 +136,30 @@ const products = [
       opacity 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
+  .mobile-perspective {
+    perspective: 1000px;
+  }
+
   .mobile-product-card {
-    will-change: transform, opacity;
+    will-change: transform, opacity, filter;
+    transform-style: preserve-3d;
+  }
+
+  .mobile-card-inner {
+    will-change: transform;
     box-shadow: 0 10px 30px -10px rgba(0, 78, 146, 0.12), 0 5px 15px -10px rgba(0, 4, 40, 0.18);
+    transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  /* Tactile touch-down compression on mobile */
+  .mobile-product-card:active .mobile-card-inner {
+    transform: scale(0.96) translateY(2px);
+  }
+
+  .mobile-sheen {
+    width: 200%;
+    transform: skewX(-25deg);
+    will-change: transform;
   }
 
   /* Subpixel anti-aliasing fix on rounded corners */
@@ -321,8 +347,9 @@ const products = [
         };
       });
 
-      // Mobile/Tablet layout (native vertical grid scroll reveal)
+      // Mobile/Tablet layout (native vertical grid scroll reveal + scroll tilt + tap sheen)
       mm.add("(max-width: 1023px)", () => {
+        // Grid entrance stagger
         gsap.from(".mobile-product-card", {
           scrollTrigger: {
             trigger: ".mobile-products-grid",
@@ -335,6 +362,43 @@ const products = [
           duration: 0.7,
           ease: "power2.out",
           overwrite: "auto"
+        });
+
+        // Initialize scroll-driven 3D tilt + tap listeners
+        const mobileCards = document.querySelectorAll('.mobile-product-card');
+        mobileCards.forEach((card) => {
+          const cardElem = card as HTMLElement;
+          const sheen = cardElem.querySelector('.mobile-sheen');
+
+          // Scroll tilt: angles the card in 3D as it rolls down the viewport
+          gsap.fromTo(cardElem,
+            {
+              rotateX: 12,
+              scale: 0.95,
+              filter: "grayscale(15%)"
+            },
+            {
+              rotateX: -12,
+              scale: 1.01,
+              filter: "grayscale(0%)",
+              scrollTrigger: {
+                trigger: cardElem,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+              }
+            }
+          );
+
+          // Tap interactive effect (glossy sheen sweep scan)
+          cardElem.addEventListener('click', () => {
+            if (sheen) {
+              gsap.fromTo(sheen,
+                { x: '-100%' },
+                { x: '100%', duration: 0.75, ease: "power2.out" }
+              );
+            }
+          });
         });
       });
 
