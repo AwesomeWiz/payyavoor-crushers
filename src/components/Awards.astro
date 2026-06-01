@@ -1,151 +1,214 @@
 ---
 const awards = [
-  { year: "2026", title: "Govt Award", image: "https://agcofca-media.s3.us-west-1.amazonaws.com/wp-content/uploads/2026/02/27100108/2-1.jpg", text: "Recognized for outstanding contribution to regional infrastructure development." },
-  { year: "2025", title: "Best Constructor Award", image: "https://www.scottishconstructionnow.com/storage/f7aafa749cd2f1668993043bc5272418b901d171.jpg", text: "Awarded for consistency and rapid supply lines." },
-  { year: "2023", title: "People's Excellency Award", image: "https://constructor.university/sites/default/files/2025-12/DAAD%202025%20-%20Web.JPG", text: "Voted best regional aggregate supplier by independent contractors." },
-  { year: "2020", title: "Samoohika Suraksha Award", image: "https://edinburghbioquarter.com/wp-content/uploads/2024/05/MCLH_CCS-Awards-2-feature400jpg.jpg", text: "Appreciated for our commitment to safety and community welfare." },
+  { year: "2026", title: "Govt Award", image: "/images/award1.jpg", text: "Recognized for outstanding contribution to regional infrastructure development." },
+  { year: "2018", title: "State Award for Environmental Practice", image: "/images/award1.jpg", text: "3rd Prize in Best Environmental Practice, handed over by former CM Pinarayi Vijayan." },
+  { year: "2014", title: "Top 3 in Pollution Control", image: "/images/c3.jpeg", text: "Secured 3rd place statewide for sustained pollution control in the Crusher category." },
+  { year: "2013", title: "Eco-Initiatives Award", image: "/images/c1.jpeg", text: "Awarded by the Kerala State Pollution Control Board for environmental responsibility." },
 ];
+
+const displayAwards = [...awards, ...awards]; // Replicate to make 8 items for a full cylinder
 ---
 
-<section id="awards-legacy" class="scroll-mt-12 md:scroll-mt-16 pt-6 md:pt-10 pb-12 md:pb-24 w-full flex flex-col items-start px-6 md:px-12 relative cursor-default overflow-hidden">
-  <div class="w-full mb-16 md:mb-32 relative">
-    <h3 class="text-3xl md:text-5xl font-satoshi font-medium mb-6 reveal-text">Awards</h3>
-    
-    <div id="awards-list" class="border-t border-gray-300 w-full flex flex-col">
-      {awards.map((award, index) => (
-        <div 
-          class="award-row group border-b border-gray-300 relative w-full h-[100px] md:h-[130px] flex items-center transition-colors duration-500 hover:bg-black hover:text-white"
-          data-index={index}
-        >
-          <div class="w-full px-4 md:px-8 flex justify-between items-center z-20 relative font-serif">
-            <span class="text-2xl md:text-3xl w-1/4">{award.year}</span>
-            <span class="text-2xl md:text-3xl w-1/2">{award.title}</span>
-            <div class="flex items-center justify-end font-satoshi font-bold text-2xl leading-none">
-              <span class="transition-all duration-500 transform group-hover:opacity-0 group-hover:translate-x-2 group-hover:scale-50">•</span>
-              <span class="mx-[2px]">•</span>
-              <span class="transition-all duration-500 transform group-hover:opacity-0 group-hover:-translate-x-2 group-hover:scale-50">•</span>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
+<section id="awards-legacy" class="min-h-screen w-full flex flex-col justify-center px-6 md:px-12 relative overflow-hidden bg-white select-none">
+  
+  <!-- Header -->
+  <div class="max-w-7xl mx-auto w-full mb-6 md:mb-8 text-center">
+    <span class="inline-block text-[11px] md:text-xs font-bold text-brandBlue tracking-[0.25em] uppercase mb-2 font-satoshi">
+      OUR RECOGNITIONS
+    </span>
+    <h3 class="text-3xl md:text-5xl font-semibold text-gray-900 tracking-tight" style="font-family: 'Montserrat', sans-serif;">
+      Awards
+    </h3>
+  </div>
 
-    <!-- Floating Cursor-Follow Preview Card -->
-    <div id="awards-preview-container" class="fixed top-0 left-0 w-[450px] h-[320px] pointer-events-none z-[9999] opacity-0 scale-75 transition-all duration-300 ease-out hidden md:block">
-      <div class="w-full h-full bg-[#111111] rounded-2xl overflow-hidden shadow-[0_40px_120px_rgba(0,0,0,0.5)] border border-white/20 flex flex-col">
-        <!-- Image Area -->
-        <div class="h-[60%] w-full p-4 pb-0">
-          <div class="w-full h-full rounded-xl overflow-hidden relative">
-            {awards.map((award, index) => (
-              <img 
-                src={award.image} 
-                alt="Award" 
-                class={`award-preview-img absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${index === 0 ? 'opacity-100' : 'opacity-0'}`} 
-                data-index={index}
-              />
-            ))}
-          </div>
-        </div>
-        <!-- Text Area -->
-        <div class="h-[40%] w-full relative">
-          {awards.map((award, index) => (
-            <div class={`award-preview-text absolute inset-0 p-5 pt-4 flex items-center ${index === 0 ? 'flex' : 'hidden'}`} data-index={index}>
-              <p class="text-white/90 font-satoshi text-lg leading-relaxed">
-                {award.text.split(' ').map((word, wIdx) => (
-                  <span class="inline-block overflow-hidden mr-1.5 py-0.5">
-                    <span class="word-span-follow inline-block translate-y-full opacity-0 transition-all duration-500 ease-out" style={`transition-delay: ${wIdx * 0.025}s`}>
-                      {word}
+  <!-- Viewport for 3D Perspective -->
+  <div class="carousel-viewport w-full flex items-center justify-center py-2 overflow-visible relative">
+    <!-- Tilt Wrapper (Applying the side Y-tilt to show 3D depth) -->
+    <div class="carousel-tilt">
+      <!-- Cylinder Track -->
+      <div id="awards-cylinder-track" class="carousel-container">
+        {displayAwards.map((award, index) => {
+          return (
+            <div class="carousel-card group">
+              <!-- Premium Opaque Glassmorphic Card -->
+              <div class="w-full h-full border border-white/10 bg-[#0f0f11] rounded-[24px] p-5 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+                <!-- Glossy sheen reflection overlay -->
+                <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.015] to-white/[0.06] pointer-events-none z-10"></div>
+                
+                <div class="relative z-20">
+                  <!-- Card Header -->
+                  <div class="flex justify-between items-start">
+                    <span class="text-2xl md:text-3xl font-bold text-white font-satoshi tracking-tight leading-none">
+                      {award.year}
                     </span>
-                  </span>
-                ))}
-              </p>
+                    <span class="text-[9px] uppercase tracking-widest text-sky-400 font-semibold px-2 py-0.5 rounded-full bg-white/5 border border-white/10">
+                      Legacy
+                    </span>
+                  </div>
+                  
+                  <!-- Award Title -->
+                  <h4 class="text-base md:text-lg font-semibold text-white/95 mt-3 tracking-tight leading-snug">
+                    {award.title}
+                  </h4>
+
+                  <!-- Divider line -->
+                  <div class="w-full h-px bg-white/10 my-2.5"></div>
+
+                  <!-- Award Description -->
+                  <p class="text-[11px] md:text-[12px] text-white/60 font-satoshi leading-relaxed">
+                    {award.text}
+                  </p>
+                </div>
+
+                <!-- Award Image -->
+                <div class="w-full h-20 md:h-24 rounded-xl overflow-hidden relative shadow-inner mt-3 z-20">
+                  <img 
+                    src={award.image} 
+                    alt={award.title} 
+                    class="w-full h-full object-cover pointer-events-none" 
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#0f0f11]/60 to-transparent"></div>
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
     </div>
+  </div>
+
+  <!-- Scroll Indicator Hint -->
+  <div class="w-full flex justify-center mt-6 text-gray-400 font-satoshi text-xs tracking-widest uppercase items-center gap-2 select-none opacity-60">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M19 13l-7 7-7-7m14-6l-7 7-7-7" />
+    </svg>
+    Scroll to explore awards
   </div>
 
 </section>
 
 <style>
-  /* Word reveal animation when parent is active */
-  .award-preview-text.active .word-span-follow {
-    transform: translateY(0);
+  .carousel-viewport {
+    perspective: 1400px;
+    height: 460px;
+  }
+
+  .carousel-tilt {
+    transform-style: preserve-3d;
+    transform: rotateY(-12deg);
+    will-change: transform;
+  }
+
+  .carousel-container {
+    width: 230px;
+    height: 300px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(0deg);
+    will-change: transform;
+  }
+
+  .carousel-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: visible;
+    will-change: transform, filter, opacity;
+    
+    /* Default non-center cards: Black & White (Grayscale) + Faded opacity */
+    filter: grayscale(100%);
+    opacity: 0.35;
+    
+    /* Smooth transitions for center highlights */
+    transition: filter 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
+                opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  /* Center card: Full color + opaque */
+  .carousel-card.is-center {
+    filter: grayscale(0%);
     opacity: 1;
+  }
+
+  @media (max-width: 640px) {
+    .carousel-viewport {
+      height: 360px;
+    }
+    .carousel-tilt {
+      transform: rotateY(-8deg);
+    }
+    .carousel-container {
+      width: 180px;
+      height: 245px;
+    }
   }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const previewContainer = document.getElementById('awards-preview-container');
-    const awardsList = document.getElementById('awards-list');
-    const rows = document.querySelectorAll('.award-row');
-    const previewImgs = document.querySelectorAll('.award-preview-img');
-    const previewTexts = document.querySelectorAll('.award-preview-text');
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  
+  gsap.registerPlugin(ScrollTrigger);
 
-    if (!previewContainer || !awardsList) return;
+  window.addEventListener("DOMContentLoaded", () => {
+    const track = document.getElementById("awards-cylinder-track");
+    if (!track) return;
 
-    let mouseX = 0;
-    let mouseY = 0;
-    let currentX = 0;
-    let currentY = 0;
+    const cards = track.querySelectorAll(".carousel-card");
+    const numCards = cards.length;
 
-    // Smooth cursor follow using LERP
-    const followCursor = () => {
-      const lerp = 0.12; // Smoother follow
-      currentX += (mouseX - currentX) * lerp;
-      currentY += (mouseY - currentY) * lerp;
+    // Compact radius to keep the orbit well within the screen boundaries
+    let R = window.innerWidth < 640 ? 110 : 160;
 
-      // Position logic: Offset to follow mouse naturally
-      previewContainer.style.transform = `translate3d(${currentX + 30}px, ${currentY - 160}px, 0) scale(${previewContainer.classList.contains('visible') ? 1 : 0.8})`;
-      
-      requestAnimationFrame(followCursor);
+    // Function to calculate and apply 3D positions of the Ferris Wheel
+    const updateFerrisWheel = (rotationX) => {
+      cards.forEach((card, index) => {
+        const cardAngle = index * (360 / numCards);
+        const counterAngle = -(cardAngle + rotationX);
+        
+        // Position on vertical wheel and keep card upright facing the camera
+        card.style.transform = `rotateX(${cardAngle}deg) translateZ(${R}px) rotateX(${counterAngle}deg)`;
+
+        // Highlight center card (closest to front)
+        const centerIndex = (Math.round(-rotationX / (360 / numCards)) % numCards + numCards) % numCards;
+        if (index === centerIndex) {
+          card.classList.add("is-center");
+        } else {
+          card.classList.remove("is-center");
+        }
+      });
     };
 
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
+    // Initial position
+    updateFerrisWheel(0);
+
+    // Dynamic radius adjustment on resize
+    window.addEventListener("resize", () => {
+      R = window.innerWidth < 640 ? 110 : 160;
+      const currentRX = gsap.getProperty(track, "rotateX") as number || 0;
+      updateFerrisWheel(currentRX);
     });
 
-    followCursor();
-
-    rows.forEach(row => {
-      row.addEventListener('mouseenter', () => {
-        const index = row.getAttribute('data-index');
-        
-        previewContainer.classList.add('visible');
-        previewContainer.style.opacity = '1';
-        
-        previewImgs.forEach(img => {
-          img.style.opacity = img.getAttribute('data-index') === index ? '1' : '0';
-        });
-        
-        previewTexts.forEach(txt => {
-          if (txt.getAttribute('data-index') === index) {
-            txt.classList.remove('hidden');
-            txt.classList.add('flex');
-            // Small delay to ensure display: flex is applied before transition
-            setTimeout(() => {
-              txt.classList.add('active');
-            }, 50);
-          } else {
-            txt.classList.add('hidden');
-            txt.classList.remove('flex');
-            txt.classList.remove('active');
+    // Spin the Ferris Wheel vertically as the user scrolls (pinned in place)
+    gsap.fromTo(track, 
+      { rotateX: 0 },
+      {
+        rotateX: -360, // Rotate 360 degrees (one full round)
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#awards-legacy",
+          start: "top top",   // Pin when the section fills the viewport
+          end: "+=1300",      // Pin duration (length of scroll space)
+          pin: true,          // Pin the section
+          scrub: 1.2,         // Smooth lag for rotation
+          onUpdate: (self) => {
+            const rX = gsap.getProperty(track, "rotateX") as number;
+            updateFerrisWheel(rX);
           }
-        });
-      });
-
-      row.addEventListener('mouseleave', () => {
-        previewContainer.classList.remove('visible');
-        previewContainer.style.opacity = '0';
-        
-        previewTexts.forEach(txt => {
-          txt.classList.remove('active');
-          txt.classList.add('hidden');
-        });
-      });
-    });
+        }
+      }
+    );
   });
 </script>
