@@ -71,32 +71,39 @@ const products = [
     </div>
   </div>
 
-  <!-- Mobile view: Staggered vertical grid with 3D perspective -->
-  <div class="lg:hidden w-full px-6 py-4 mobile-perspective">
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full mobile-products-grid">
-      {products.map((product, index) => (
-        <div class="mobile-product-card rounded-[20px] relative w-full h-[220px] cursor-pointer" data-index={index}>
-          <div class="mobile-card-inner w-full h-full relative rounded-[20px] overflow-hidden flex flex-col justify-end border border-white/5 shadow-xl">
-            <!-- Card Image Background -->
-            <div class="w-full h-full absolute inset-0 z-0 rounded-[20px] overflow-hidden">
-              <img src={product.img} alt={product.name} class="w-full h-full object-cover pointer-events-none rounded-[20px]" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent rounded-[20px]"></div>
-            </div>
+  <!-- Mobile view: 3D Cylindrical Swiper Carousel -->
+  <div class="lg:hidden w-full overflow-visible py-4 mobile-perspective">
+    <div class="mobile-slider-container w-full h-[360px] flex items-center justify-start overflow-x-auto scrollbar-hide snap-x snap-mandatory">
+      <div class="mobile-slider-track flex items-center gap-6">
+        {products.map((product, index) => (
+          <div class="mobile-product-card snap-center flex-shrink-0 w-[230px] h-[320px] flex items-center justify-center relative cursor-pointer" data-index={index}>
+            <div class="mobile-card-3d w-full h-full relative rounded-[20px] overflow-hidden flex flex-col justify-end border border-white/5 shadow-xl">
+              <!-- Card Image Background -->
+              <div class="w-full h-full absolute inset-0 z-0 rounded-[20px] overflow-hidden">
+                <img src={product.img} alt={product.name} class="w-full h-full object-cover pointer-events-none rounded-[20px]" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent rounded-[20px]"></div>
+              </div>
 
-            <!-- Glossy Sheen Overlay -->
-            <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.01] to-white/[0.04] pointer-events-none z-10"></div>
-            
-            <!-- Card Content -->
-            <div class="p-5 text-white z-20">
-              <h3 class="text-xl font-bold font-satoshi mb-1.5 tracking-tight">{product.name}</h3>
-              <p class="text-[11px] font-satoshi text-gray-200 leading-relaxed">{product.desc}</p>
-            </div>
+              <!-- Glossy Sheen Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.01] to-white/[0.04] pointer-events-none z-10"></div>
+              
+              <!-- Card Content -->
+              <div class="p-5 text-white z-20">
+                <h3 class="text-xl font-bold font-satoshi mb-1.5 tracking-tight">{product.name}</h3>
+                <p class="text-[11px] font-satoshi text-gray-200 leading-relaxed">{product.desc}</p>
+              </div>
 
-            <!-- Sheen Sweep Overlay for Mobile -->
-            <div class="mobile-sheen absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full pointer-events-none z-30"></div>
+              <!-- Mobile Sheen sweep -->
+              <div class="mobile-sheen absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full pointer-events-none z-30"></div>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+    </div>
+
+    <!-- Mobile Scroll indicator hint -->
+    <div class="w-full flex justify-center mt-3 text-gray-400 font-satoshi text-[10px] tracking-widest uppercase items-center gap-2 select-none opacity-50">
+      Swipe left or right
     </div>
   </div>
 
@@ -138,22 +145,28 @@ const products = [
 
   .mobile-perspective {
     perspective: 1000px;
-  }
-
-  .mobile-product-card {
-    will-change: transform, opacity, filter;
     transform-style: preserve-3d;
   }
 
-  .mobile-card-inner {
+  .mobile-slider-track {
+    transform-style: preserve-3d;
+    will-change: padding-left, padding-right;
+  }
+
+  .mobile-product-card {
+    transform-style: preserve-3d;
     will-change: transform;
-    box-shadow: 0 10px 30px -10px rgba(0, 78, 146, 0.12), 0 5px 15px -10px rgba(0, 4, 40, 0.18);
-    transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  .mobile-card-3d {
+    will-change: transform, opacity, filter, box-shadow, border-color;
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out; /* Damping */
   }
 
   /* Tactile touch-down compression on mobile */
-  .mobile-product-card:active .mobile-card-inner {
-    transform: scale(0.96) translateY(2px);
+  .mobile-product-card:active .mobile-card-3d {
+    transform: scale(0.95) translateY(2px) !important;
   }
 
   .mobile-sheen {
@@ -349,48 +362,78 @@ const products = [
 
       // Mobile/Tablet layout (native vertical grid scroll reveal + scroll tilt + tap sheen)
       mm.add("(max-width: 1023px)", () => {
-        // Grid entrance stagger
-        gsap.from(".mobile-product-card", {
-          scrollTrigger: {
-            trigger: ".mobile-products-grid",
-            start: "top 85%",
-            toggleActions: "play none none none"
-          },
-          y: 45,
-          opacity: 0,
-          stagger: 0.08,
-          duration: 0.7,
-          ease: "power2.out",
-          overwrite: "auto"
-        });
+        const mContainer = document.querySelector('.mobile-slider-container') as HTMLElement;
+        const mTrack = document.querySelector('.mobile-slider-track') as HTMLElement;
+        const mCards = document.querySelectorAll('.mobile-product-card');
 
-        // Initialize scroll-driven 3D tilt + tap listeners
-        const mobileCards = document.querySelectorAll('.mobile-product-card');
-        mobileCards.forEach((card) => {
+        if (!mContainer || !mTrack || !mCards.length) return;
+
+        // Dynamic Padding Setup
+        function resizeMobilePadding() {
+          const cardWidth = mCards[0].clientWidth;
+          const padVal = (mContainer.clientWidth / 2) - (cardWidth / 2);
+          mTrack.style.paddingLeft = `${padVal}px`;
+          mTrack.style.paddingRight = `${padVal}px`;
+        }
+
+        // 3D Cylindrical Cylinder Transform Loop
+        function updateMobile3DStates() {
+          const containerCenter = mContainer.getBoundingClientRect().left + mContainer.clientWidth / 2;
+
+          let closestIndex = 0;
+          let minDistance = Infinity;
+
+          mCards.forEach((card, index) => {
+            const cardRect = card.getBoundingClientRect();
+            const cardCenter = cardRect.left + cardRect.width / 2;
+            const distance = Math.abs(containerCenter - cardCenter);
+            if (distance < minDistance) {
+              minDistance = distance;
+              closestIndex = index;
+            }
+          });
+
+          mCards.forEach((card, index) => {
+            const cardElem = card as HTMLElement;
+            const cardInner = cardElem.querySelector('.mobile-card-3d') as HTMLElement;
+            if (!cardInner) return;
+
+            const cardRect = cardElem.getBoundingClientRect();
+            const cardCenter = cardRect.left + cardRect.width / 2;
+            
+            const maxDistance = mContainer.clientWidth / 2;
+            const distance = cardCenter - containerCenter;
+            const progress = Math.max(-1.2, Math.min(1.2, distance / maxDistance)); // Normalized position relative to center
+
+            const isCenter = index === closestIndex;
+
+            // 3D cylinder properties
+            const rotateYVal = progress * 35; // Angling inward
+            const translateZVal = -Math.abs(progress) * 120; // Pushing back
+            const scaleVal = 1 - Math.abs(progress) * 0.1; // Shrinking
+            const opacityVal = 1 - Math.abs(progress) * 0.45; // Fading
+            const grayscaleVal = Math.abs(progress) * 90; // Grayscaling
+
+            gsap.set(cardInner, {
+              rotateY: rotateYVal,
+              z: translateZVal,
+              scale: scaleVal,
+              opacity: opacityVal,
+              filter: `grayscale(${grayscaleVal}%)`,
+              boxShadow: isCenter 
+                ? "0 20px 45px -10px rgba(0, 78, 146, 0.4), 0 10px 25px -12px rgba(0, 4, 40, 0.45)"
+                : "0 8px 24px -12px rgba(0, 78, 146, 0.1), 0 4px 12px -12px rgba(0, 4, 40, 0.15)",
+              borderColor: isCenter ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.05)"
+            });
+          });
+        }
+
+        // Tap Sheen Animation trigger
+        mCards.forEach((card, index) => {
           const cardElem = card as HTMLElement;
           const sheen = cardElem.querySelector('.mobile-sheen');
 
-          // Scroll tilt: angles the card in 3D as it rolls down the viewport
-          gsap.fromTo(cardElem,
-            {
-              rotateX: 12,
-              scale: 0.95,
-              filter: "grayscale(15%)"
-            },
-            {
-              rotateX: -12,
-              scale: 1.01,
-              filter: "grayscale(0%)",
-              scrollTrigger: {
-                trigger: cardElem,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true
-              }
-            }
-          );
-
-          // Tap interactive effect (glossy sheen sweep scan)
+          // Trigger sheen sweep on tap
           cardElem.addEventListener('click', () => {
             if (sheen) {
               gsap.fromTo(sheen,
@@ -399,7 +442,34 @@ const products = [
               );
             }
           });
+
+          // Snap scroll to card center on tap
+          cardElem.addEventListener('click', () => {
+            const targetScrollLeft = cardElem.offsetLeft - (mContainer.clientWidth - cardElem.clientWidth) / 2;
+            gsap.to(mContainer, {
+              scrollLeft: targetScrollLeft,
+              duration: 0.4,
+              ease: "power2.out",
+              onUpdate: () => updateMobile3DStates()
+            });
+          });
         });
+
+        // Event listeners
+        mContainer.addEventListener('scroll', updateMobile3DStates);
+        window.addEventListener('resize', resizeMobilePadding);
+
+        // Init
+        resizeMobilePadding();
+        // Slight delay to ensure layout is complete
+        setTimeout(() => {
+          updateMobile3DStates();
+        }, 150);
+
+        return () => {
+          mContainer.removeEventListener('scroll', updateMobile3DStates);
+          window.removeEventListener('resize', resizeMobilePadding);
+        };
       });
 
       // Resize event handler
