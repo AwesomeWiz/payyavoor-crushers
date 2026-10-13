@@ -286,12 +286,12 @@ const products = [
                 filter: "grayscale(0%)",
                 boxShadow: "0 30px 70px -10px rgba(0, 78, 146, 0.55), 0 20px 45px -15px rgba(0, 4, 40, 0.6)",
                 borderColor: "rgba(255, 255, 255, 0.25)",
-                duration: 0.45,
-                ease: "power2.out",
+                duration: 0.15,
+                ease: "power1.out",
                 overwrite: "auto"
               });
               if (overlay) {
-                gsap.to(overlay, { opacity: 0, duration: 0.45, ease: "power2.out" });
+                gsap.to(overlay, { opacity: 0, duration: 0.15, ease: "power1.out" });
               }
             } else {
               cardElem.classList.remove('is-active');
@@ -303,12 +303,12 @@ const products = [
                 filter: "grayscale(0%)",
                 boxShadow: "0 10px 30px -10px rgba(0, 78, 146, 0.1), 0 5px 15px -10px rgba(0, 4, 40, 0.15)",
                 borderColor: "rgba(255, 255, 255, 0.05)",
-                duration: 0.45,
-                ease: "power2.out",
+                duration: 0.15,
+                ease: "power1.out",
                 overwrite: "auto"
               });
               if (overlay) {
-                gsap.to(overlay, { opacity: 1, duration: 0.45, ease: "power2.out" });
+                gsap.to(overlay, { opacity: 1, duration: 0.15, ease: "power1.out" });
               }
             }
           });
