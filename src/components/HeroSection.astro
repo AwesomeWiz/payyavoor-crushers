@@ -2,20 +2,33 @@
 // Unsplash images using the 'quarry' keyword for more appropriate visuals
 const images = [
   "/images/award1.jpg",
-  "/images/tree.jpg", 
+  "/images/tree.jpg",
   "/images/alltrophy1.jpeg",
   "/images/award2.jpeg",
-  "/images/office.png",
+  "/images/office.jpeg",
   "/images/mist.png",
 ];
 ---
 
-<section id="hero" class="pt-32 md:pt-48 pb-0 flex flex-col justify-center overflow-hidden min-h-[70vh] md:min-h-screen">
-  <div id="hero-text-block" class="px-6 md:px-10 w-full max-w-7xl mx-auto flex flex-col items-center mb-16 text-center">
-
-    <h1 id="hero-real-h1" class="text-3xl sm:text-4xl md:text-6xl lg:text-[5rem] leading-[1.2] md:leading-[1.2] text-black whitespace-nowrap" style="font-family: 'Montserrat', sans-serif;">
-      Built on <span class="font-bold fn-word--italic text-[#007eb5]">Strength.</span><br />
-      Driven by <span class="font-bold fn-word--italic text-[#1A9487]">Quality.</span>
+<section
+  id="hero"
+  class="pt-32 md:pt-48 pb-0 flex flex-col justify-center overflow-hidden min-h-[70vh] md:min-h-screen"
+>
+  <div
+    id="hero-text-block"
+    class="px-6 md:px-10 w-full max-w-7xl mx-auto flex flex-col items-center mb-16 text-center"
+  >
+    <h1
+      id="hero-real-h1"
+      class="text-3xl sm:text-4xl md:text-6xl lg:text-[5rem] leading-[1.2] md:leading-[1.2] text-black whitespace-nowrap"
+      style="font-family: 'Montserrat', sans-serif;"
+    >
+      Built on <span class="font-bold fn-word--italic text-[#007eb5]"
+        >Strength.</span
+      ><br />
+      Driven by <span class="font-bold fn-word--italic text-[#1A9487]"
+        >Quality.</span
+      >
     </h1>
   </div>
 
@@ -25,36 +38,61 @@ const images = [
     </p>
   </div>
 
-  <div id="hero-carousel" class="w-full relative pb-8 bg-transparent mb-0 overflow-hidden shrink-0">
+  <div
+    id="hero-carousel"
+    class="w-full relative pb-8 bg-transparent mb-0 overflow-hidden shrink-0"
+  >
     <div class="flex animate-carousel w-fit gap-2 px-5">
       {/* Group 1 */}
-      {images.map((src) => (
-        <div class="h-[350px] md:h-80 w-[280px] md:w-[450px] flex-shrink-0 rounded-2xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)]">
-          <img src={src} class="w-full h-full object-cover" alt="Quarry image" />
-        </div>
-      ))}
+      {
+        images.map((src) => (
+          <div class="h-[350px] md:h-80 w-[280px] md:w-[450px] flex-shrink-0 rounded-2xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)]">
+            <img
+              src={src}
+              class="w-full h-full object-cover"
+              alt="Quarry image"
+            />
+          </div>
+        ))
+      }
       {/* Group 2 */}
-      {images.map((src) => (
-        <div class="h-[350px] md:h-80 w-[280px] md:w-[450px] flex-shrink-0 rounded-2xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)]">
-          <img src={src} class="w-full h-full object-cover" alt="Quarry image" />
-        </div>
-      ))}
+      {
+        images.map((src) => (
+          <div class="h-[350px] md:h-80 w-[280px] md:w-[450px] flex-shrink-0 rounded-2xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)]">
+            <img
+              src={src}
+              class="w-full h-full object-cover"
+              alt="Quarry image"
+            />
+          </div>
+        ))
+      }
       {/* Group 3 */}
-      {images.map((src) => (
-        <div class="h-[350px] md:h-80 w-[280px] md:w-[450px] flex-shrink-0 rounded-2xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)]">
-          <img src={src} class="w-full h-full object-cover" alt="Quarry image" />
-        </div>
-      ))}
+      {
+        images.map((src) => (
+          <div class="h-[350px] md:h-80 w-[280px] md:w-[450px] flex-shrink-0 rounded-2xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)]">
+            <img
+              src={src}
+              class="w-full h-full object-cover"
+              alt="Quarry image"
+            />
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
 
 <style>
   @keyframes carousel {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-33.3333333333%); }
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-33.3333333333%);
+    }
   }
-  
+
   .animate-carousel {
     display: flex;
     animation: carousel 60s linear infinite;
