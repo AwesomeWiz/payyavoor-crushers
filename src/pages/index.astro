@@ -2,14 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import HeroSection from '../components/HeroSection.astro';
-import ClientLogos from '../components/ClientLogos.astro';
 import HighlightsGallery from '../components/HighlightsGallery.astro';
+import WhoWeAre from '../components/WhoWeAre.astro';
 import Products from '../components/Products.astro';
 import MetaSandHighlight from '../components/MetaSandHighlight.astro';
-import VideoReveal from '../components/VideoReveal.astro';
 import WhyUs from '../components/WhyUs.astro';
+import ClientLogos from '../components/ClientLogos.astro';
 import Awards from '../components/Awards.astro';
-import WhoWeAre from '../components/WhoWeAre.astro';
 import Founders from '../components/Founders.astro';
 import GetInTouch from '../components/GetInTouch.astro';
 import Footer from '../components/Footer.astro';
@@ -18,17 +17,37 @@ import Footer from '../components/Footer.astro';
 <Layout>
 	<Navbar />
 	<main>
+		<!-- 01 Hero Section – Built on Strength. Driven by Quality. -->
 		<HeroSection />
-		<ClientLogos bgImage="/images/abstract1.png" />
+
+		<!-- 02 Company Highlights – Since 1995, Technology, Quality & Experience -->
 		<HighlightsGallery />
-		<Products />
-		<MetaSandHighlight />
-		<VideoReveal />
-		<WhyUs />
-		<Awards />
+
+		<!-- 03 Who We Are – Our Company & Legacy -->
 		<WhoWeAre />
+
+		<!-- 04 Our Products – Complete Range of Construction Materials -->
+		<Products />
+
+		<!-- 05 Meta Sand – Premium Washed M-Sand -->
+		<MetaSandHighlight />
+
+		<!-- 06 Why Choose Payyavoor Crushers? -->
+		<WhyUs />
+
+		<!-- 07 Our Projects – Where Our Materials Make a Difference -->
+		<ClientLogos bgImage="/images/abstract1.png" />
+
+		<!-- 08 Environmental Responsibility & Awards -->
+		<Awards />
+
+		<!-- 09 Founders – The People Behind Our Legacy -->
 		<Founders />
+
+		<!-- 10 Get in Touch – Let's Build Together -->
 		<GetInTouch />
 	</main>
+
+	<!-- Footer -->
 	<Footer />
 </Layout>

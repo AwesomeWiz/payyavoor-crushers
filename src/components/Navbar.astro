@@ -9,7 +9,7 @@
   <div class="w-full max-w-[1440px] mx-auto px-4 sm:px-10 md:px-14 lg:px-16 flex items-center justify-between">
     <!-- Logo -->
     <div class="flex-shrink-0">
-      <a href="#" class="block group">
+      <a href="#hero" class="block group">
         <img 
           id="navbar-logo"
           src="/images/logo.png" 
@@ -19,16 +19,16 @@
       </a>
     </div>
 
-    <!-- Desktop Nav Links -->
-    <nav class="hidden md:flex items-center gap-7 lg:gap-11 font-satoshi font-medium text-[16px] lg:text-[17px] text-white/90">
+    <!-- Desktop Nav Links (User specified order) -->
+    <nav class="hidden md:flex items-center gap-5 lg:gap-8 xl:gap-10 font-satoshi font-medium text-[15px] lg:text-[16px] text-white/90">
       <a href="#hero" class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Home</a>
-      <a href="#about" class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Who We Are</a>
-      <a href="#products" class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Our Products</a>
-      <a href="#why-us" class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Why Choose Us</a>
-      <a href="#awards-legacy" class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Awards</a>
+      <a href="#about" class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">About Us</a>
+      <a href="#products" class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Products</a>
+      <a href="#projects" class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Projects</a>
+      <a href="#sustainability" class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Sustainability</a>
     </nav>
 
-    <!-- Right: Contact Us Button & Mobile Toggle -->
+    <!-- Right: Enquire Now Button & Mobile Toggle -->
     <div class="flex items-center gap-3 sm:gap-4 lg:gap-6">
       <a
         href="#contact"
@@ -36,8 +36,8 @@
         class="
           hidden sm:inline-block
           rounded-full border border-white/85
-          px-7 md:px-8 py-2.5 md:py-3
-          text-[14px] md:text-[15px] font-semibold tracking-wider uppercase text-white
+          px-6 sm:px-7 md:px-8 py-2 md:py-2.5
+          text-[13px] md:text-[14px] font-semibold tracking-wider uppercase text-white
           hover:bg-white hover:text-gray-950
           transition-all duration-300
           shadow-md hover:shadow-xl
@@ -45,7 +45,7 @@
           active:scale-95
         "
       >
-        Contact Us
+        Enquire Now
       </a>
       
       <!-- Mobile menu toggle -->
@@ -67,19 +67,19 @@
   <!-- Mobile Dropdown Menu -->
   <div 
     id="mobile-menu" 
-    class="md:hidden max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out px-6 flex flex-col items-center gap-5"
+    class="md:hidden max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out px-6 flex flex-col items-center gap-4"
   >
     <div class="w-full h-px bg-white/10 mt-2"></div>
     <a href="#hero" class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Home</a>
-    <a href="#about" class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Who We Are</a>
-    <a href="#products" class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Our Products</a>
-    <a href="#why-us" class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Why Choose Us</a>
-    <a href="#awards-legacy" class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Awards</a>
+    <a href="#about" class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">About Us</a>
+    <a href="#products" class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Products</a>
+    <a href="#projects" class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Projects</a>
+    <a href="#sustainability" class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Sustainability</a>
     <a 
       href="#contact" 
       class="sm:hidden rounded-full border border-white/85 px-8 py-3 text-[14px] font-semibold tracking-wider uppercase text-white hover:bg-white hover:text-gray-900 transition-all mb-4"
     >
-      Contact Us
+      Enquire Now
     </a>
   </div>
 </header>

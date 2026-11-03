@@ -47,7 +47,7 @@ const {
 } = Astro.props;
 ---
 
-<section id="clients-showcase" class="w-full relative pt-10 sm:pt-14 md:pt-16 pb-10 sm:pb-14 md:pb-28 bg-gradient-to-r from-[#000428]/8 to-[#004e92]/8 overflow-hidden reveal-text">
+<section id="projects" class="scroll-mt-24 md:scroll-mt-28 w-full relative pt-10 sm:pt-14 md:pt-16 pb-10 sm:pb-14 md:pb-28 bg-gradient-to-r from-[#000428]/8 to-[#004e92]/8 overflow-hidden reveal-text">
   <!-- Top and Bottom vertical fades to prevent sharp lines -->
   <div class="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-brandBg to-transparent z-10 pointer-events-none"></div>
   <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-brandBg to-transparent z-10 pointer-events-none"></div>
@@ -60,7 +60,7 @@ const {
       KEY PROJECTS
     </span>
     <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-semibold text-gray-900 tracking-tight font-satoshi leading-tight">
-      Trusted by Major Developments
+      Where Our Materials Make a Difference
     </h2>
   </div>
 
@@ -141,7 +141,7 @@ const {
     // Create scroll-linked grayscale timeline
     gsap.timeline({
       scrollTrigger: {
-        trigger: "#clients-showcase",
+        trigger: "#projects",
         start: "top bottom", // starts when top of showcase enters bottom of screen
         end: "bottom top",   // ends when bottom of showcase leaves top of screen
         scrub: 1.5,          // smooth link directly to scrollbar
