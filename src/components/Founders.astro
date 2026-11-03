@@ -20,8 +20,8 @@
     {/* Founders Cards */}
     <div class="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-10 lg:gap-8 xl:gap-16" id="founders-cards">
       
-      {/* Founder 1 - Late Mr. K.J. Jose */}
-      <div class="founder-card group relative w-[280px] sm:w-[320px] lg:w-[290px] xl:w-[320px]" id="founder-jose">
+      {/* Founder 1 - Late Mr. K.J. Jose (3rd on mobile, 1st on desktop) */}
+      <div class="founder-card group relative w-[280px] sm:w-[320px] lg:w-[290px] xl:w-[320px] order-5 lg:order-1" id="founder-jose">
         <div class="founder-card-inner relative">
           {/* Glow effect behind card */}
           <div class="absolute -inset-4 bg-gradient-to-br from-amber-200/30 via-transparent to-amber-100/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
@@ -76,13 +76,11 @@
         </div>
       </div>
 
-      {/* Divider 1 - vertical line between cards */}
-      <div class="hidden lg:block w-[1px] h-48 bg-gradient-to-b from-transparent via-gray-300 to-transparent founders-divider"></div>
-      {/* Mobile/Tablet divider */}
-      <div class="lg:hidden w-48 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+      {/* Desktop Divider between Jose & Joseph */}
+      <div class="hidden lg:block w-[1px] h-48 bg-gradient-to-b from-transparent via-gray-300 to-transparent founders-divider lg:order-2"></div>
 
-      {/* Founder 2 - Late Mr. K.U. Joseph */}
-      <div class="founder-card group relative w-[280px] sm:w-[320px] lg:w-[290px] xl:w-[320px]" id="founder-joseph">
+      {/* Founder 2 - Late Mr. K.U. Joseph (1st on mobile, 2nd on desktop) */}
+      <div class="founder-card group relative w-[280px] sm:w-[320px] lg:w-[290px] xl:w-[320px] order-1 lg:order-3" id="founder-joseph">
         <div class="founder-card-inner relative">
           {/* Glow effect behind card */}
           <div class="absolute -inset-4 bg-gradient-to-br from-amber-200/30 via-transparent to-amber-100/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
@@ -137,13 +135,14 @@
         </div>
       </div>
 
-      {/* Divider 2 - vertical line between cards */}
-      <div class="hidden lg:block w-[1px] h-48 bg-gradient-to-b from-transparent via-gray-300 to-transparent founders-divider"></div>
-      {/* Mobile/Tablet divider */}
-      <div class="lg:hidden w-48 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+      {/* Mobile divider between Joseph & Mathai */}
+      <div class="lg:hidden w-48 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent order-2"></div>
 
-      {/* Founder 3 - Late Mr. K.J. Mathai */}
-      <div class="founder-card group relative w-[280px] sm:w-[320px] lg:w-[290px] xl:w-[320px]" id="founder-mathai">
+      {/* Desktop Divider between Joseph & Mathai */}
+      <div class="hidden lg:block w-[1px] h-48 bg-gradient-to-b from-transparent via-gray-300 to-transparent founders-divider lg:order-4"></div>
+
+      {/* Founder 3 - Late Mr. K.J. Mathai (2nd on mobile, 3rd on desktop) */}
+      <div class="founder-card group relative w-[280px] sm:w-[320px] lg:w-[290px] xl:w-[320px] order-3 lg:order-5" id="founder-mathai">
         <div class="founder-card-inner relative">
           {/* Glow effect behind card */}
           <div class="absolute -inset-4 bg-gradient-to-br from-amber-200/30 via-transparent to-amber-100/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
@@ -197,6 +196,9 @@
           </div>
         </div>
       </div>
+
+      {/* Mobile divider between Mathai & Jose */}
+      <div class="lg:hidden w-48 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent order-4"></div>
 
     </div>
 
