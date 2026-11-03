@@ -1,89 +1,92 @@
 ---
 ---
 
-<!-- Pill / floating island navbar wrapper -->
-<div class="fixed top-6 left-0 right-0 flex justify-center z-[10001] px-4" id="navbar-wrapper">
-  <nav
-    id="navbar"
-    class="
-      w-full max-w-5xl
-      flex flex-col
-      px-4 md:px-8 py-2 md:py-3
-      rounded-[24px] md:rounded-[40px]
-      nav-dark-blue-gradient backdrop-blur-xl
-      shadow-[0_8px_32px_0_rgba(0,0,0,0.15)]
-      transition-all duration-500 ease-in-out
-      overflow-hidden
-    "
+<!-- Full-width header overlaid on the hero image matching reference design -->
+<header
+  id="navbar-header"
+  class="fixed top-0 left-0 right-0 z-[10001] w-full transition-all duration-300 py-6 md:py-8"
+>
+  <div class="w-full max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14 lg:px-16 flex items-center justify-between">
+    <!-- Logo (Increased size) -->
+    <div class="flex-shrink-0">
+      <a href="#" class="block group">
+        <img 
+          id="navbar-logo"
+          src="/images/logo.png" 
+          alt="Payyavoor Crushers Logo" 
+          class="h-14 sm:h-16 md:h-20 w-auto transition-all duration-300 group-hover:scale-105 brightness-0 invert drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]" 
+        />
+      </a>
+    </div>
+
+    <!-- Desktop Nav Links -->
+    <nav class="hidden md:flex items-center gap-7 lg:gap-11 font-satoshi font-medium text-[16px] lg:text-[17px] text-white/90">
+      <a href="#hero" class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Home</a>
+      <a href="#about" class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Who We Are</a>
+      <a href="#products" class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Our Products</a>
+      <a href="#why-us" class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Why Choose Us</a>
+      <a href="#awards-legacy" class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Awards</a>
+    </nav>
+
+    <!-- Right: Contact Us Button & Mobile Toggle -->
+    <div class="flex items-center gap-4 lg:gap-6">
+      <a
+        href="#contact"
+        id="navbar-cta"
+        class="
+          hidden sm:inline-block
+          rounded-full border border-white/85
+          px-7 md:px-8 py-2.5 md:py-3
+          text-[14px] md:text-[15px] font-semibold tracking-wider uppercase text-white
+          hover:bg-white hover:text-gray-950
+          transition-all duration-300
+          shadow-md hover:shadow-xl
+          backdrop-blur-sm
+          active:scale-95
+        "
+      >
+        Contact Us
+      </a>
+      
+      <!-- Mobile menu toggle -->
+      <button 
+        id="mobile-toggle" 
+        class="md:hidden p-2 text-white focus:outline-none transition-transform active:scale-95" 
+        aria-label="Toggle Menu"
+      >
+        <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+        <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div 
+    id="mobile-menu" 
+    class="md:hidden max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out px-6 flex flex-col items-center gap-6"
   >
-    <!-- Main Bar -->
-    <div class="flex items-center justify-between w-full">
-      <!-- Logo -->
-      <div class="flex-shrink-0 bg-transparent">
-        <a href="#" class="block group bg-transparent">
-          <img 
-            src="/images/logo.png" 
-            alt="Payyavoor Crushers Logo" 
-            class="h-12 md:h-14 w-auto transition-transform duration-300 group-hover:scale-105 bg-transparent" 
-            style="background-color: transparent !important;"
-          />
-        </a>
-      </div>
-
-      <!-- Desktop Nav links -->
-      <div class="hidden md:flex items-center gap-8 font-satoshi font-medium text-[16px] tracking-wide text-white/80">
-        <a href="#about"    class="relative py-2 transition-colors duration-300 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Who We Are</a>
-        <a href="#products" class="relative py-2 transition-colors duration-300 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Our Products</a>
-        <a href="#why-us"   class="relative py-2 transition-colors duration-300 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Why Choose Us</a>
-        <a href="#awards-legacy" class="relative py-2 transition-colors duration-300 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Awards</a>
-      </div>
-
-      <!-- CTA & Mobile Toggle -->
-      <div class="flex items-center gap-4 md:gap-8">
-        <a
-          href="#contact"
-          class="
-            hidden sm:inline-block
-            bg-brandBlue text-white
-            px-6 md:px-8 py-2 md:py-3 rounded-full
-            text-[13px] md:text-[14px] font-bold tracking-widest uppercase
-            hover:bg-[#005a8d]
-            transition-all duration-300
-            shadow-lg shadow-brandBlue/20
-            hover:shadow-brandBlue/40
-            hover:-translate-y-0.5
-            active:translate-y-0
-          "
-        >
-          Get In Touch
-        </a>
-        
-        <!-- Mobile menu toggle -->
-        <button id="mobile-toggle" class="md:hidden p-2 text-white/95 focus:outline-none transition-transform active:scale-95" aria-label="Toggle Menu">
-          <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-          </svg>
-          <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile Links (Expanded) -->
-    <div id="mobile-menu" class="md:hidden max-h-0 opacity-0 transition-all duration-500 ease-in-out flex flex-col items-center gap-8 pt-0">
-      <div class="w-full h-px bg-white/10 mt-2"></div>
-      <a href="#about"    class="text-[22px] font-medium text-white/80 hover:text-white transition-colors">Who We Are</a>
-      <a href="#products" class="text-[22px] font-medium text-white/80 hover:text-white transition-colors">Our Products</a>
-      <a href="#why-us"   class="text-[22px] font-medium text-white/80 hover:text-white transition-colors">Why Choose Us</a>
-      <a href="#awards-legacy" class="text-[22px] font-medium text-white/80 hover:text-white transition-colors">Awards</a>
-      <a href="#contact"  class="sm:hidden bg-brandBlue text-white px-12 py-4 rounded-full text-[15px] font-bold tracking-widest uppercase mb-8 shadow-xl shadow-brandBlue/20">Get In Touch</a>
-    </div>
-  </nav>
-</div>
+    <div class="w-full h-px bg-white/10 mt-3"></div>
+    <a href="#hero" class="text-[19px] font-medium text-white/90 hover:text-white transition-colors">Home</a>
+    <a href="#about" class="text-[19px] font-medium text-white/90 hover:text-white transition-colors">Who We Are</a>
+    <a href="#products" class="text-[19px] font-medium text-white/90 hover:text-white transition-colors">Our Products</a>
+    <a href="#why-us" class="text-[19px] font-medium text-white/90 hover:text-white transition-colors">Why Choose Us</a>
+    <a href="#awards-legacy" class="text-[19px] font-medium text-white/90 hover:text-white transition-colors">Awards</a>
+    <a 
+      href="#contact" 
+      class="sm:hidden rounded-full border border-white/85 px-8 py-3.5 text-[15px] font-semibold tracking-wider uppercase text-white hover:bg-white hover:text-gray-900 transition-all mb-4"
+    >
+      Contact Us
+    </a>
+  </div>
+</header>
 
 <script>
-  const nav = document.getElementById('navbar');
+  const header = document.getElementById('navbar-header');
+  const logo = document.getElementById('navbar-logo');
   const toggle = document.getElementById('mobile-toggle');
   const menu = document.getElementById('mobile-menu');
   const hamburger = document.getElementById('hamburger-icon');
@@ -94,64 +97,53 @@
     const isOpen = menu?.classList.contains('max-h-[500px]');
     
     if (isOpen) {
-      menu?.classList.remove('max-h-[500px]', 'opacity-100', 'pt-4', 'pb-4');
-      menu?.classList.add('max-h-0', 'opacity-0', 'pt-0');
+      menu?.classList.remove('max-h-[500px]', 'opacity-100', 'pt-4', 'pb-6');
+      menu?.classList.add('max-h-0', 'opacity-0');
       hamburger?.classList.remove('hidden');
       close?.classList.add('hidden');
-      // Restore scroll handle background (30% opacity)
-      nav?.classList.add('nav-dark-blue-gradient');
-      nav?.classList.remove('nav-dark-blue-solid');
+      if (window.scrollY <= 40) {
+        header?.classList.remove('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-white/10');
+      }
     } else {
-      menu?.classList.add('max-h-[500px]', 'opacity-100', 'pt-4', 'pb-4');
-      menu?.classList.remove('max-h-0', 'opacity-0', 'pt-0');
+      menu?.classList.add('max-h-[500px]', 'opacity-100', 'pt-4', 'pb-6');
+      menu?.classList.remove('max-h-0', 'opacity-0');
       hamburger?.classList.add('hidden');
       close?.classList.remove('hidden');
-      // More solid background when open for readability
-      nav?.classList.remove('nav-dark-blue-gradient');
-      nav?.classList.add('nav-dark-blue-solid');
+      header?.classList.add('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-white/10');
     }
   });
 
   // Handle scroll behavior
-  window.addEventListener('scroll', () => {
+  const updateScroll = () => {
     const isMobileMenuOpen = menu?.classList.contains('max-h-[500px]');
     if (isMobileMenuOpen) return;
 
-    if (window.scrollY > 50) {
-      nav?.classList.add('!py-2', 'max-w-4xl', 'shadow-[0_12px_40px_0_rgba(0,0,0,0.12)]');
-      nav?.classList.remove('max-w-5xl', 'shadow-[0_8px_32px_0_rgba(0,0,0,0.15)]');
+    if (window.scrollY > 40) {
+      header?.classList.add('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-white/10', '!py-3', 'md:!py-3.5');
+      header?.classList.remove('py-6', 'md:py-8');
+      logo?.classList.add('!h-11', 'md:!h-14');
+      logo?.classList.remove('h-14', 'sm:h-16', 'md:h-20');
     } else {
-      nav?.classList.remove('!py-2', 'max-w-4xl', 'shadow-[0_12px_40px_0_rgba(0,0,0,0.12)]');
-      nav?.classList.add('max-w-5xl', 'shadow-[0_8px_32px_0_rgba(0,0,0,0.15)]');
+      header?.classList.remove('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-white/10', '!py-3', 'md:!py-3.5');
+      header?.classList.add('py-6', 'md:py-8');
+      logo?.classList.remove('!h-11', 'md:!h-14');
+      logo?.classList.add('h-14', 'sm:h-16', 'md:h-20');
     }
-  });
+  };
+
+  window.addEventListener('scroll', updateScroll);
+  updateScroll();
 
   // Close menu on link click
   menu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      menu?.classList.remove('max-h-[500px]', 'opacity-100', 'pt-4', 'pb-4');
-      menu?.classList.add('max-h-0', 'opacity-0', 'pt-0');
+      menu?.classList.remove('max-h-[500px]', 'opacity-100', 'pt-4', 'pb-6');
+      menu?.classList.add('max-h-0', 'opacity-0');
       hamburger?.classList.remove('hidden');
       close?.classList.add('hidden');
-      nav?.classList.add('nav-dark-blue-gradient');
-      nav?.classList.remove('nav-dark-blue-solid');
+      if (window.scrollY <= 40) {
+        header?.classList.remove('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-white/10');
+      }
     });
   });
 </script>
-
-<style>
-  .nav-dark-blue-gradient {
-    background: linear-gradient(to right, rgba(0, 4, 40, 0.85) 0%, rgba(0, 78, 146, 0.85) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-  }
-  .nav-dark-blue-solid {
-    background: linear-gradient(to right, rgba(0, 4, 40, 0.98) 0%, rgba(0, 78, 146, 0.98) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-  }
-
-  @media (min-width: 768px) {
-    .nav-dark-blue-gradient {
-      background: linear-gradient(to right, rgba(0, 4, 40, 0.88) 0%, rgba(0, 78, 146, 0.65) 100%);
-    }
-  }
-</style>

@@ -18,17 +18,6 @@ import '../styles/global.css';
 	</head>
 	<body class="bg-brandBg text-gray-900 font-satoshi antialiased overflow-x-hidden">
 
-		<!-- ░░ INTRO OVERLAY — full-screen, contains the live text ░░ -->
-		<div id="intro-overlay">
-		  <div class="intro-glow"></div>
-		  <div class="intro-center">
-			<h2 id="intro-heading" class="intro-h1 whitespace-nowrap">
-			  Built on <span class="fn-container"><span id="overlay-fn-inner" class="fn-inner"><span class="fn-word font-bold text-brandBlue">Strength.</span><span class="fn-word fn-word--italic font-bold text-brandBlue">Strength.</span></span></span><br />
-			  Driven by <span class="fn-container"><span id="overlay-quality-inner" class="fn-inner"><span class="fn-word font-bold text-[#1A9487]">Quality.</span><span class="fn-word fn-word--italic font-bold text-[#1A9487]">Quality.</span></span></span>
-			</h2>
-		  </div>
-		</div>
-
 		<slot />
 
 		<!-- Floating WhatsApp Button -->
@@ -48,177 +37,6 @@ import '../styles/global.css';
 </html>
 
 <style is:global>
-
-  /* ── Intro overlay ─────────────────────────────────── */
-  #intro-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 9000;
-    background-color: #212A31;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    transition: background-color 1s cubic-bezier(0.25, 1, 0.5, 1);
-    overflow: hidden;
-  }
-  
-  .intro-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80vw;
-    height: 80vw;
-    max-width: 1000px;
-    max-height: 1000px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 70%);
-    filter: blur(50px);
-    border-radius: 50%;
-    z-index: 0;
-    pointer-events: none;
-    transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-
-  #intro-overlay.color-shift {
-    background-color: #fefdf7;
-  }
-  
-  #intro-overlay.color-shift .intro-glow {
-    opacity: 0;
-  }
-
-  /* Hero section sits ABOVE the overlay so carousel/text are visible */
-  #hero {
-    position: relative;
-    z-index: 10000;
-  }
-
-  /* Centered container matches hero container padding */
-  .intro-center {
-    width: 100%;
-    padding: 0 1.5rem;
-    text-align: center;
-    position: relative;
-    z-index: 2;
-  }
-
-  /* The overlay heading — starts zoomed-out & invisible */
-  .intro-h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.875rem;
-    line-height: 1.2;
-    font-weight: 400;
-    color: #fefdf7;
-    margin: 0;
-    display: inline-block; /* needed for transform-origin */
-    opacity: 0;
-    transform: scale(0.94);
-    white-space: nowrap;
-    /* entry animation properties */
-    transition: opacity 1.7s cubic-bezier(0.25, 1, 0.5, 1),
-                transform 1.7s cubic-bezier(0.25, 1, 0.5, 1),
-                color 1.7s cubic-bezier(0.25, 1, 0.5, 1);
-    will-change: transform;
-    backface-visibility: hidden;
-  }
-
-  @media (min-width: 640px) {
-    .intro-h1 {
-      font-size: 2.25rem;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .intro-h1 {
-      font-size: 3.75rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .intro-h1 {
-      font-size: 5rem;
-    }
-  }
-  .intro-h1.entered {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-
-  /* ── Foundation word flip ──────────────────────────── */
-  .fn-container {
-    display: inline-flex;
-    flex-direction: column;
-    overflow: hidden;
-    vertical-align: baseline;
-    height: 1.1em;
-  }
-  .fn-inner {
-    display: block;
-    transition: transform 0.55s cubic-bezier(0.76, 0, 0.24, 1);
-  }
-  .fn-word {
-    display: block;
-    line-height: 1.1;
-    transition: opacity 0.55s cubic-bezier(0.76, 0, 0.24, 1);
-  }
-  .fn-word--italic { font-style: italic; }
-  .fn-inner.flipped { transform: translateY(-50%); }
-
-  /* Fade out inactive word to prevent glyph bleed/overlap */
-  .fn-inner:not(.flipped) .fn-word:first-child { opacity: 1; }
-  .fn-inner:not(.flipped) .fn-word:last-child { opacity: 0; }
-  .fn-inner.flipped .fn-word:first-child { opacity: 0; }
-  .fn-inner.flipped .fn-word:last-child { opacity: 1; }
-
-  /* ── Real hero h1 — hidden until overlay departs ────── */
-  #hero-real-h1 {
-    opacity: 0;
-    transform: translateY(0) !important;
-    will-change: opacity;
-  }
-
-  /* ── Hero text block — no translateY (overlay does the move) */
-  #hero-text-block {
-    /* intentionally no transform */
-  }
-
-  /* ── Subtitle — hidden during intro ───────────────── */
-  #hero-subtitle {
-    opacity: 0;
-    transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  #hero-subtitle.intro-revealed { opacity: 1; }
-
-  /* ── Carousel — rises from below simultaneously ────── */
-  #hero-carousel {
-    opacity: 0;
-    transform: translateY(44px);
-    transition: opacity 0.85s cubic-bezier(0.25, 1, 0.5, 1),
-                transform 0.85s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  #hero-carousel.intro-revealed {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ── Copyright text — hidden during intro ──────────── */
-  #hero-copyright {
-    opacity: 0;
-    transition: opacity 0.85s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  #hero-copyright.intro-revealed { opacity: 1; }
-
-  /* ── Navbar wrapper fades in above the overlay ────── */
-  #navbar-wrapper {
-    z-index: 10001; /* above overlay z-9000 */
-    opacity: 0;
-    transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  #navbar-wrapper.intro-revealed { opacity: 1; }
 
   /* ── Scroll-triggered reveals (all other sections) ─── */
   .reveal-text {
@@ -248,16 +66,8 @@ import '../styles/global.css';
     box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3), 0 8px 32px rgba(0, 0, 0, 0.15);
     z-index: 99999;
     cursor: pointer;
-    opacity: 0;
-    pointer-events: none;
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
-                box-shadow 0.3s ease,
-                opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-
-  .whatsapp-float.intro-revealed {
-    opacity: 1;
-    pointer-events: auto;
+                box-shadow 0.3s ease;
   }
 
   .whatsapp-float:hover {
@@ -296,85 +106,6 @@ import '../styles/global.css';
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-
-    /* ── Elements ─────────────────────────────────────── */
-    const overlay        = document.getElementById('intro-overlay') as HTMLElement;
-    const introHeading   = document.getElementById('intro-heading') as HTMLElement;
-    const overlayFnInner = document.getElementById('overlay-fn-inner') as HTMLElement;
-    const heroRealH1     = document.getElementById('hero-real-h1') as HTMLElement;
-    const heroSubtitle   = document.getElementById('hero-subtitle') as HTMLElement;
-    const heroCarousel   = document.getElementById('hero-carousel') as HTMLElement;
-    const heroCopyright  = document.getElementById('hero-copyright') as HTMLElement;
-    const navbarWrapper  = document.getElementById('navbar-wrapper') as HTMLElement;
-    const overlayQualityInner = document.getElementById('overlay-quality-inner') as HTMLElement;
-    const whatsappButton = document.getElementById('whatsapp-button') as HTMLElement;
-
-    /* Prevent browser scroll restoration */
-    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    window.scrollTo(0, 0);
-    document.body.style.overflow = 'hidden';
-
-    /* ── Step 0: Zoom-in entry of overlay text ────────── */
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        introHeading?.classList.add('entered');
-      });
-    });
-
-    /* ── Step 1 (700ms): flip "foundation" italic ─────── */
-    setTimeout(() => {
-      overlayFnInner?.classList.add('flipped');
-      overlayQualityInner?.classList.add('flipped');
-    }, 700);
-
-    /* ── Step 2 (1400ms): bg shift + text glides to hero position ── */
-    setTimeout(() => {
-
-      /* Calculate exact delta from overlay heading → real h1 */
-      const fromRect = introHeading?.getBoundingClientRect();
-      const toRect   = heroRealH1?.getBoundingClientRect();
-
-      if (introHeading && fromRect && toRect) {
-        const dy = toRect.top  - fromRect.top;
-        const dx = toRect.left - fromRect.left;
-
-        /* Override transition for the position glide */
-        introHeading.style.transition = [
-          'transform 1.3s cubic-bezier(0.25, 1, 0.5, 1)',
-          'opacity   1.3s cubic-bezier(0.25, 1, 0.5, 1)',
-          'color     1.3s cubic-bezier(0.25, 1, 0.5, 1)'
-        ].join(', ');
-
-        /* Fly overlay heading to real h1 position */
-        introHeading.style.transform = `translate(${dx}px, ${dy}px) scale(1)`;
-        introHeading.style.color     = '#000000';
-      }
-
-      /* bg color shift fires simultaneously */
-      overlay?.classList.add('color-shift');
-
-      /* Reveal everything else */
-      heroSubtitle?.classList.add('intro-revealed');
-      heroCarousel?.classList.add('intro-revealed');
-      heroCopyright?.classList.add('intro-revealed');
-      navbarWrapper?.classList.add('intro-revealed');
-      whatsappButton?.classList.add('intro-revealed');
-
-      document.body.style.overflow = '';
-
-    }, 1400);
-
-    /* ── Step 3 (2400ms): snap real h1, remove overlay ── */
-    setTimeout(() => {
-      /* Make real h1 visible instantly (overlay still on top) */
-      if (heroRealH1) {
-        heroRealH1.style.transition = 'none';
-        heroRealH1.style.opacity = '1';
-      }
-      /* Remove overlay — real h1 is now the visible text */
-      overlay?.remove();
-    }, 2800);
-
     /* ── Scroll-triggered reveals (non-hero) ──────────── */
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {

@@ -1,0 +1,112 @@
+---
+// Quarry and company images for the scrolling photo gallery
+const images = [
+  "/images/award1.jpg",
+  "/images/tree.jpeg",
+  "/images/alltrophy1.jpeg",
+  "/images/award2.jpeg",
+  "/images/office.jpeg",
+  "/images/mist.png",
+];
+---
+
+<section class="relative w-full overflow-hidden bg-brandBg">
+  <!-- 1. Highlights Strip below the customers we served -->
+  <div class="w-full max-w-7xl mx-auto px-6 sm:px-10 md:px-14 lg:px-16 pt-20 md:pt-28 pb-20 md:pb-28 reveal-text">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8 lg:gap-12">
+      
+      <!-- Point 1: Experience & Heritage -->
+      <div class="flex flex-col justify-center">
+        <h2 class="text-2xl sm:text-3xl md:text-[26px] lg:text-3xl font-semibold text-gray-900 tracking-tight font-satoshi">
+          30+ Years of Experience
+          <span class="block text-base sm:text-lg md:text-xl font-normal text-gray-500 mt-1.5 font-satoshi">
+            Started in 1995
+          </span>
+        </h2>
+      </div>
+
+      <!-- Point 2: Customers Served -->
+      <div class="flex flex-col justify-center md:border-l md:border-gray-200 md:pl-8 lg:pl-12">
+        <h2 class="text-2xl sm:text-3xl md:text-[26px] lg:text-3xl font-semibold text-gray-900 tracking-tight font-satoshi">
+          10,000+ Customers Served
+          <span class="block text-base sm:text-lg md:text-xl font-normal text-gray-500 mt-1.5 font-satoshi">
+            A Legacy of Reliability
+          </span>
+        </h2>
+      </div>
+
+      <!-- Point 3: Finnish Technology Machinery -->
+      <div class="flex flex-col justify-center md:border-l md:border-gray-200 md:pl-8 lg:pl-12">
+        <h2 class="text-2xl sm:text-3xl md:text-[26px] lg:text-3xl font-semibold text-gray-900 tracking-tight font-satoshi">
+          Finnish Technology
+          <span class="block text-base sm:text-lg md:text-xl font-normal text-gray-500 mt-1.5 font-satoshi">
+            World-Class Machinery
+          </span>
+        </h2>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 2. Scrolling photo gallery images just below -->
+  <div
+    id="hero-carousel"
+    class="w-full relative pt-20 md:pt-28 pb-24 md:pb-36 bg-transparent overflow-hidden"
+  >
+    <div class="flex animate-carousel w-fit gap-3 px-5">
+      {/* Group 1 */}
+      {
+        images.map((src) => (
+          <div class="h-[300px] md:h-80 w-[260px] md:w-[420px] flex-shrink-0 rounded-2xl overflow-hidden shadow-[0_20px_50px_-15px_rgba(0,0,0,0.15)]">
+            <img
+              src={src}
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              alt="Quarry and facility"
+            />
+          </div>
+        ))
+      }
+      {/* Group 2 */}
+      {
+        images.map((src) => (
+          <div class="h-[300px] md:h-80 w-[260px] md:w-[420px] flex-shrink-0 rounded-2xl overflow-hidden shadow-[0_20px_50px_-15px_rgba(0,0,0,0.15)]">
+            <img
+              src={src}
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              alt="Quarry and facility"
+            />
+          </div>
+        ))
+      }
+      {/* Group 3 */}
+      {
+        images.map((src) => (
+          <div class="h-[300px] md:h-80 w-[260px] md:w-[420px] flex-shrink-0 rounded-2xl overflow-hidden shadow-[0_20px_50px_-15px_rgba(0,0,0,0.15)]">
+            <img
+              src={src}
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              alt="Quarry and facility"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes carousel {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-33.3333333333%);
+    }
+  }
+
+  .animate-carousel {
+    display: flex;
+    animation: carousel 60s linear infinite;
+  }
+</style>
+
