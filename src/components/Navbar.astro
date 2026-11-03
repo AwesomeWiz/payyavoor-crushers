@@ -4,17 +4,17 @@
 <!-- Full-width header overlaid on the hero image matching reference design -->
 <header
   id="navbar-header"
-  class="fixed top-0 left-0 right-0 z-[10001] w-full transition-all duration-300 py-6 md:py-8"
+  class="fixed top-0 left-0 right-0 z-[10001] w-full transition-all duration-300 py-4 sm:py-6 md:py-8"
 >
-  <div class="w-full max-w-[1440px] mx-auto px-6 sm:px-10 md:px-14 lg:px-16 flex items-center justify-between">
-    <!-- Logo (Increased size) -->
+  <div class="w-full max-w-[1440px] mx-auto px-4 sm:px-10 md:px-14 lg:px-16 flex items-center justify-between">
+    <!-- Logo -->
     <div class="flex-shrink-0">
       <a href="#" class="block group">
         <img 
           id="navbar-logo"
           src="/images/logo.png" 
           alt="Payyavoor Crushers Logo" 
-          class="h-14 sm:h-16 md:h-20 w-auto transition-all duration-300 group-hover:scale-105 brightness-0 invert drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]" 
+          class="h-11 sm:h-14 md:h-20 w-auto transition-all duration-300 group-hover:scale-105 brightness-0 invert drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]" 
         />
       </a>
     </div>
@@ -29,7 +29,7 @@
     </nav>
 
     <!-- Right: Contact Us Button & Mobile Toggle -->
-    <div class="flex items-center gap-4 lg:gap-6">
+    <div class="flex items-center gap-3 sm:gap-4 lg:gap-6">
       <a
         href="#contact"
         id="navbar-cta"
@@ -54,10 +54,10 @@
         class="md:hidden p-2 text-white focus:outline-none transition-transform active:scale-95" 
         aria-label="Toggle Menu"
       >
-        <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 sm:h-8 sm:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
         </svg>
-        <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 sm:h-8 sm:w-8 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
@@ -67,17 +67,17 @@
   <!-- Mobile Dropdown Menu -->
   <div 
     id="mobile-menu" 
-    class="md:hidden max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out px-6 flex flex-col items-center gap-6"
+    class="md:hidden max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out px-6 flex flex-col items-center gap-5"
   >
-    <div class="w-full h-px bg-white/10 mt-3"></div>
-    <a href="#hero" class="text-[19px] font-medium text-white/90 hover:text-white transition-colors">Home</a>
-    <a href="#about" class="text-[19px] font-medium text-white/90 hover:text-white transition-colors">Who We Are</a>
-    <a href="#products" class="text-[19px] font-medium text-white/90 hover:text-white transition-colors">Our Products</a>
-    <a href="#why-us" class="text-[19px] font-medium text-white/90 hover:text-white transition-colors">Why Choose Us</a>
-    <a href="#awards-legacy" class="text-[19px] font-medium text-white/90 hover:text-white transition-colors">Awards</a>
+    <div class="w-full h-px bg-white/10 mt-2"></div>
+    <a href="#hero" class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Home</a>
+    <a href="#about" class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Who We Are</a>
+    <a href="#products" class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Our Products</a>
+    <a href="#why-us" class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Why Choose Us</a>
+    <a href="#awards-legacy" class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Awards</a>
     <a 
       href="#contact" 
-      class="sm:hidden rounded-full border border-white/85 px-8 py-3.5 text-[15px] font-semibold tracking-wider uppercase text-white hover:bg-white hover:text-gray-900 transition-all mb-4"
+      class="sm:hidden rounded-full border border-white/85 px-8 py-3 text-[14px] font-semibold tracking-wider uppercase text-white hover:bg-white hover:text-gray-900 transition-all mb-4"
     >
       Contact Us
     </a>
@@ -97,7 +97,7 @@
     const isOpen = menu?.classList.contains('max-h-[500px]');
     
     if (isOpen) {
-      menu?.classList.remove('max-h-[500px]', 'opacity-100', 'pt-4', 'pb-6');
+      menu?.classList.remove('max-h-[500px]', 'opacity-100', 'pt-3', 'pb-5');
       menu?.classList.add('max-h-0', 'opacity-0');
       hamburger?.classList.remove('hidden');
       close?.classList.add('hidden');
@@ -105,7 +105,7 @@
         header?.classList.remove('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-white/10');
       }
     } else {
-      menu?.classList.add('max-h-[500px]', 'opacity-100', 'pt-4', 'pb-6');
+      menu?.classList.add('max-h-[500px]', 'opacity-100', 'pt-3', 'pb-5');
       menu?.classList.remove('max-h-0', 'opacity-0');
       hamburger?.classList.add('hidden');
       close?.classList.remove('hidden');
@@ -119,15 +119,15 @@
     if (isMobileMenuOpen) return;
 
     if (window.scrollY > 40) {
-      header?.classList.add('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-white/10', '!py-3', 'md:!py-3.5');
-      header?.classList.remove('py-6', 'md:py-8');
-      logo?.classList.add('!h-11', 'md:!h-14');
-      logo?.classList.remove('h-14', 'sm:h-16', 'md:h-20');
+      header?.classList.add('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-white/10', '!py-2.5', 'md:!py-3.5');
+      header?.classList.remove('py-4', 'sm:py-6', 'md:py-8');
+      logo?.classList.add('!h-10', 'md:!h-14');
+      logo?.classList.remove('h-11', 'sm:h-14', 'md:h-20');
     } else {
-      header?.classList.remove('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-white/10', '!py-3', 'md:!py-3.5');
-      header?.classList.add('py-6', 'md:py-8');
-      logo?.classList.remove('!h-11', 'md:!h-14');
-      logo?.classList.add('h-14', 'sm:h-16', 'md:h-20');
+      header?.classList.remove('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-white/10', '!py-2.5', 'md:!py-3.5');
+      header?.classList.add('py-4', 'sm:py-6', 'md:py-8');
+      logo?.classList.remove('!h-10', 'md:!h-14');
+      logo?.classList.add('h-11', 'sm:h-14', 'md:h-20');
     }
   };
 
@@ -137,7 +137,7 @@
   // Close menu on link click
   menu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      menu?.classList.remove('max-h-[500px]', 'opacity-100', 'pt-4', 'pb-6');
+      menu?.classList.remove('max-h-[500px]', 'opacity-100', 'pt-3', 'pb-5');
       menu?.classList.add('max-h-0', 'opacity-0');
       hamburger?.classList.remove('hidden');
       close?.classList.add('hidden');
