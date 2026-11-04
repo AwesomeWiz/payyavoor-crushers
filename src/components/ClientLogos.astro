@@ -1,41 +1,4 @@
 ---
-const clients = [
-  {
-    name: "Kannur Intl. Airport",
-    role: "Kannur,Kerala",
-    image: "/images/airportknr.jpg"
-  },
-  {
-    name: "Indian Naval Academy ",
-    role: "Ezhimala,Kerala",
-    image: "/images/ezhimala.jpg"
-  },
-  {
-    name: "KIMS Sreechand Hospital ",
-    role: "Kannur,Kerala",
-    image: "/images/sree.jpg"
-  },
-  {
-    name: "Thalassery-Mahe NH 66",
-    role: "Kerala",
-    image: "/images/maheby.jpg"
-  },
-  {
-    name: "NIFT",
-    role: "Kannur,Kerala",
-    image: "/images/nift.jpg"
-  },
-  {
-    name: "Kannur's First Choice for Building a Stronger Tomorrow",
-    role: ""
-  },
-  
-  
-];
-
-// Replicate for marquee looping
-const marqueeItems = [...clients, ...clients, ...clients];
-
 interface Props {
   bgImage?: string;
   bgImageClass?: string;
@@ -45,63 +8,101 @@ const {
   bgImage,
   bgImageClass = "absolute right-4 bottom-0 w-32 md:w-44 h-auto opacity-[0.06] pointer-events-none z-0 mix-blend-multiply"
 } = Astro.props;
+
+const projects = [
+  {
+    name: "Kannur Intl. Airport",
+    image: "/images/airportknr.png"
+  },
+  {
+    name: "Indian Naval Academy",
+    image: "/images/ezhimala.png"
+  },
+  {
+    name: "Thalassery–Mahe NH 66",
+    image: "/images/maheby.png"
+  },
+  {
+    name: "KIMS Sreechand Hospital",
+    image: "/images/sree.png"
+  },
+  {
+    name: "NIFT",
+    image: "/images/nift.png"
+  },
+  {
+    name: "And Many More Landmark Projects Across Kannur",
+    isLast: true,
+    image: "/images/office.jpeg"
+  }
+];
+
+// Replicate for seamless infinite marquee loop (3 full sets)
+const marqueeItems = [...projects, ...projects, ...projects];
 ---
 
-<section id="projects" class="scroll-mt-24 md:scroll-mt-28 w-full relative pt-10 sm:pt-14 md:pt-16 pb-10 sm:pb-14 md:pb-28 bg-gradient-to-r from-[#000428]/8 to-[#004e92]/8 overflow-hidden reveal-text">
-  <!-- Top and Bottom vertical fades to prevent sharp lines -->
-  <div class="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-brandBg to-transparent z-10 pointer-events-none"></div>
-  <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-brandBg to-transparent z-10 pointer-events-none"></div>
+<section id="projects" class="scroll-mt-24 md:scroll-mt-28 w-full relative pt-12 sm:pt-16 md:pt-20 pb-12 sm:pb-16 md:pb-24 bg-gradient-to-b from-brandBg via-white/40 to-brandBg overflow-hidden">
+  <!-- Top and Bottom vertical fades for smooth page transition -->
+  <div class="absolute top-0 left-0 right-0 h-14 bg-gradient-to-b from-brandBg to-transparent z-10 pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-brandBg to-transparent z-10 pointer-events-none"></div>
 
   {bgImage && (
     <img src={bgImage} alt="" class={bgImageClass} aria-hidden="true" />
   )}
-  <div class="max-w-7xl mx-auto px-6 md:px-12 mb-6 md:mb-8 text-center relative z-20">
-    <span class="inline-block text-[11px] md:text-xs font-bold text-brandBlue tracking-[0.25em] uppercase mb-2.5 font-satoshi">
+
+  <!-- Section Header (Centered, No Descriptions) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center mb-8 sm:mb-10 md:mb-14 relative z-20">
+    <span class="inline-block text-[11px] md:text-xs font-bold text-brandBlue tracking-[0.25em] uppercase mb-2 font-satoshi">
       KEY PROJECTS
     </span>
-    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-semibold text-gray-900 tracking-tight font-satoshi leading-tight">
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight font-satoshi leading-tight">
       Where Our Materials Make a Difference
     </h2>
   </div>
 
-  <!-- Marquee Area -->
-  <div class="relative w-full overflow-hidden select-none">
+  <!-- Scrolling Track Area with Subtle Edge Feather -->
+  <div class="relative w-full overflow-hidden select-none marquee-mask">
     
-    <!-- Edge Fades for premium transition effect -->
-    <div class="absolute left-0 top-0 bottom-0 w-12 sm:w-20 md:w-32 bg-gradient-to-r from-brandBg via-brandBg/60 to-transparent z-10 pointer-events-none"></div>
-    <div class="absolute right-0 top-0 bottom-0 w-12 sm:w-20 md:w-32 bg-gradient-to-l from-brandBg via-brandBg/60 to-transparent z-10 pointer-events-none"></div>
+    <!-- Slim, subtle edge blur (small slight blur without milky white overlay) -->
+    <div class="absolute left-0 top-0 bottom-0 w-4 sm:w-6 md:w-8 bg-gradient-to-r from-brandBg/40 to-transparent z-10 pointer-events-none backdrop-blur-[2px]"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-4 sm:w-6 md:w-8 bg-gradient-to-l from-brandBg/40 to-transparent z-10 pointer-events-none backdrop-blur-[2px]"></div>
 
-    <!-- Continuous Marquee Track -->
-    <div class="flex gap-3 md:gap-4 w-max animate-marquee py-3 px-3 md:px-5">
-      {marqueeItems.map((client) => (
-        (client.image && !client.isWhiteBg) ? (
-          /* Card with Photo Background matching Gallery size proportionally on mobile & desktop */
-          <div class="group relative h-[180px] sm:h-[220px] md:h-80 w-[240px] sm:w-[280px] md:w-[420px] rounded-xl md:rounded-2xl overflow-hidden shadow-[0_10px_30px_-10px_rgba(0,0,0,0.15)] md:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all duration-300 border border-white/80 shrink-0">
-            <img src={client.image} alt={client.name} class="client-card-media absolute inset-0 w-full h-full object-cover filter grayscale contrast-[1.1] hover:scale-105 transition-all duration-500" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent z-10"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-5 md:p-6 z-20">
-              <span class="font-bold text-white text-sm sm:text-base md:text-xl font-satoshi line-clamp-2 block leading-snug">{client.name}</span>
+    <!-- Infinite Scrolling Track -->
+    <div class="flex gap-4 sm:gap-5 md:gap-6 w-max animate-projects-marquee py-3 px-4">
+      {marqueeItems.map((p, idx) => (
+        p.isLast ? (
+          <!-- & Many More... Card -->
+          <a 
+            href="#contact" 
+            class="group relative h-[280px] sm:h-[340px] md:h-[400px] lg:h-[450px] w-[200px] sm:w-[240px] md:w-[280px] lg:w-[310px] rounded-xl sm:rounded-2xl overflow-hidden border border-[#071F30] bg-[#071F30] shadow-md hover:shadow-xl hover:border-sky-400/60 transition-all duration-300 flex flex-col items-center justify-center p-4 text-center shrink-0 block"
+          >
+            <!-- Content -->
+            <div class="h-full w-full flex flex-col items-center justify-center px-4 sm:px-6 text-center">
+              <span class="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white font-satoshi leading-snug tracking-tight">
+                And Many More Landmark Projects Across Kannur
+              </span>
             </div>
-          </div>
-        ) : (!client.image && !client.logoSvg) ? (
-          /* Card with Plain White Background and Centered Slogan Text matching Gallery size */
-          <div class="group relative h-[180px] sm:h-[220px] md:h-80 w-[240px] sm:w-[280px] md:w-[420px] rounded-xl md:rounded-2xl overflow-hidden shadow-[0_10px_30px_-10px_rgba(0,0,0,0.15)] md:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all duration-300 border border-white/80 bg-white flex items-center justify-center p-5 md:p-8 shrink-0">
-            <div class="text-center">
-              <span class="font-bold text-gray-900 text-sm sm:text-base md:text-xl font-satoshi block leading-relaxed">{client.name}</span>
-            </div>
-          </div>
+          </a>
         ) : (
-          /* Card with SVG Logo or White BG Image Logo matching Gallery size */
-          <div class="group relative h-[180px] sm:h-[220px] md:h-80 w-[240px] sm:w-[280px] md:w-[420px] rounded-xl md:rounded-2xl overflow-hidden shadow-[0_10px_30px_-10px_rgba(0,0,0,0.15)] md:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all duration-300 border border-white/80 bg-white flex flex-col justify-between p-4 sm:p-5 md:p-6 shrink-0">
-            <div class="client-card-media flex-grow flex items-center justify-center filter grayscale transition-all duration-300 text-gray-700 px-2 md:px-4">
-              {client.logoSvg ? (
-                <Fragment set:html={client.logoSvg} />
-              ) : (
-                <img src={client.image} alt={client.name} class="max-h-14 md:max-h-24 w-auto object-contain" />
-              )}
-            </div>
-            <div class="text-center mt-1 md:mt-2">
-              <span class="font-bold text-gray-900 text-sm sm:text-base md:text-xl font-satoshi line-clamp-2 block leading-snug">{client.name}</span>
+          <!-- Landmark Project Card -->
+          <div class="group relative h-[280px] sm:h-[340px] md:h-[400px] lg:h-[450px] w-[200px] sm:w-[240px] md:w-[280px] lg:w-[310px] rounded-xl sm:rounded-2xl overflow-hidden border border-gray-200/90 bg-gray-950 shadow-md hover:shadow-2xl transition-all duration-300 shrink-0">
+            <!-- Portrait Image -->
+            <img 
+              src={p.image} 
+              alt={p.name} 
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none" 
+              loading={idx < 6 ? "eager" : "lazy"} 
+              decoding="async" 
+            />
+
+            <!-- Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none"></div>
+
+            <!-- Bottom Title Only (No Description) -->
+            <div class="absolute bottom-0 inset-x-0 p-3.5 sm:p-4 lg:p-5 text-center z-10 pointer-events-none">
+              <span class="block text-xs sm:text-sm lg:text-base font-bold text-white font-satoshi leading-snug drop-shadow-md">
+                {p.name}
+              </span>
             </div>
           </div>
         )
@@ -111,48 +112,25 @@ const {
 </section>
 
 <style>
-  @keyframes marquee {
+  @keyframes projectsMarquee {
     0% {
-      transform: translateX(0);
+      transform: translate3d(0, 0, 0);
     }
     100% {
-      transform: translateX(-33.3333333333%);
+      transform: translate3d(-33.3333333333%, 0, 0);
     }
   }
 
-  .animate-marquee {
+  .animate-projects-marquee {
     display: flex;
-    animation: marquee 60s linear infinite;
+    animation: projectsMarquee 40s linear infinite;
+    will-change: transform;
+    transform: translateZ(0);
+    pointer-events: auto;
   }
 
-  /* Hover override to instantly color card media, overriding GSAP inline filter styles */
-  .group:hover .client-card-media {
-    filter: grayscale(0%) contrast(1) !important;
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
   }
 </style>
-
-<script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-  
-  gsap.registerPlugin(ScrollTrigger);
-
-  window.addEventListener("DOMContentLoaded", () => {
-    // Create scroll-linked grayscale timeline
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: "#projects",
-        start: "top bottom", // starts when top of showcase enters bottom of screen
-        end: "bottom top",   // ends when bottom of showcase leaves top of screen
-        scrub: 1.5,          // smooth link directly to scrollbar
-      }
-    })
-    .fromTo(".client-card-media", 
-      { filter: "grayscale(100%) contrast(1.1)" }, 
-      { filter: "grayscale(0%) contrast(1)", duration: 0.5, ease: "none" }
-    )
-    .to(".client-card-media", 
-      { filter: "grayscale(100%) contrast(1.1)", duration: 0.5, ease: "none" }
-    );
-  });
-</script>

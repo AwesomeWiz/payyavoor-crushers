@@ -1,15 +1,20 @@
 ---
+const pathname = Astro.url.pathname;
+const isHome = pathname === '/' || pathname === '' || pathname === '/index.html';
+const isBranches = pathname.startsWith('/branches');
+const homePrefix = isHome ? '' : '/';
 ---
 
 <!-- Full-width header overlaid on the hero image -->
 <header
   id="navbar-header"
-  class="fixed top-0 left-0 right-0 z-[10001] w-full transition-all duration-300 ease-out py-4 sm:py-6 md:py-8 bg-transparent border-none outline-none"
+  data-is-home={isHome ? "true" : "false"}
+  class={`fixed top-0 left-0 right-0 z-[10001] w-full transition-all duration-300 ease-out border-none outline-none ${isHome ? 'py-4 sm:py-6 md:py-8 bg-transparent' : '!py-2.5 md:!py-3.5 bg-[#071F30]/95 backdrop-blur-md shadow-xl'}`}
 >
   <div class="w-full max-w-[1440px] mx-auto px-4 sm:px-10 md:px-14 lg:px-16 flex items-center justify-between">
     <!-- Logo -->
     <div class="flex-shrink-0">
-      <a href="#hero" class="block group">
+      <a href="/" class="block group">
         <img 
           id="navbar-logo"
           src="/images/logo.png" 
@@ -20,38 +25,20 @@
     </div>
 
     <!-- Desktop Nav Links (User specified order) -->
-    <nav class="hidden md:flex items-center gap-5 lg:gap-8 xl:gap-10 font-satoshi font-medium text-[15px] lg:text-[16px] text-white/90">
-      <a href="#hero" class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Home</a>
-      <a href="#about" class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">About Us</a>
-      <a href="#products" class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Products</a>
-      <a href="#projects" class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Projects</a>
-      <a href="#sustainability" class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Sustainability</a>
+    <nav class="hidden md:flex items-center gap-5 lg:gap-7 xl:gap-9 font-satoshi font-medium text-[15px] lg:text-[16px] text-white/90">
+      <a href={`${homePrefix}#hero`} class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Home</a>
+      <a href={`${homePrefix}#about`} class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">About Us</a>
+      <a href={`${homePrefix}#products`} class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Products</a>
+      <a href={`${homePrefix}#projects`} class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Projects</a>
+      <a href={`${homePrefix}#sustainability`} class="relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full">Sustainability</a>
+      <a href="/branches" class={`relative py-1 transition-colors duration-200 hover:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-sky-400 after:transition-all after:duration-300 hover:after:w-full ${isBranches ? 'text-sky-400 after:w-full font-bold' : 'after:w-0'}`}>Branches</a>
     </nav>
 
-    <!-- Right: Enquire Now Button & Mobile Toggle -->
-    <div class="flex items-center gap-3 sm:gap-4 lg:gap-6">
-      <a
-        href="#contact"
-        id="navbar-cta"
-        class="
-          hidden sm:inline-block
-          rounded-full border border-white/85
-          px-6 sm:px-7 md:px-8 py-2 md:py-2.5
-          text-[13px] md:text-[14px] font-semibold tracking-wider uppercase text-white
-          hover:bg-white hover:text-gray-950
-          transition-all duration-300
-          shadow-md hover:shadow-xl
-          backdrop-blur-sm
-          active:scale-95
-        "
-      >
-        Enquire Now
-      </a>
-      
-      <!-- Mobile menu toggle -->
+    <!-- Mobile menu toggle -->
+    <div class="flex items-center md:hidden">
       <button 
         id="mobile-toggle" 
-        class="md:hidden p-2 text-white focus:outline-none transition-transform active:scale-95" 
+        class="p-2 text-white focus:outline-none transition-transform active:scale-95" 
         aria-label="Toggle Menu"
       >
         <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 sm:h-8 sm:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -70,17 +57,12 @@
     class="md:hidden max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out px-6 flex flex-col items-center gap-4"
   >
     <div class="w-full h-px bg-white/10 mt-2"></div>
-    <a href="#hero" class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Home</a>
-    <a href="#about" class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">About Us</a>
-    <a href="#products" class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Products</a>
-    <a href="#projects" class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Projects</a>
-    <a href="#sustainability" class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Sustainability</a>
-    <a 
-      href="#contact" 
-      class="sm:hidden rounded-full border border-white/85 px-8 py-3 text-[14px] font-semibold tracking-wider uppercase text-white hover:bg-white hover:text-gray-900 transition-all mb-4"
-    >
-      Enquire Now
-    </a>
+    <a href={`${homePrefix}#hero`} class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Home</a>
+    <a href={`${homePrefix}#about`} class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">About Us</a>
+    <a href={`${homePrefix}#products`} class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Products</a>
+    <a href={`${homePrefix}#projects`} class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Projects</a>
+    <a href={`${homePrefix}#sustainability`} class="text-[17px] font-medium text-white/90 hover:text-white transition-colors">Sustainability</a>
+    <a href="/branches" class={`text-[17px] font-medium transition-colors mb-4 ${isBranches ? 'text-sky-400 font-bold' : 'text-white/90 hover:text-white'}`}>Our Branches</a>
   </div>
 </header>
 
@@ -92,6 +74,8 @@
   const hamburger = document.getElementById('hamburger-icon');
   const close = document.getElementById('close-icon');
 
+  const isHomePage = header?.getAttribute('data-is-home') === 'true';
+
   // Toggle mobile menu
   toggle?.addEventListener('click', () => {
     const isOpen = menu?.classList.contains('max-h-[500px]');
@@ -101,8 +85,8 @@
       menu?.classList.add('max-h-0', 'opacity-0');
       hamburger?.classList.remove('hidden');
       close?.classList.add('hidden');
-      if (window.scrollY <= 40) {
-        header?.classList.remove('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl');
+      if (isHomePage && window.scrollY <= 40) {
+        header?.classList.remove('bg-[#071F30]/95', 'backdrop-blur-md', 'shadow-xl');
         header?.classList.add('bg-transparent');
       }
     } else {
@@ -110,7 +94,7 @@
       menu?.classList.remove('max-h-0', 'opacity-0');
       hamburger?.classList.add('hidden');
       close?.classList.remove('hidden');
-      header?.classList.add('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl');
+      header?.classList.add('bg-[#071F30]/95', 'backdrop-blur-md', 'shadow-xl');
       header?.classList.remove('bg-transparent');
     }
   });
@@ -120,13 +104,13 @@
     const isMobileMenuOpen = menu?.classList.contains('max-h-[500px]');
     if (isMobileMenuOpen) return;
 
-    if (window.scrollY > 40) {
-      header?.classList.add('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl', '!py-2.5', 'md:!py-3.5');
+    if (!isHomePage || window.scrollY > 40) {
+      header?.classList.add('bg-[#071F30]/95', 'backdrop-blur-md', 'shadow-xl', '!py-2.5', 'md:!py-3.5');
       header?.classList.remove('bg-transparent', 'py-4', 'sm:py-6', 'md:py-8');
       logo?.classList.add('!h-10', 'md:!h-14');
       logo?.classList.remove('h-11', 'sm:h-14', 'md:h-20');
     } else {
-      header?.classList.remove('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl', '!py-2.5', 'md:!py-3.5');
+      header?.classList.remove('bg-[#071F30]/95', 'backdrop-blur-md', 'shadow-xl', '!py-2.5', 'md:!py-3.5');
       header?.classList.add('bg-transparent', 'py-4', 'sm:py-6', 'md:py-8');
       logo?.classList.remove('!h-10', 'md:!h-14');
       logo?.classList.add('h-11', 'sm:h-14', 'md:h-20');
@@ -143,8 +127,8 @@
       menu?.classList.add('max-h-0', 'opacity-0');
       hamburger?.classList.remove('hidden');
       close?.classList.add('hidden');
-      if (window.scrollY <= 40) {
-        header?.classList.remove('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl');
+      if (isHomePage && window.scrollY <= 40) {
+        header?.classList.remove('bg-[#071F30]/95', 'backdrop-blur-md', 'shadow-xl');
         header?.classList.add('bg-transparent');
       }
     });

@@ -62,10 +62,10 @@ const aggregateProducts = products.slice(2);
 
 <section
   id="products"
-  class="scroll-mt-24 md:scroll-mt-28 w-full bg-brandBg pt-20 pb-12 sm:pt-24 sm:pb-14 md:py-0 md:h-screen md:min-h-[580px] md:max-h-[840px] overflow-hidden select-none text-gray-900 relative md:flex md:flex-col md:justify-between md:pt-28 md:pb-8 lg:pt-32 lg:pb-10"
+  class="scroll-mt-20 md:scroll-mt-0 w-full bg-brandBg overflow-hidden select-none text-gray-900 relative pt-20 pb-12 sm:pt-24 sm:pb-14 md:py-0 md:h-screen md:h-[100dvh] md:flex md:flex-col md:justify-center md:pt-[76px] md:pb-6"
 >
   {/* Section Header */}
-  <div class="max-w-7xl mx-auto px-6 sm:px-10 md:px-14 lg:px-16 mb-2 md:mb-4 w-full flex items-end justify-between shrink-0">
+  <div class="max-w-7xl mx-auto px-6 sm:px-10 md:px-14 lg:px-16 mb-2 md:mb-4 lg:mb-5 w-full flex items-end justify-between shrink-0">
     <div>
       <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight uppercase text-gray-950 font-satoshi">
         Our Products
@@ -151,15 +151,15 @@ const aggregateProducts = products.slice(2);
   </div>
 
   {/* DESKTOP VIEW: Pin-on-scroll automatic horizontal slider (GPU accelerated, zero lag) */}
-  <div class="hidden md:flex flex-col justify-center w-full overflow-hidden relative flex-1 my-auto">
+  <div class="hidden md:flex flex-col justify-center w-full overflow-hidden relative shrink-0 py-1">
     <div
       id="products-desktop-track"
-      class="products-scroll-track flex items-center gap-5 lg:gap-7 flex-nowrap will-change-transform pl-6 lg:pl-16 pr-16 py-2"
+      class="products-scroll-track flex items-center gap-5 lg:gap-7 flex-nowrap will-change-transform pl-6 lg:pl-16 pr-16 py-1"
     >
       {products.map((product, idx) => (
         <a
           href="#contact"
-          class="product-arch-card group relative flex-shrink-0 w-[220px] md:w-[230px] lg:w-[250px] xl:w-[270px] h-[360px] md:h-[380px] lg:h-[410px] xl:h-[430px] rounded-full overflow-hidden shadow-[0_16px_38px_-8px_rgba(0,0,0,0.22)] border border-gray-200/80 hover:border-gray-400/80 transition-all duration-500 hover:-translate-y-2 block"
+          class="product-arch-card group relative flex-shrink-0 w-[205px] md:w-[220px] lg:w-[240px] xl:w-[255px] h-[310px] md:h-[340px] lg:h-[370px] xl:h-[390px] max-h-[52vh] rounded-full overflow-hidden shadow-[0_16px_38px_-8px_rgba(0,0,0,0.22)] border border-gray-200/80 hover:border-gray-400/80 transition-all duration-500 hover:-translate-y-2 block"
         >
           {/* Background Image with Zoom on hover - Eager load initial cards to eliminate slide lag */}
           <img
@@ -176,11 +176,11 @@ const aggregateProducts = products.slice(2);
           <div class="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/25 to-transparent pointer-events-none"></div>
 
           {/* Centered Bottom Typography matching reference image */}
-          <div class="absolute inset-x-0 bottom-0 pb-8 lg:pb-10 px-4 text-center z-20 pointer-events-none">
-            <h3 class="text-lg lg:text-xl font-black uppercase text-white tracking-wider font-satoshi leading-tight drop-shadow-lg group-hover:text-sky-300 transition-colors duration-300">
+          <div class="absolute inset-x-0 bottom-0 pb-6 lg:pb-8 px-4 text-center z-20 pointer-events-none">
+            <h3 class="text-base lg:text-lg font-black uppercase text-white tracking-wider font-satoshi leading-tight drop-shadow-lg group-hover:text-sky-300 transition-colors duration-300">
               {product.name}
             </h3>
-            <p class="text-[11px] lg:text-xs font-medium text-white/85 tracking-wide mt-1 font-satoshi line-clamp-1">
+            <p class="text-[10px] lg:text-[11px] font-medium text-white/85 tracking-wide mt-1 font-satoshi line-clamp-1">
               {product.sub}
             </p>
           </div>
@@ -260,6 +260,7 @@ const aggregateProducts = products.slice(2);
         x: getScrollAmount,
         ease: "none",
         scrollTrigger: {
+          id: "products-trigger",
           trigger: section,
           start: "top top",
           end: () => `+=${Math.abs(getScrollAmount()) * 1.15}`,
@@ -273,6 +274,24 @@ const aggregateProducts = products.slice(2);
             }
           }
         }
+      });
+
+      // Smooth anchor navigation directly to the pinned start position
+      document.querySelectorAll('a[href="#products"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          if (window.innerWidth >= 768) {
+            e.preventDefault();
+            const st = ScrollTrigger.getById("products-trigger");
+            if (st) {
+              window.scrollTo({
+                top: st.start,
+                behavior: "smooth"
+              });
+            } else {
+              section.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }
+        });
       });
 
       return () => {

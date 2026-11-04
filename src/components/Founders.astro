@@ -44,7 +44,8 @@
                 src="/images/founder-kj-jose.jpeg" 
                 alt="Late Mr. K.J. Jose - Co-Founder of Payyavoor Group"
                 class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
-                loading="lazy"
+                loading="eager"
+                decoding="async"
               />
             </div>
 
@@ -103,7 +104,8 @@
                 src="/images/kujoseph.jpg" 
                 alt="Late Mr. K.U. Joseph - Co-Founder of Payyavoor Group"
                 class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
-                loading="lazy"
+                loading="eager"
+                decoding="async"
               />
             </div>
 
@@ -162,7 +164,8 @@
                 src="/images/founder-kj-mathai.jpeg" 
                 alt="Late Mr. K.J. Mathai - Co-Founder of Payyavoor Group"
                 class="w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
-                loading="lazy"
+                loading="eager"
+                decoding="async"
               />
             </div>
 
@@ -269,83 +272,139 @@
   
   gsap.registerPlugin(ScrollTrigger);
 
+  // Preload founder portraits into memory for zero mobile delay
+  const founderImages = [
+    "/images/kujoseph.jpg",
+    "/images/founder-kj-mathai.jpeg",
+    "/images/founder-kj-jose.jpeg"
+  ];
+  founderImages.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
+
   const initFounders = () => {
-    // Founders section header animation
-    gsap.from("#founders-header", {
-      scrollTrigger: {
-        trigger: "#founders-header",
-        start: "top 85%",
-        end: "top 50%",
-        toggleActions: "play none none reverse",
-      },
-      y: 40,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out",
-    });
+    const mm = gsap.matchMedia();
 
-    // Founder cards staggered entrance
-    gsap.from(".founder-card", {
-      scrollTrigger: {
-        trigger: "#founders-cards",
-        start: "top 80%",
-        end: "top 40%",
-        toggleActions: "play none none reverse",
-      },
-      y: 60,
-      opacity: 0,
-      duration: 1.1,
-      stagger: 0.2,
-      ease: "power3.out",
-    });
-
-    // Dividers grow in (desktop)
-    gsap.from(".founders-divider", {
-      scrollTrigger: {
-        trigger: "#founders-cards",
-        start: "top 75%",
-        toggleActions: "play none none reverse",
-      },
-      scaleY: 0,
-      opacity: 0,
-      duration: 0.8,
-      delay: 0.4,
-      ease: "power2.out",
-    });
-
-    // Legacy text reveal
-    gsap.from("#founders-legacy", {
-      scrollTrigger: {
-        trigger: "#founders-legacy",
-        start: "top 88%",
-        toggleActions: "play none none reverse",
-      },
-      y: 30,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out",
-    });
-
-    // Interactive parallax tilt on hover for founder cards
-    document.querySelectorAll(".founder-card").forEach((card) => {
-      const inner = card.querySelector(".founder-card-inner") as HTMLElement;
-      if (!inner) return;
-
-      card.addEventListener("mousemove", (e: Event) => {
-        const mouseEvent = e as MouseEvent;
-        const rect = (card as HTMLElement).getBoundingClientRect();
-        const x = mouseEvent.clientX - rect.left;
-        const y = mouseEvent.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -6;
-        const rotateY = ((x - centerX) / centerX) * 6;
-
-        inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    // Mobile (< 768px): snappy entrance with once:true, no reverse hiding
+    mm.add("(max-width: 767px)", () => {
+      gsap.from("#founders-header", {
+        scrollTrigger: {
+          trigger: "#founders-header",
+          start: "top 90%",
+          once: true,
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
       });
 
-      card.addEventListener("mouseleave", () => {
-        inner.style.transform = "rotateX(0deg) rotateY(0deg)";
+      gsap.from(".founder-card", {
+        scrollTrigger: {
+          trigger: "#founders-cards",
+          start: "top 90%",
+          once: true,
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.45,
+        stagger: 0.1,
+        ease: "power2.out",
+      });
+
+      gsap.from("#founders-legacy", {
+        scrollTrigger: {
+          trigger: "#founders-legacy",
+          start: "top 92%",
+          once: true,
+        },
+        y: 15,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+      });
+    });
+
+    // Desktop (>= 768px): rich staggered entrance & hover tilt
+    mm.add("(min-width: 768px)", () => {
+      // Founders section header animation
+      gsap.from("#founders-header", {
+        scrollTrigger: {
+          trigger: "#founders-header",
+          start: "top 85%",
+          end: "top 50%",
+          toggleActions: "play none none reverse",
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      // Founder cards staggered entrance
+      gsap.from(".founder-card", {
+        scrollTrigger: {
+          trigger: "#founders-cards",
+          start: "top 80%",
+          end: "top 40%",
+          toggleActions: "play none none reverse",
+        },
+        y: 60,
+        opacity: 0,
+        duration: 1.1,
+        stagger: 0.2,
+        ease: "power3.out",
+      });
+
+      // Dividers grow in (desktop)
+      gsap.from(".founders-divider", {
+        scrollTrigger: {
+          trigger: "#founders-cards",
+          start: "top 75%",
+          toggleActions: "play none none reverse",
+        },
+        scaleY: 0,
+        opacity: 0,
+        duration: 0.8,
+        delay: 0.4,
+        ease: "power2.out",
+      });
+
+      // Legacy text reveal
+      gsap.from("#founders-legacy", {
+        scrollTrigger: {
+          trigger: "#founders-legacy",
+          start: "top 88%",
+          toggleActions: "play none none reverse",
+        },
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      // Interactive parallax tilt on hover for founder cards
+      document.querySelectorAll(".founder-card").forEach((card) => {
+        const inner = card.querySelector(".founder-card-inner") as HTMLElement;
+        if (!inner) return;
+
+        card.addEventListener("mousemove", (e: Event) => {
+          const mouseEvent = e as MouseEvent;
+          const rect = (card as HTMLElement).getBoundingClientRect();
+          const x = mouseEvent.clientX - rect.left;
+          const y = mouseEvent.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * -6;
+          const rotateY = ((x - centerX) / centerX) * 6;
+
+          inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        card.addEventListener("mouseleave", () => {
+          inner.style.transform = "rotateX(0deg) rotateY(0deg)";
+        });
       });
     });
   };

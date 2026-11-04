@@ -1,0 +1,88 @@
+---
+// Our Branches Component (Homepage Section)
+const branches = [
+  {
+    logo: "/images/branches/branch-crushers.png",
+    alt: "Payyavoor Crushers",
+    address: "Payyavoor P.O, Kannur Dt., Kerala – 670 633",
+    phones: ["0460 2210 146", "22010 987"],
+    mobiles: ["+91 82816 20000", "+91 82816 30000"],
+    email: "payyavoorcrushers@gmail.com",
+    gstin: "32AAEFP9371R1ZJ"
+  },
+  {
+    logo: "/images/branches/branch-granites.png",
+    alt: "Payyavoor Granites",
+    address: "Vanchiyam Road, Chandanakampara, Payyavoor P.O, Kannur DT., Kerala – 670633",
+    phones: ["+91 460 2215 600, 800"],
+    mobiles: ["9447 710 986"],
+    email: "payyavoorgranites@gmail.com",
+    gstin: "32AAJFP0047R1ZZ"
+  },
+  {
+    logo: "/images/branches/branch-stockpoint.png",
+    alt: "Payyavoor Crushers Stock Point",
+    address: "Pokkundu – Koonam Road, Kurumathoor P.O, Kannur Dt., Kerala – 670 142",
+    phones: ["0460 2299 6425", "9072 579 001"],
+    email: "payyavoorcrushersstockpoint@gmail.com",
+    gstin: "32AAEFP9371R1ZJ"
+  }
+];
+---
+
+<section id="branches" class="scroll-mt-24 md:scroll-mt-28 py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-16 w-full max-w-7xl mx-auto">
+  <div class="text-center mb-10 sm:mb-14">
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight text-gray-950 font-satoshi">
+      Our Branches
+    </h2>
+  </div>
+
+  {/* 3 Branches separated by lines without boxes */}
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0">
+    {branches.map((b, idx) => (
+      <div class={`flex flex-col ${idx !== 0 ? 'border-t md:border-t-0 md:border-l border-gray-300 pt-8 md:pt-0 md:pl-8 lg:pl-12' : 'md:pr-8 lg:pr-12'}`}>
+        
+        {/* Logo */}
+        <div class="w-full mb-3 flex items-center justify-start">
+          <img 
+            src={b.logo} 
+            alt={b.alt} 
+            class="h-11 sm:h-12 md:h-14 w-auto object-contain object-left"
+            loading="lazy"
+          />
+        </div>
+
+        {/* Address and Contact Info */}
+        <div class="space-y-2 text-sm sm:text-base text-gray-800 font-satoshi leading-relaxed">
+          <p class="font-medium text-gray-900">
+            {b.address}
+          </p>
+
+          <p class="text-gray-700">
+            {b.phones.join(", ")}
+            {b.mobiles ? ` | ${b.mobiles.join(", ")}` : ''}
+          </p>
+
+          <p>
+            <a href={`mailto:${b.email}`} class="text-brandBlue hover:underline">
+              {b.email}
+            </a>
+          </p>
+
+          {b.gstin && (
+            <p class="text-sky-700 font-bold tracking-wide pt-1">
+              GSTIN : {b.gstin}
+            </p>
+          )}
+        </div>
+
+      </div>
+    ))}
+  </div>
+
+  <div class="text-center mt-12 pt-8 border-t border-gray-300">
+    <a href="/branches" class="text-sm font-semibold text-brandBlue hover:underline font-satoshi">
+      View Separate Branches Page →
+    </a>
+  </div>
+</section>

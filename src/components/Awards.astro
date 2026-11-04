@@ -49,7 +49,7 @@ const awards = [
 
 <section
   id="sustainability"
-  class="scroll-mt-24 md:scroll-mt-28 w-full py-12 md:py-24 px-4 sm:px-8 md:px-12 lg:px-16 bg-white overflow-hidden select-none md:min-h-screen flex flex-col justify-center"
+  class="scroll-mt-20 md:scroll-mt-0 w-full bg-white overflow-hidden select-none py-12 md:py-0 md:h-screen md:h-[100dvh] px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-center md:pt-[76px] md:pb-6"
 >
   <div class="max-w-7xl w-full mx-auto flex flex-col md:flex-row items-center md:items-stretch gap-6 md:gap-8 lg:gap-12">
     
@@ -120,7 +120,7 @@ const awards = [
     <div class="hidden md:flex w-full flex-1 items-center min-w-0">
       <div
         id="awards-accordion-container"
-        class="w-full h-[500px] lg:h-[540px] flex gap-2.5 sm:gap-3.5 lg:gap-4 overflow-hidden py-1"
+        class="w-full h-[400px] md:h-[430px] lg:h-[470px] xl:h-[490px] max-h-[60vh] flex gap-2.5 sm:gap-3.5 lg:gap-4 overflow-hidden py-1"
       >
         {awards.map((award, index) => (
           <div
@@ -271,6 +271,7 @@ const awards = [
       setActiveCard(0);
 
       ScrollTrigger.create({
+        id: "awards-trigger",
         trigger: section,
         start: "top top",
         end: "+=1800",
@@ -281,6 +282,24 @@ const awards = [
           const targetIndex = Math.floor(p * totalCards);
           setActiveCard(targetIndex);
         }
+      });
+
+      // Smooth anchor navigation directly to the pinned start position
+      document.querySelectorAll('a[href="#sustainability"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          if (window.innerWidth >= 768) {
+            e.preventDefault();
+            const st = ScrollTrigger.getById("awards-trigger");
+            if (st) {
+              window.scrollTo({
+                top: st.start,
+                behavior: "smooth"
+              });
+            } else {
+              section.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }
+        });
       });
 
       cards.forEach((card, i) => {
