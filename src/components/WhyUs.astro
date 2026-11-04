@@ -6,26 +6,28 @@ const cards = [
 ];
 ---
 
-<section id="why-us" class="scroll-mt-24 md:scroll-mt-28 pt-4 pb-8 md:pt-12 md:pb-12 px-4 w-full">
-  <div class="mb-6 md:mb-12 text-center reveal-text">
-    <h2 class="text-4xl md:text-5xl font-satoshi font-medium">Why Choose Payyavoor Crushers?</h2>
+<section id="why-us" class="scroll-mt-24 md:scroll-mt-28 py-6 md:py-10 px-4 sm:px-6 lg:px-8 w-full max-w-7xl mx-auto">
+  <div class="mb-4 md:mb-7 text-center reveal-text">
+    <h2 class="text-2xl sm:text-3xl md:text-[34px] font-satoshi font-bold tracking-tight text-gray-950">
+      Why Choose Payyavoor Crushers?
+    </h2>
   </div>
 
-  <div class="flex flex-col md:flex-row w-full gap-4 px-2 md:px-8 min-h-[600px] h-auto why-us-container">
+  <div class="flex flex-col md:flex-row w-full gap-3.5 lg:gap-5 min-h-[250px] sm:min-h-[270px] md:min-h-[290px] lg:min-h-[310px] h-auto why-us-container">
     {cards.map((card, index) => (
-      <div class={`why-us-card relative rounded-xl overflow-hidden shadow-sm p-8 flex-1 flex flex-col justify-start min-h-[600px] ${card.bgClass} ${card.textClass}`}>
-        <h3 class="text-2xl md:text-3xl font-satoshi font-semibold mb-4 z-10">{card.title}</h3>
-        <p class="font-satoshi text-base md:text-lg z-10 leading-relaxed font-medium">
+      <div class={`why-us-card relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow p-4 sm:p-5 lg:p-6 flex-1 flex flex-col justify-start min-h-[240px] sm:min-h-[260px] md:min-h-[280px] lg:min-h-[300px] ${card.bgClass} ${card.textClass}`}>
+        <h3 class="text-base sm:text-lg lg:text-xl font-satoshi font-bold mb-2 z-10 leading-snug">{card.title}</h3>
+        <p class="font-satoshi text-xs sm:text-[13px] lg:text-[14px] z-10 leading-relaxed font-medium opacity-90 max-w-sm">
           {card.desc}
         </p>
         
-        <div class="mt-auto z-10 pt-4">
-          <span class="text-2xl font-satoshi font-medium opacity-90">{card.num}</span>
+        <div class="mt-auto z-10 pt-3">
+          <span class="text-lg sm:text-xl font-satoshi font-bold opacity-80">{card.num}</span>
         </div>
 
-        {/* Abstract images firmly pinned globally relative, responding via heights. Adjusting specifically abstract2 position mathematically. */}
-        <div class={`abstract-img-container opacity-0 absolute w-[85%] md:w-2/3 h-[65%] lg:h-[75%] pointer-events-none ${index === 1 ? '-bottom-10 md:-bottom-12 right-0' : index === 2 ? 'bottom-0 right-[48px]' : 'bottom-0 right-[32px]'}`}>
-          <img src={card.img} alt="Abstract design" class="w-full h-full object-contain object-right-bottom opacity-80" />
+        {/* Abstract design elements */}
+        <div class={`abstract-img-container opacity-0 absolute w-[55%] sm:w-[50%] md:w-[50%] h-[46%] pointer-events-none ${index === 1 ? '-bottom-5 md:-bottom-6 right-0' : index === 2 ? 'bottom-0 right-3 md:right-4' : 'bottom-0 right-2 md:right-3'}`}>
+          <img src={card.img} alt="Abstract design" class="w-full h-full object-contain object-right-bottom opacity-75" />
         </div>
       </div>
     ))}
@@ -38,32 +40,38 @@ const cards = [
   
   gsap.registerPlugin(ScrollTrigger);
 
-  window.addEventListener("DOMContentLoaded", () => {
-    // Slant up effect (NO opacity fade! Purely Y-axis sliding up into screen view)
+  const initWhyUs = () => {
+    // Decisive slide-up into screen view
     gsap.from(".why-us-card", {
       scrollTrigger: {
         trigger: ".why-us-container",
-        start: "top 80%",
+        start: "top 85%",
         toggleActions: "play none none reverse"
       },
-      y: 120,    // High positive Y start creates a decisive slide-up
-      duration: 0.9,
-      stagger: 0.2, // 1 -> 2 -> 3
-      ease: "power4.out" // sharp deceleration
+      y: 50,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "power3.out"
     });
 
-    // Sub-animation: fade in explicitly ONLY the abstract images trailing the slide
+    // Fade in abstract decorative graphics
     gsap.to(".abstract-img-container", {
       scrollTrigger: {
         trigger: ".why-us-container",
-        start: "top 80%",
+        start: "top 85%",
         toggleActions: "play none none reverse"
       },
       opacity: 1,
-      duration: 0.8,
-      stagger: 0.2,
-      delay: 0.2,
+      duration: 0.7,
+      stagger: 0.15,
+      delay: 0.15,
       ease: "power2.inOut"
     });
-  });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initWhyUs);
+  } else {
+    initWhyUs();
+  }
 </script>

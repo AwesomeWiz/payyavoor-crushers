@@ -1,10 +1,10 @@
 ---
 ---
 
-<!-- Full-width header overlaid on the hero image matching reference design -->
+<!-- Full-width header overlaid on the hero image -->
 <header
   id="navbar-header"
-  class="fixed top-0 left-0 right-0 z-[10001] w-full transition-all duration-300 py-4 sm:py-6 md:py-8"
+  class="fixed top-0 left-0 right-0 z-[10001] w-full transition-all duration-300 ease-out py-4 sm:py-6 md:py-8 bg-transparent border-none outline-none"
 >
   <div class="w-full max-w-[1440px] mx-auto px-4 sm:px-10 md:px-14 lg:px-16 flex items-center justify-between">
     <!-- Logo -->
@@ -102,30 +102,32 @@
       hamburger?.classList.remove('hidden');
       close?.classList.add('hidden');
       if (window.scrollY <= 40) {
-        header?.classList.remove('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-white/10');
+        header?.classList.remove('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl');
+        header?.classList.add('bg-transparent');
       }
     } else {
       menu?.classList.add('max-h-[500px]', 'opacity-100', 'pt-3', 'pb-5');
       menu?.classList.remove('max-h-0', 'opacity-0');
       hamburger?.classList.add('hidden');
       close?.classList.remove('hidden');
-      header?.classList.add('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-white/10');
+      header?.classList.add('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl');
+      header?.classList.remove('bg-transparent');
     }
   });
 
-  // Handle scroll behavior
+  // Handle scroll behavior (no bottom border to prevent line flash on transition)
   const updateScroll = () => {
     const isMobileMenuOpen = menu?.classList.contains('max-h-[500px]');
     if (isMobileMenuOpen) return;
 
     if (window.scrollY > 40) {
-      header?.classList.add('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-white/10', '!py-2.5', 'md:!py-3.5');
-      header?.classList.remove('py-4', 'sm:py-6', 'md:py-8');
+      header?.classList.add('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl', '!py-2.5', 'md:!py-3.5');
+      header?.classList.remove('bg-transparent', 'py-4', 'sm:py-6', 'md:py-8');
       logo?.classList.add('!h-10', 'md:!h-14');
       logo?.classList.remove('h-11', 'sm:h-14', 'md:h-20');
     } else {
-      header?.classList.remove('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-white/10', '!py-2.5', 'md:!py-3.5');
-      header?.classList.add('py-4', 'sm:py-6', 'md:py-8');
+      header?.classList.remove('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl', '!py-2.5', 'md:!py-3.5');
+      header?.classList.add('bg-transparent', 'py-4', 'sm:py-6', 'md:py-8');
       logo?.classList.remove('!h-10', 'md:!h-14');
       logo?.classList.add('h-11', 'sm:h-14', 'md:h-20');
     }
@@ -142,7 +144,8 @@
       hamburger?.classList.remove('hidden');
       close?.classList.add('hidden');
       if (window.scrollY <= 40) {
-        header?.classList.remove('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-white/10');
+        header?.classList.remove('bg-[#000428]/95', 'backdrop-blur-md', 'shadow-xl');
+        header?.classList.add('bg-transparent');
       }
     });
   });
